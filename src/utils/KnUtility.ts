@@ -112,4 +112,13 @@ export class KnUtility {
         return info.value;    
     }
 
+    public static scrapeTraceInfo(context: any) : any {
+        let req = context.meta.req;
+        if(!req && context.options && context.options.parentCtx && context.options.parentCtx.params && context.options.parentCtx.params.req) req = context.options.parentCtx.params.req;
+        let ip = null;
+        if(req) ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+        let url = req?req.originalUrl:null;
+        return {ip: ip, url: url};
+    }
+
 }

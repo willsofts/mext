@@ -3,6 +3,7 @@ import { KnRecordSet, KnResultSet, KnSQL } from '@willsofts/will-sql';
 import { Utilities } from "@willsofts/will-util";
 import { TknBaseHandler } from "./TknBaseHandler";
 import { DB_TRACKER } from "../utils/EnvironmentVariable";
+import { KnUtility } from "../utils/KnUtility";
 
 export class TknTrackingHandler extends TknBaseHandler {
     public model : KnModel = { name: "tul", alias: { privateAlias: DB_TRACKER } };
@@ -19,16 +20,16 @@ export class TknTrackingHandler extends TknBaseHandler {
     protected override async doInsert(context: any, model: KnModel) : Promise<KnRecordSet> {
         let db = this.getPrivateConnector(model);
         try {
+            let info = this.trackInfo;
+            if(!info) info = context.params?.info;
             let user = await this.getUserTokenInfo(context,true);
             let token = this.getTokenKey(context);
             let headers = context.meta.headers;
             let params = { ...context.params };
             delete params.req;
             delete params.res;
-            let req = context.meta.req;
-            if(!req && context.options && context.options.parentCtx && context.options.parentCtx.params && context.options.parentCtx.params.req) req = context.options.parentCtx.params.req;
-            let ip = null;
-            if(req) ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+            delete params.info;
+            let binfo = KnUtility.scrapeTraceInfo(context);
             let sql = new KnSQL("insert into tul (seqno,curtime,useralias,userid,site,progid,handler,action,remark,token,address,paths,headers,requests) ");
             sql.append("values(?seqno,?curtime,?useralias,?userid,?site,?progid,?handler,?action,?remark,?token,?address,?paths,?headers,?requests)");
             sql.set("seqno",Utilities.currentTimeMillis());
@@ -36,13 +37,13 @@ export class TknTrackingHandler extends TknBaseHandler {
             sql.set("useralias",user?.useruuid);
             sql.set("userid",user?.userid);
             sql.set("site",user?.site);
-            sql.set("progid",this.trackInfo?.tracker);
-            sql.set("handler",this.trackInfo?.model);
-            sql.set("action",this.trackInfo?.method);
-            sql.set("remark",this.trackInfo?.info?JSON.stringify(this.trackInfo?.info):null);
+            sql.set("progid",info?.tracker);
+            sql.set("handler",info?.model);
+            sql.set("action",info?.method);
+            sql.set("remark",info?.info?JSON.stringify(info?.info):null);
             sql.set("token",token);
-            sql.set("address",ip);
-            sql.set("paths",req?req.originalUrl:null);
+            sql.set("address",binfo?.ip);
+            sql.set("paths",binfo?.url);
             sql.set("headers",headers?JSON.stringify(headers):null);
             sql.set("requests",params?JSON.stringify(params):null);
             let rs = await sql.executeUpdate(db,context);

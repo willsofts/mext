@@ -2,7 +2,7 @@ import { KnTrackingInfo, KnOperationInfo, KnModel } from "@willsofts/will-db";
 import { HTTP } from "@willsofts/will-api";
 import { KnContextInfo, KnFunctionalInfo } from '../models/KnCoreAlias';
 import { TknBaseHandler } from "./TknBaseHandler";
-import { TknTrackingHandler } from "./TknTrackingHandler";
+import { KnUtility } from "../utils/KnUtility";
 import { ALWAYS_DB_TRACKING } from "../utils/EnvironmentVariable";
 import { VerifyError } from "../models/VerifyError";
 
@@ -26,10 +26,14 @@ export class TknSystemHandler extends TknBaseHandler {
 
     public override track(context: KnContextInfo, info: KnTrackingInfo): Promise<void> {
         if(ALWAYS_DB_TRACKING) {
+            info.info = KnUtility.scrapeTraceInfo(context);
             if(!info.tracker) info.tracker = context.meta.pid;
+            this.call("tracking.insert",{...context.params, info: info},{meta: context.meta}).catch(ex => this.logger.error(this.constructor.name,ex));
+            /*
             let tracking = new TknTrackingHandler();
-            tracking.trackInfo = info;            
+            tracking.trackInfo = info;   
             tracking.insert(context).catch(ex => this.logger.error(this.constructor.name,ex));
+            */
         }
         return Promise.resolve();
     }

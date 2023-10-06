@@ -357,4 +357,8 @@ export class TknBaseHandler extends KnHandler {
         return {records: records, rows: result.rows, columns: null, offsets: result.offsets };
     }
     
+    public async call(serviceName: string, params: any, options?: any) : Promise<any> {
+        return this.broker?.call(serviceName, params, options);
+    }
+
 }

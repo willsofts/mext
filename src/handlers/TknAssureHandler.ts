@@ -21,6 +21,7 @@ export class TknAssureHandler {
         if(this.isExceptPath(req)) {
             return Promise.resolve(ctx);
         }
+        ctx.meta.req = req;
         return this.doAuthorize(ctx);
     }
 
@@ -28,6 +29,7 @@ export class TknAssureHandler {
         if(this.isExceptPath(req)) {
             return Promise.resolve(ctx);
         }
+        ctx.meta.req = req;
         return this.doAuthenticate(ctx);
     }
 
