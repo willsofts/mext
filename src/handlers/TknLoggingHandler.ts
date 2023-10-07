@@ -5,7 +5,7 @@ import { TknBaseHandler } from "./TknBaseHandler";
 import { DB_TRACKER } from "../utils/EnvironmentVariable";
 import { KnUtility } from "../utils/KnUtility";
 
-export class TknTrackingHandler extends TknBaseHandler {
+export class TknLoggingHandler extends TknBaseHandler {
     public model : KnModel = { name: "tul", alias: { privateAlias: DB_TRACKER } };
     public trackInfo? : KnTrackingInfo;
 
@@ -42,8 +42,8 @@ export class TknTrackingHandler extends TknBaseHandler {
             sql.set("action",info?.method);
             sql.set("remark",info?.info?JSON.stringify(info?.info):null);
             sql.set("token",token);
-            sql.set("address",binfo?.ip);
-            sql.set("paths",binfo?.url);
+            sql.set("address",binfo?.ip || info?.info?.ip);
+            sql.set("paths",binfo?.url || info?.info?.url);
             sql.set("headers",headers?JSON.stringify(headers):null);
             sql.set("requests",params?JSON.stringify(params):null);
             let rs = await sql.executeUpdate(db,context);

@@ -28,7 +28,7 @@ export class TknSystemHandler extends TknBaseHandler {
         if(ALWAYS_DB_TRACKING) {
             info.info = KnUtility.scrapeTraceInfo(context);
             if(!info.tracker) info.tracker = context.meta.pid;
-            this.call("tracking.insert",{...context.params, info: info},{meta: context.meta}).catch(ex => this.logger.error(this.constructor.name,ex));
+            this.call("logging.insert",{...context.params, info: info},{meta: context.meta}).catch(ex => this.logger.error(this.constructor.name,ex));
             /*
             let tracking = new TknTrackingHandler();
             tracking.trackInfo = info;   
