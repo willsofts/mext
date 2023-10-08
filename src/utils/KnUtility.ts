@@ -121,4 +121,10 @@ export class KnUtility {
         return {ip: ip, url: url};
     }
 
+    public static removeAttributes(data: any,...names: string[]) {
+        for(let name of names) {
+            delete data[name];
+        }
+    }
+
 }

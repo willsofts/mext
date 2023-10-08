@@ -2,7 +2,7 @@ import { KnModel, KnOperation } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL, KnResultSet } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
 import { Utilities } from "@willsofts/will-util";
-import { PasswordLibrary, MailLibrary, MailInfo } from "@willsofts/will-lib";
+import { PasswordLibrary } from "@willsofts/will-lib";
 import { KnValidateInfo, KnContextInfo, KnDataTable, KnTemplateInfo } from '../models/KnCoreAlias';
 import { VerifyError } from '../models/VerifyError';
 import { KnUtility } from '../utils/KnUtility';
@@ -298,7 +298,7 @@ export class Sfte016Handler extends TknOperateHandler {
         if(rs && rs.rows.length>0) {
             let record = rs.rows[0];
             let [msg,tmp] = await this.composeMailMessage(db, record, eng);
-            this.doSendMail(context, model, {email: record.email, subject: tmp?tmp.subjecttitle:"Confirm New Account", message: msg});
+            this.mailing(context, {email: record.email, subject: tmp?tmp.subjecttitle:"Confirm New Account", message: msg});
         }
         return rs;
     }
@@ -323,7 +323,7 @@ export class Sfte016Handler extends TknOperateHandler {
             let ars = await handler.createActivation(db, info);
             let crs = this.createRecordSet(ars);
             if(crs.records>0) {
-                this.doSendMail(context, model, {email: record.email, subject: tmp?tmp.subjecttitle:"Activate New Account", message: msg});
+                this.mailing(context, {email: record.email, subject: tmp?tmp.subjecttitle:"Activate New Account", message: msg});
             }
         }
         return rs;
@@ -487,18 +487,6 @@ export class Sfte016Handler extends TknOperateHandler {
         return result;
     }
     
-	protected async doSendMail(context: KnContextInfo, model: KnModel, info: MailInfo) : Promise<void> {
-		let db = this.getPrivateConnector(model);
-		try {
-			await MailLibrary.sendMail(info, db);	
-		} catch(ex: any) {
-			this.logger.error(this.constructor.name,ex);
-            return Promise.reject(this.getDBError(ex));
-		} finally {
-			if(db) db.close();
-		}
-	}
-
     /**
      * Override in order to update records
      */

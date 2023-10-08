@@ -1,5 +1,6 @@
 import { KnTrackingInfo, KnOperationInfo, KnModel } from "@willsofts/will-db";
 import { HTTP } from "@willsofts/will-api";
+import { MailInfo } from '@willsofts/will-lib';
 import { KnContextInfo, KnFunctionalInfo } from '../models/KnCoreAlias';
 import { TknBaseHandler } from "./TknBaseHandler";
 import { KnUtility } from "../utils/KnUtility";
@@ -37,5 +38,9 @@ export class TknSystemHandler extends TknBaseHandler {
         }
         return Promise.resolve();
     }
+
+	public async mailing(context: KnContextInfo, info: MailInfo, channel: string[] = ["MAIL"]) : Promise<void> {
+		this.call("mail.send",{...info, channel: channel}).catch(ex => this.logger.error(this.constructor.name,ex));
+	}
 
 }

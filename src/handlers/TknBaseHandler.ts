@@ -68,7 +68,7 @@ export class TknBaseHandler extends KnHandler {
         let result = RESERVED_FIELDS.includes(key);
         return result?result:super.isInPageSetting(key, model);
     }
-
+    
     public getCurrentUser() : string {
         return os.userInfo().username;
     }

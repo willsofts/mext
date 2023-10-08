@@ -224,3 +224,39 @@ export interface KnFactorVerifyInfo {
     delta: number;
     info?: any
 }
+
+export interface KnTrailerInfo {
+    keyid: string;
+    status: string;
+    trxtime?: number;
+    process?: string;
+    quotable?: string;
+    refer?: string;
+    package?: string;
+    remark?: string;
+    info?: any;
+}
+
+export interface KnTrailingInfo extends KnTrailerInfo{
+    owner: string;
+    sender: string;
+    contents: string;
+    caller?: string;
+    note?: string;
+    action?: string;
+    attachs?: string;
+}
+
+export interface KnMailSetting {
+    channel: string | string[];
+    target: string | string[];
+    subject: string;
+    message: string;
+    options?: any;
+}
+
+export enum KnChannel {
+    MAIL = "MAIL",
+    NOTI = "NOTI",
+    SMS = "SMS"
+}

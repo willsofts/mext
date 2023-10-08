@@ -1,6 +1,6 @@
 import { KnModel } from "@willsofts/will-db";
 import { KnDBConnector, KnSQL } from '@willsofts/will-sql';
-import { PasswordLibrary, PasswordVerify, MailLibrary, CaptchaLibrary, MailInfo } from '@willsofts/will-lib';
+import { PasswordLibrary, PasswordVerify, CaptchaLibrary, MailInfo } from '@willsofts/will-lib';
 import { HTTP } from "@willsofts/will-api";
 import { Utilities } from "@willsofts/will-util";
 import { VerifyError } from "../models/VerifyError";
@@ -55,7 +55,7 @@ export class TknForgotPasswordHandler extends TknSchemeHandler {
 	}
 
 	public async getUserInfoByEmail(db: KnDBConnector, email: string, context?: any) : Promise<KnUserInfo> {
-		let KnUserInfo : KnUserInfo = { found: false, userid: "", email: email };
+		let userInfo : KnUserInfo = { found: false, userid: "", email: email };
 		let sql = new KnSQL("select tuser.site,tuser.userid,tuser.username,tuserinfo.email,");
 		sql.append("tuserinfo.userename,tuserinfo.useresurname,tuserinfo.usertname,tuserinfo.usertsurname ");
 		sql.append("from tuser,tuserinfo ");
@@ -67,19 +67,19 @@ export class TknForgotPasswordHandler extends TknSchemeHandler {
 		this.logger.debug(this.constructor.name+".getUserInfoByEmail","effected "+rs.rows.length+" rows");
 		if(rs.rows && rs.rows.length>0) {
 			let row = rs.rows[0];
-			KnUserInfo.found = true;
-			KnUserInfo.site = row.site;
-			KnUserInfo.userid = row.userid;
-			KnUserInfo.username = row.username;
-			KnUserInfo.email = row.email;
-			KnUserInfo.usernameen = (row.userename?row.userename:"")+" "+(row.useresurname?row.useresurname:"");
-			KnUserInfo.usernameth = (row.usertname?row.usertname:"")+" "+(row.usertsurname?row.usertsurname:"");
+			userInfo.found = true;
+			userInfo.site = row.site;
+			userInfo.userid = row.userid;
+			userInfo.username = row.username;
+			userInfo.email = row.email;
+			userInfo.usernameen = (row.userename?row.userename:"")+" "+(row.useresurname?row.useresurname:"");
+			userInfo.usernameth = (row.usertname?row.usertname:"")+" "+(row.usertsurname?row.usertsurname:"");
 		}
-		return KnUserInfo;
+		return userInfo;
 	}
 	
 	public async getUserInfoById(db: KnDBConnector, id: string, context?: any) : Promise<KnUserInfo> {
-		let KnUserInfo : KnUserInfo = { found: false, userid: id, email: "" };
+		let userInfo : KnUserInfo = { found: false, userid: id, email: "" };
 		let sql = new KnSQL("select tuser.site,tuser.userid,tuser.username,tuserinfo.email,");
 		sql.append("tuserinfo.userename,tuserinfo.useresurname,tuserinfo.usertname,tuserinfo.usertsurname ");
 		sql.append("from tuser,tuserinfo ");
@@ -91,15 +91,15 @@ export class TknForgotPasswordHandler extends TknSchemeHandler {
 		this.logger.debug(this.constructor.name+".getUserInfoById","effected "+rs.rows.length+" rows");
 		if(rs.rows && rs.rows.length>0) {
 			let row = rs.rows[0];
-			KnUserInfo.found = true;
-			KnUserInfo.site = row.site;
-			KnUserInfo.userid = row.userid;
-			KnUserInfo.username = row.username;
-			KnUserInfo.email = row.email;
-			KnUserInfo.usernameen = (row.userename?row.userename:"")+" "+(row.useresurname?row.useresurname:"");
-			KnUserInfo.usernameth = (row.usertname?row.usertname:"")+" "+(row.usertsurname?row.usertsurname:"");
+			userInfo.found = true;
+			userInfo.site = row.site;
+			userInfo.userid = row.userid;
+			userInfo.username = row.username;
+			userInfo.email = row.email;
+			userInfo.usernameen = (row.userename?row.userename:"")+" "+(row.useresurname?row.useresurname:"");
+			userInfo.usernameth = (row.usertname?row.usertname:"")+" "+(row.usertsurname?row.usertsurname:"");
 		}
-		return KnUserInfo;
+		return userInfo;
 	}
 
 	public async composeMailMessage(db: KnDBConnector, record: any, eng: boolean = true, template: string = "USER_FORGOT", templatetype: string = "MAIL_NOTIFY") : Promise<[string,KnTemplateInfo|undefined]> {
@@ -120,29 +120,18 @@ export class TknForgotPasswordHandler extends TknSchemeHandler {
 		return [Utilities.translateVariables(msg, record),tmp];	
 	}
 
-	public async performForgotPassword(context: KnContextInfo, model: KnModel, db: KnDBConnector, KnUserInfo: KnUserInfo, date?: Date) : Promise<PasswordVerify> {
-		let verify = await this.forgotPassword(db,KnUserInfo,date);
+	public async performForgotPassword(context: KnContextInfo, model: KnModel, db: KnDBConnector, userInfo: KnUserInfo, date?: Date) : Promise<PasswordVerify> {
+		let verify = await this.forgotPassword(db,userInfo,date);
 		this.logger.debug(this.constructor.name+".performForgotPassword: verify",verify);
 		if(!verify.result) {
 			return Promise.reject(new VerifyError(verify.msg as string,HTTP.NOT_ACCEPTABLE,verify.errno));
 		} else {
-			this.logger.debug(this.constructor.name+".performForgotPassword: send mail",KnUserInfo.username+" : "+KnUserInfo.usernameen);
-			let record = {userfullname: KnUserInfo.usernameen, username: KnUserInfo.username, userpassword: verify.args};
-			let [msg,tmp] = await this.composeMailMessage(db, record, KnUserInfo.info?.eng);
-			this.doSendMail(context, model, {email: KnUserInfo.email, subject: tmp?tmp.subjecttitle:"Confirm Password Changed", message: msg});
+			this.logger.debug(this.constructor.name+".performForgotPassword: send mail",userInfo.username+" : "+userInfo.usernameen);
+			let record = {userfullname: userInfo.usernameen, username: userInfo.username, userpassword: verify.args};
+			let [msg,tmp] = await this.composeMailMessage(db, record, userInfo.info?.eng);
+			this.mailing(context, {email: userInfo.email, subject: tmp?tmp.subjecttitle:"Confirm Password Changed", message: msg});
 		}
 		return Promise.resolve(verify);
-	}
-
-	public async doSendMail(context: KnContextInfo, model: KnModel, info: MailInfo) : Promise<void> {
-		let db = this.getPrivateConnector(model);
-		try {
-			await MailLibrary.sendMail(info, db);	
-		} catch(ex: any) {
-			this.logger.error(this.constructor.name,this.constructor.name,ex);
-		} finally {
-			if(db) db.close();
-		}
 	}
 
 	public async forgotPassword(db: KnDBConnector, info: KnUserInfo, date?: Date) : Promise<PasswordVerify> {
