@@ -195,7 +195,7 @@ export class TknTwoFactorHandler extends TknSchemeHandler {
                 factorurl: factorurl, factorremark: row.factorremark 
             };
         }
-        return {...cfg, userid: "", email: "", factorfound: false, factorid: "", factorkey: "", factorflag: ""};
+        return {...cfg, userid: findByUser?id:"", email: "", factorfound: false, factorid: "", factorkey: "", factorflag: ""};
     }
 
     public async getConfigure(db: KnDBConnector, context?: any): Promise<KnFactorConfigInfo> {

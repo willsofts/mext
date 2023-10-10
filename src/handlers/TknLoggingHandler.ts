@@ -30,8 +30,8 @@ export class TknLoggingHandler extends TknBaseHandler {
             delete params.res;
             delete params.info;
             let binfo = KnUtility.scrapeTraceInfo(context);
-            let sql = new KnSQL("insert into tul (seqno,curtime,useralias,userid,site,progid,handler,action,remark,token,address,paths,headers,requests) ");
-            sql.append("values(?seqno,?curtime,?useralias,?userid,?site,?progid,?handler,?action,?remark,?token,?address,?paths,?headers,?requests)");
+            let sql = new KnSQL("insert into tul (seqno,curtime,useralias,userid,site,progid,handler,action,remark,token,address,paths,headers,requests,contents) ");
+            sql.append("values(?seqno,?curtime,?useralias,?userid,?site,?progid,?handler,?action,?remark,?token,?address,?paths,?headers,?requests,?contents)");
             sql.set("seqno",Utilities.currentTimeMillis());
             sql.set("curtime",Utilities.now());
             sql.set("useralias",user?.useruuid);
@@ -40,12 +40,13 @@ export class TknLoggingHandler extends TknBaseHandler {
             sql.set("progid",info?.tracker);
             sql.set("handler",info?.model);
             sql.set("action",info?.method);
-            sql.set("remark",info?.info?JSON.stringify(info?.info):null);
+            sql.set("remark",info?.remark);
             sql.set("token",token);
             sql.set("address",binfo?.ip || info?.info?.ip);
             sql.set("paths",binfo?.url || info?.info?.url);
             sql.set("headers",headers?JSON.stringify(headers):null);
             sql.set("requests",params?JSON.stringify(params):null);
+            sql.set("contents",info?.info?JSON.stringify(info?.info):null);
             let rs = await sql.executeUpdate(db,context);
             return this.createRecordSet(rs);
         } catch(ex: any) {

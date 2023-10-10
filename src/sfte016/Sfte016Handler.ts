@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import { KnModel, KnOperation } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL, KnResultSet } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
@@ -275,13 +276,15 @@ export class Sfte016Handler extends TknOperateHandler {
             found = rs.rows.length>0;
             if(found) return Promise.reject(new VerifyError("Email is already existed",HTTP.NOT_ACCEPTABLE,-18879));
             found = false;
+            /*
             knsql.clear();
             knsql.append("select userid ");
             knsql.append("from tuserinfo ");
             knsql.append("where userid = ?userid ");
-            knsql.set("userid",context.params.userid);
+            knsql.set("userid",context.params.username);
             rs = await knsql.executeQuery(db,context);
             found = rs.rows.length>0;
+            */
             //rs = await this.createUserTableToConfirm(context, model, db, found, eng);
             rs = await this.createUserTableToActivate(context, model, db, found, eng);
             return rs;
@@ -371,7 +374,7 @@ export class Sfte016Handler extends TknOperateHandler {
         let site = context.params.site;
         if(!site || site.trim()=="") site = this.userToken?.site;
         let curdate = Utilities.now();
-        context.params.userid = context.params.username;
+        context.params.userid = uuid();
         let plib = new PasswordLibrary();
         let passwordexpiredate = await plib.getUserExpireDate(db, context.params.userid, curdate);
         let userpassword = context.params.userpassword;
@@ -393,7 +396,7 @@ export class Sfte016Handler extends TknOperateHandler {
                 knsql.append("insert into tuserinfo(site,employeeid,userid,userename,useresurname,usertname,usertsurname,email,gender,mobile,lineid,inactive,editdate,edittime,edituser) ");
                 knsql.append("values(?site,?employeeid,?userid,?userename,?useresurname,?usertname,?usertsurname,?email,?gender,?mobile,?lineid,?inactive,?editdate,?edittime,?edituser) ");
                 knsql.set("site",site);
-                knsql.set("employeeid",context.params.userid);
+                knsql.set("employeeid",context.params.username);
                 knsql.set("userid",context.params.userid);
                 knsql.set("usertname",context.params.usertname);
                 knsql.set("usertsurname",context.params.usertsurname);

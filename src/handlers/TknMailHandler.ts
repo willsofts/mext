@@ -60,7 +60,7 @@ export class TknMailHandler extends TknSchemeHandler {
         return setting;
     }
 
-    public override track(context: KnContextInfo, info: KnTrackingInfo): Promise<void> {
+    public override async track(context: KnContextInfo, info: KnTrackingInfo): Promise<void> {
         //ignore tracking this handler
         return Promise.resolve();
     }

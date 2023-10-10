@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { KnModel } from "@willsofts/will-db";
-import { AuthenError, BasicLibrary, AuthenTokenData } from '@willsofts/will-lib';
+import { AuthenError, BasicLibrary, AuthenTokenData, PasswordTemporary } from '@willsofts/will-lib';
 import { HTTP, JSONReply } from "@willsofts/will-api";
 import { KnSQL, KnDBConnector } from '@willsofts/will-sql';
 import { Configure, Utilities } from "@willsofts/will-util";
@@ -121,13 +121,13 @@ export class TknSigninHandler extends TknSchemeHandler {
 
     public async processTwoFactor(context: KnContextInfo, db: KnDBConnector, row: any) : Promise<KnFactorInfo> {
         let handler = new TknTwoFactorHandler();
-        let KnFactorInfo = await handler.getFactorInfo(db, row.userid, true);
-        if(KnFactorInfo.factorverify && !KnFactorInfo.factorfound && KnFactorInfo.factorid.trim().length==0) {
-            KnFactorInfo.userid = row.userid;
-            KnFactorInfo.email = row.email;
-            KnFactorInfo = await handler.performCreateFactor(context, db, KnFactorInfo);
+        let info = await handler.getFactorInfo(db, row.userid, true);
+        if(info.factorverify && !info.factorfound && info.factorid.trim().length==0) {
+            info.userid = row.userid;
+            info.email = row.email;
+            info = await handler.performCreateFactor(context, db, info);
         }
-        return KnFactorInfo;
+        return info;
     }
 
     public async processSigninInternalSystem(context: KnContextInfo, model: KnModel, signinfo: KnSigninInfo, db: KnDBConnector, loginfo?: Object) : Promise<JSONReply> {
@@ -155,6 +155,8 @@ export class TknSigninHandler extends TknSchemeHandler {
         if(rows && rows.length>0) {
             let row = rows[0];
             let userid = row.userid;
+            console.log("processSigninInternalSystem: row=",row);
+            console.log("processSigninInternalSystem: userid="+userid);
             let site = row.site;
             this.logger.debug(this.constructor.name+".processSigninInternalSystem: MAX_FAILURE="+MAX_FAILURE+", loginfailtimes="+row.loginfailtimes);
             let failtimes = row.loginfailtimes;
@@ -169,17 +171,18 @@ export class TknSigninHandler extends TknSchemeHandler {
                 }
             }
             if(passed) {
+                let tmppwd : PasswordTemporary | undefined = undefined;
                 let ismatch = false;
                 let tempmatch = false;
                 let usrpass = row.userpassword;
                 let plib : PasswordLibrary = new PasswordLibrary();
-                let tmppwd = await plib.getUserTemporaryPassword(db, userid);
-                if(tmppwd && tmppwd.trxid) {
-                    tempmatch = bcrypt.compareSync(ppass, tmppwd.userpassword);
-                    ismatch = tempmatch;
-                }
+                ismatch = bcrypt.compareSync(ppass, usrpass);
                 if(!ismatch) {
-                    ismatch = bcrypt.compareSync(ppass, usrpass);
+                    tmppwd = await plib.getUserTemporaryPassword(db, userid);
+                    if(tmppwd && tmppwd.trxid) {
+                        tempmatch = bcrypt.compareSync(ppass, tmppwd.userpassword);
+                        ismatch = tempmatch;
+                    }
                 }                
                 this.logger.debug(this.constructor.name+".processSigninInternalSystem: temporary match="+tempmatch+", is match="+ismatch);
                 if(!ismatch) {
@@ -187,16 +190,17 @@ export class TknSigninHandler extends TknSchemeHandler {
                     response.head.composeError("-3002","Invalid user or password");
                 } else {
                     try {
-                        let KnFactorInfo = await this.processTwoFactor(context, db, row);
+                        let factorInfo = await this.processTwoFactor(context, db, row);
                         await db.beginWork();
                         try {
                             if(tempmatch) {
-                                await plib.updatePasswordFromTemporary(db, tmppwd.trxid, userid);
+                                await plib.updatePasswordFromTemporary(db, tmppwd?.trxid, userid);
                             }
                             let usrinfo = {userid: userid, site: site, code: pcode, state: pstate, nonce: pnonce, loginfo: loginfo};
                             let token  = await this.createUserAccess(db, usrinfo, context);
                             let dhinfo = await this.createDiffie(context, db, token);
-                            this.composeResponseBody(body, token, pname, {...row, ...KnFactorInfo, accesscontents: loginfo}, tempmatch, dhinfo);
+                            let ainfo = {userid: row.userid, email: row.email };
+                            this.composeResponseBody(body, token, pname, {...row, ...factorInfo, ...ainfo, accesscontents: loginfo}, tempmatch, dhinfo);
                             await db.commitWork();    
                         } catch(er: any) {
                             this.logger.error(this.constructor.name,er);
@@ -249,14 +253,15 @@ export class TknSigninHandler extends TknSchemeHandler {
                 if(rs.rows && rs.rows.length>0) {
                     row = rs.rows[0];
                 }
-                let KnFactorInfo = await this.processTwoFactor(context, db, row);
+                let factorInfo = await this.processTwoFactor(context, db, row);
                 await db.beginWork();
                 try {
                     await alib.saveUserInfo(db, au);
                     let usrinfo = {userid: au.accountName, site: row.site, code: pcode, state: pstate, nonce: pnonce, loginfo: loginfo};
                     let token  = await this.createUserAccess(db, usrinfo, context);
                     let dhinfo = await this.createDiffie(context, db, token);
-                    this.composeResponseBody(body, token, pname, {...row, ...KnFactorInfo, accesscontents: loginfo}, false, dhinfo);
+                    let ainfo = {userid: row.userid, email: row.email };
+                    this.composeResponseBody(body, token, pname, {...row, ...factorInfo, ...ainfo, accesscontents: loginfo}, false, dhinfo);
                     await db.commitWork();    
                     this.updateUserAccessing(context, model, { userid: au.accountName });
                 } catch(er: any) {
@@ -300,14 +305,15 @@ export class TknSigninHandler extends TknSchemeHandler {
                 if(rs.rows && rs.rows.length>0) {
                     row = rs.rows[0];
                 }
-                let KnFactorInfo = await this.processTwoFactor(context, db, row);
+                let factorInfo = await this.processTwoFactor(context, db, row);
                 await db.beginWork();
                 try {
                     await alib.saveUserInfo(db, pu);
                     let usrinfo = {userid: pu.userid as string, site: row.site, code: pcode, state: pstate, nonce: pnonce, loginfo: pu};
                     let token  = await this.createUserAccess(db, usrinfo, context);
                     let dhinfo = await this.createDiffie(context, db, token);
-                    this.composeResponseBody(body, token, pname, {...row, ...KnFactorInfo, accesscontents: pu}, false, dhinfo);
+                    let ainfo = {userid: row.userid, email: row.email };
+                    this.composeResponseBody(body, token, pname, {...row, ...factorInfo, ...ainfo, accesscontents: pu}, false, dhinfo);
                     await db.commitWork();    
                     this.updateUserAccessing(context, model, { userid: pu.userid as string });
                 } catch(er: any) {
@@ -539,7 +545,8 @@ export class TknSigninHandler extends TknSchemeHandler {
             let factorInfo = await handler.getFactorInfo(db, row.userid, true);                
             let token = new KnUserToken(row.useruuid,row.expiretimes,row.code,row.state,row.nonce,row.authtoken);
             let dh = { prime: row.prime, generator: row.generator, publickey: row.publickey };
-            this.composeResponseBody(body,token,row.username,{...row, ...factorInfo},false,dh);
+            let ainfo = {userid: row.userid, email: row.email };
+            this.composeResponseBody(body,token,row.username,{...row, ...factorInfo, ...ainfo},false,dh);
         } else {
             return Promise.reject(new VerifyError("Invalid access token",HTTP.NOT_ACCEPTABLE,-3011));
         }
