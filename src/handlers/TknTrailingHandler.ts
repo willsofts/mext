@@ -27,6 +27,7 @@ export class TknTrailingHandler extends TknSchemeHandler {
             refer: { type: "STRING" },
             note: { type: "STRING" },
             package: { type: "STRING" },
+            grouper: { type: "STRING" },
             action: { type: "STRING" },
             quotable: { type: "STRING" },
             remark: { type: "STRING" },
@@ -55,6 +56,7 @@ export class TknTrailingHandler extends TknSchemeHandler {
 
     public createTrailingInfo(data?: any) : KnTrailingInfo {
         let keyid = this.createKey();
+        let grpid = this.createKey();
         let trxtime = data?.trxtime || Utilities.now().getTime();
         this.trailInfo = {
             keyid: data?.keyid || keyid,
@@ -71,7 +73,8 @@ export class TknTrailingHandler extends TknSchemeHandler {
             package: data?.package,
             action: data?.action,
             attachs: data?.attachs,
-            remark: data?.remark
+            remark: data?.remark,
+            grouper: data?.grouper || grpid,
         };
         return this.trailInfo;
     }
@@ -85,6 +88,7 @@ export class TknTrailingHandler extends TknSchemeHandler {
             quotable: info?.quotable,
             refer: info?.refer,
             package: info?.package,
+            grouper: info?.grouper,
         };
     }
 
@@ -119,7 +123,7 @@ export class TknTrailingHandler extends TknSchemeHandler {
 
     public async updateTracking(context: KnContextInfo, info: KnTrailerInfo) : Promise<KnResultSet> {
         context.params = {...context.params, ...info};
-        KnUtility.removeAttributes(context.params,"trxtime","sender","owner","process","quotable","contents","caller");
+        KnUtility.removeAttributes(context.params,"trxtime","sender","owner","process","quotable","contents","caller","grouper");
         return this.doUpdating(context, this.model);
     }
     

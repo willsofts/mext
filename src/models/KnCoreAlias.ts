@@ -233,6 +233,7 @@ export interface KnTrailerInfo {
     quotable?: string;
     refer?: string;
     package?: string;
+    grouper?: string;
     remark?: string;
     info?: any;
 }

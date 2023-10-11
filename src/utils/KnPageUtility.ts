@@ -91,4 +91,11 @@ export class KnPageUtility {
 		return "";
 	}
 	
+	public isEmpty(value: any) : boolean {
+		if(Utilities.isString(value)) {
+			return value.trim().length==0;
+		}
+		return value == null || value == undefined;
+	}
+
 }

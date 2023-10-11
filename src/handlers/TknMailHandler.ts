@@ -123,7 +123,7 @@ export class TknMailHandler extends TknSchemeHandler {
 	public async performSendMail(context: KnContextInfo, info: MailInfo, cfg: MailConfig) : Promise<void> {
         let userToken = await this.getUserTokenInfo(context, true);
         let trail = new TknTrailingHandler();
-        let tinfo = trail.createTrailingInfo({process: "MAIL", caller: userToken?.userid, sender: cfg.from, owner: info.email, quotable: info.subject, contents: info.message}); 
+        let tinfo = trail.createTrailingInfo({...context.params, process: "MAIL", caller: userToken?.userid, sender: cfg.from, owner: info.email, quotable: info.subject, contents: info.message}); 
         await trail.doCreate(context, trail.model);
         let [finished, result, error] = await this.trySendMail(info, cfg);	
         tinfo.status = error ? "E" : "C";
