@@ -1,7 +1,7 @@
 var os = require("os");
 
 module.exports = {
-    nodeID: "express-"+os.hostname().toLowerCase() + "-" + process.pid,
+    nodeID: "mext-"+os.hostname().toLowerCase() + "-" + process.pid,
     logger: [
         {
             type: "Console",
@@ -17,7 +17,7 @@ module.exports = {
                 level: "debug",
                 formatter: "full",
                 folder: "./logs",
-                filename: "express-{date}.log",
+                filename: "mext-{date}.log",
                 eol: "\n",
                 interval: 1000,
             }
@@ -38,6 +38,7 @@ module.exports = {
     metrics: false,
     statistics: true
     */
+	/*
     tracing: {
         enabled: true,
         exporter: {
@@ -51,5 +52,25 @@ module.exports = {
             }
         }
     },   
-
+	*/
+    /*
+	metrics: {
+        enabled: true,
+        reporter: [
+            {
+                type: "Prometheus",
+                options: {
+                    // HTTP port
+                    port: 3030,
+                    // HTTP URL path
+                    path: "/metrics",
+                    // Default labels which are appended to all metrics labels
+                    defaultLabels: registry => ({
+                        namespace: registry.broker.namespace,
+                        nodeID: registry.broker.nodeID
+                    })
+                }
+            }
+        ]
+    }*/		
 };
