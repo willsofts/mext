@@ -2,7 +2,7 @@ import { KnModel, KnOperation, KnPageSetting } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
 import { VerifyError, KnValidateInfo, KnContextInfo, KnDataTable, KnUtility } from '@willsofts/will-core';
-import { TknOperateHandler } from '../handlers/TknOperateHandler';
+import { TknOperateHandler } from '@willsofts/will-serv';
 
 export class Sfte017HistoryHandler extends TknOperateHandler {
 

@@ -5,7 +5,7 @@ import { HTTP } from "@willsofts/will-api";
 import { TknDataTableHandler, VerifyError } from '@willsofts/will-core';
 import { DB_SECTION } from "../utils/EnvironmentVariable";
 import { KnCategory } from "@willsofts/will-serv";
-import { TheCategories } from "../utils/TheCategories";
+import { TheCategories } from "@willsofts/will-serv";
 
 const CategoryService : ServiceSchema = {
     name: "category",

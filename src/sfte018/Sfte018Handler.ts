@@ -5,7 +5,7 @@ import { HTTP } from "@willsofts/will-api";
 import { VerifyError, KnValidateInfo, KnContextInfo, KnDataTable, KnPageUtility, KnUtility } from '@willsofts/will-core';
 import { Utilities } from "@willsofts/will-util";
 import { KeyTool } from '@willsofts/will-lib';
-import { TknOperateHandler } from '../handlers/TknOperateHandler';
+import { TknOperateHandler } from '@willsofts/will-serv';
 
 export class Sfte018Handler extends TknOperateHandler {
 

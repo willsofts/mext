@@ -3,7 +3,7 @@ import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL } from "@willsofts/wi
 import { HTTP } from "@willsofts/will-api";
 import { KnUtility, VerifyError, KnValidateInfo, KnContextInfo, KnDataTable } from '@willsofts/will-core';
 import { Utilities } from "@willsofts/will-util";
-import { TknOperateHandler } from '../handlers/TknOperateHandler';
+import { TknOperateHandler } from '@willsofts/will-serv';
 
 export class Sfte017Handler extends TknOperateHandler {
 

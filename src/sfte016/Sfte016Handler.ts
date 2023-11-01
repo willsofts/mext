@@ -8,7 +8,7 @@ import { PasswordLibrary } from "@willsofts/will-lib";
 import { TknAccountHandler } from "@willsofts/will-serv";
 import { OPERATE_HANDLERS } from "@willsofts/will-serv";
 import { DEFAULT_PRIVILEGES } from "../utils/EnvironmentVariable";
-import { TknOperateHandler } from '../handlers/TknOperateHandler';
+import { TknOperateHandler } from '@willsofts/will-serv';
 import { Sfte007Handler } from "../sfte007/Sfte007Handler";
 
 export class Sfte016Handler extends TknOperateHandler {

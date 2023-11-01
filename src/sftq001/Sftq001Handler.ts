@@ -2,7 +2,7 @@ import { KnModel, KnOperation } from "@willsofts/will-db";
 import { KnSQLInterface } from "@willsofts/will-sql";
 import { Utilities } from "@willsofts/will-util";
 import { KnContextInfo, KnDataTable } from "@willsofts/will-core";
-import { TknOperateHandler } from '../handlers/TknOperateHandler';
+import { TknOperateHandler } from '@willsofts/will-serv';
 
 export class Sftq001Handler extends TknOperateHandler {
 

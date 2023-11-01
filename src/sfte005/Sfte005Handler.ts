@@ -6,7 +6,7 @@ import { KnUtility, KnPageUtility, VerifyError, KnValidateInfo, KnContextInfo, K
 import { Utilities } from "@willsofts/will-util";
 import { PasswordLibrary } from "@willsofts/will-lib";
 import { DEFAULT_PRIVILEGES } from "../utils/EnvironmentVariable";
-import { TknOperateHandler } from '../handlers/TknOperateHandler';
+import { TknOperateHandler } from '@willsofts/will-serv';
 
 export class Sfte005Handler extends TknOperateHandler {
 

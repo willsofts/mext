@@ -2,7 +2,7 @@ import { KnModel, KnOperation } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnResultSet, KnRecordSet, KnSQL } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
 import { VerifyError, KnValidateInfo, KnContextInfo, KnDataTable } from '@willsofts/will-core';
-import { TknOperateHandler } from '../handlers/TknOperateHandler';
+import { TknOperateHandler } from '@willsofts/will-serv';
 import { TknPasswordStrategyHandler } from "@willsofts/will-serv";
 import { OPERATE_HANDLERS } from "@willsofts/will-serv";
 import { Sfte011Handler } from "../sfte011/Sfte011Handler";
