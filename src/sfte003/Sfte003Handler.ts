@@ -4,6 +4,7 @@ import { HTTP } from "@willsofts/will-api";
 import { VerifyError, KnValidateInfo, KnContextInfo, KnDataTable } from '@willsofts/will-core';
 import { Utilities } from "@willsofts/will-util";
 import { TknOperateHandler } from '@willsofts/will-serv';
+import { CDN_URL } from "../utils/EnvironmentVariable";
 
 export class Sfte003Handler extends TknOperateHandler {
 
@@ -84,9 +85,9 @@ export class Sfte003Handler extends TknOperateHandler {
     }
 
     protected getIconImage(iconfile?: string): string {
-        let iconimage = "/img/module/module.png";
+        let iconimage = CDN_URL+"/img/module/module.png";
         if(iconfile && iconfile.trim().length>0) {
-            iconimage = "/img/module/"+iconfile;
+            iconimage = CDN_URL+"/img/module/"+iconfile;
         }
         return iconimage;
     }
