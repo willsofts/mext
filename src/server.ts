@@ -3,6 +3,7 @@ import { ServiceSchema } from "moleculer";
 import { KnExpress, KnRunner } from "@willsofts/will-run";
 import { TknAssureHandler } from "@willsofts/will-core";
 import { TknRouteManager } from '@willsofts/will-serv';
+import { TknSAMLManager } from '@willsofts/will-serv';
 
 const ExpressService : ServiceSchema = {
     name: "api",
@@ -37,6 +38,8 @@ runner.start(process.argv).then(() => {
         let app = KnExpress.createApplication(runner.service);
         console.log("working directory",__dirname);
         new TknRouteManager(runner.service, __dirname).route(app);
+        //this for SAML login supported
+        new TknSAMLManager(runner.service, __dirname).route(app);
     }
     if(runner.broker) {
         runner.broker.call("$node.services").then((services: any) => {
