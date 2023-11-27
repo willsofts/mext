@@ -1,6 +1,6 @@
 {
     "HTTP_PORT": 8080,
-    "CDN_URL": "https://cdn.jsdelivr.net/gh/willsofts/will-asset@1.0.8", 
+    "CDN_URL": "https://cdn.jsdelivr.net/gh/willsofts/will-asset@1.0.9", 
     "BASE_URL": "",
     "REDIRECT_URL": "", 
     "BASE_STORAGE": "session",
@@ -12,6 +12,7 @@
     "authentications": [
         { "authtype":"SYSTEM", "domainname":"freewillgroup.com", "tenanturl":"", "basedn":"" , "enabled": true }
     ],
+    "META_INFO": {"appstype":""},
     "ALLOW_AUTHEN_SAML": "true",
     "REDIRECT_URI": "http://localhost:3000/auth/redirect",
     "REDIRECT_URI_LOGOUT": "http://localhost:3000",
