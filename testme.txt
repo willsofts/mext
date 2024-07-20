@@ -13,6 +13,7 @@ curl -X POST -H "Authorization: Basic WC07N8/G9Zqn/68+Am9H7X3CjLLPhP6vUCi2/FjKx8
 
 take anonymous login
 curl -X POST http://localhost:8080/api/login/anonymouslogin -d "site=FWS&accessor=tester"
+curl -X POST http://localhost:8080/api/login/anonymous
 
 after login it response authtoken then using it as request header["authtoken"]
 
