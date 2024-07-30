@@ -5,6 +5,10 @@
 		<%- include('../asset/meta') %>		
 		<%- include('../asset/stylesmain') %>		
 		<%- include('../asset/scriptsmain') %>
+		<style nonce="YXNzdXJl"> 
+			#page_login_toplayer { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; }
+			#page_login_area { padding-top: 180px; }
+		</style>
 		<% if(!(meta.info?.appstype == "W")) { %>		
 		<script type="text/javascript" src="<%=meta.cdn_url%>/js/msal-browser.js" defer></script>
 		<script type="text/javascript" src="<%=meta.cdn_url%>/js/auth.js" defer></script>
