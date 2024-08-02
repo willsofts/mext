@@ -871,6 +871,7 @@ function submitWindow(settings) {
 }		 
 function openNewWindow(settings) {
 	let defaultSettings = {
+		newTab: true,
 		method: "POST",
 		url : "",
 		windowName : "_blank",
@@ -896,8 +897,13 @@ function openNewWindow(settings) {
 	let wy = (sh - p.windowHeight) / 2; 
 	let fs_features = "top="+wy+",left="+wx+",width="+p.windowWidth+",height="+p.windowHeight+","+p.windowFeatures;
 	let fs_window = null;
-	if(p.params) fs_window = window.open("",p.windowName,fs_features); 
-	else fs_window = window.open(p.url,p.windowName,fs_features); 
+	if(p.newTab) {
+		if(p.params) fs_window = window.open("",p.windowName); 
+		else fs_window = window.open(p.url,p.windowName); 
+	} else {
+		if(p.params) fs_window = window.open("",p.windowName,fs_features); 
+		else fs_window = window.open(p.url,p.windowName,fs_features); 
+	}
 	fs_window.opener = self; 
 	try {	 
 		window.parent.addWindow(fs_window); 
@@ -1123,13 +1129,13 @@ function confirmDialog(msg, okCallback, cancelCallback, width, height) {
 		return;
     } catch (ex) { console.log(ex.description); }
 }
-function submitFailure(xhr, status, errorThrown) {
+function submitFailure(xhr, status, errorThrown, checking=true) {
 	stopWaiting();
 	console.log(xhr.responseText);
 	console.log("status = "+status+" : xhr = "+xhr.status);
 	errorThrown = parseErrorThrown(xhr, status, errorThrown);
 	alertbox(errorThrown, function() { 
-		if(xhr.status==401) { 
+		if(checking && xhr.status==401) { 
 			//window.open("index.jsp","_self"); 
 			try {
 				window.parent.reLogin();
