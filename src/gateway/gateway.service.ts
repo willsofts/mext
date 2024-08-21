@@ -1,6 +1,6 @@
 import KnAPI from "@willsofts/will-api";
 import { ServiceSchema } from "moleculer";
-import { TknAssureHandler } from "@willsofts/will-core";
+import { TknAssureHandler } from "../handlers/TknAssureHandler";
 
 const GatewayService : ServiceSchema = {
     name: "api",
@@ -32,7 +32,7 @@ const GatewayService : ServiceSchema = {
         }
     },
     started() {
-        this.broker.call("$node.services").then((services: any) => {
+        (this as any).broker.call("$node.services").then((services: any) => {
             let servicenames = [];
             for(let s of services) {
                 if(s.name!="$node" && s.name!="api") {
@@ -42,7 +42,7 @@ const GatewayService : ServiceSchema = {
             console.log("service names",servicenames);
             console.log("number of services",servicenames.length);
         });
-    }
+    }    
 };
 
 export = GatewayService;
