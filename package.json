@@ -52,7 +52,7 @@
     "jaeger-client": "^3.19.0",
     "jsbn": "^1.1.0",
     "jsonwebtoken": "^9.0.2",
-    "moleculer": "^0.14.25",
+    "moleculer": "^0.14.34",
     "moleculer-web": "^0.10.4",
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
