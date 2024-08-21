@@ -1,6 +1,6 @@
 import KnAPI from "@willsofts/will-api";
 import { ServiceSchema } from "moleculer";
-import { TknAssureHandler } from "../handlers/TknAssureHandler";
+import { TknAssureHandler } from "@willsofts/will-core";
 
 const GatewayService : ServiceSchema = {
     name: "api",
@@ -42,7 +42,7 @@ const GatewayService : ServiceSchema = {
             console.log("service names",servicenames);
             console.log("number of services",servicenames.length);
         });
-    }    
+    }
 };
 
 export = GatewayService;
