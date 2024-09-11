@@ -1,14 +1,13 @@
 .sidebar-menu {
 	position: fixed;
-	height: 95%;
+	height: 93%;
 	width: 100%;
 	left: 0;
 	z-index: 999;
 	background-color: #034686;
 	opacity: 0.95;
     filter: alpha(opacity=95);
-    top: 0;
-	margin-top: 60px;
+    top: 60px;
 }
 .sidebar-hide { display: none; }
 .sidebar-menu a { cursor: pointer; }
@@ -25,7 +24,7 @@
 	height: 98%;
 	padding: 5px;
 	padding-top: 0px;
-	padding-bottom: 70px;	
+	
 }
 #sidebarlayer { width: 100%; }
 #sidebarfooter {

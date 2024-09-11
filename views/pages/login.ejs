@@ -5,9 +5,6 @@
 		<%- include('../asset/meta') %>		
 		<%- include('../asset/stylesmain') %>		
 		<%- include('../asset/scriptsmain') %>
-		<style nonce="YXNzdXJl">
-			.login-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 16px; color: gray; }
-		</style>
 		<% if(!(meta.info?.appstype == "W")) { %>		
 		<script type="text/javascript" src="<%=meta.cdn_url%>/js/msal-browser.js" defer></script>
 		<script type="text/javascript" src="<%=meta.cdn_url%>/js/auth.js" defer></script>
