@@ -2,9 +2,9 @@ import { KnModel, KnOperation } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
 import { Utilities } from "@willsofts/will-util";
-import { TknOperateHandler } from '../handlers/TknOperateHandler';
-import { KnValidateInfo, KnContextInfo, KnDataTable } from '../models/KnCoreAlias';
-import { VerifyError } from "../models/VerifyError";
+import { TknOperateHandler } from '@willsofts/will-serv';
+import { KnValidateInfo, KnContextInfo, KnDataTable } from '@willsofts/will-core';
+import { VerifyError } from "@willsofts/will-core";
 
 export class Demo002Handler extends TknOperateHandler {
 
