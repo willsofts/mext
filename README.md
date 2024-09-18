@@ -89,7 +89,8 @@ How to provide application service.
 
 2. make folder and create renderer under `views` path ex. `views/demo001`, under this folder contains `ejs` file to be render
 3. make folder and create browser supporter under `public` path ex. `public/demo001`, under this folder contains html, js, css etc. files.
-4. make service class under folder `operators` path ex. `operators/demo001.service.ts`, this is important thing in order to be load into framework and invoked by broker service
+4. make service class under folder `operators` path ex. `operators/demo001.service.ts`, this is important thing in order to be load into framework and invoked by broker service and caller \
+(naming convension have to defined file name as xxxx.service.ts)
 
 
 #### Broadcasting
