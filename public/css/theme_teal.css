@@ -1,4 +1,12 @@
 /* user color */
+.login_form button:focus,
+.login_form button:hover{
+	background: #008080;
+	color: white;
+}
+.login_form button {
+	border-color: #008080;
+}
 .login_form input[type="button"]{
 	background-color: whitesmoke;
 	border-color: #008080;
@@ -13,7 +21,7 @@
 	font-weight : bold;
 }
 #login_logo_label {
-	font-size: 85px;
+	font-size: 55px;
 	font-weight: bold;
 	color: #008080;
 	text-shadow: 3px 7px 7px #959BCE;
