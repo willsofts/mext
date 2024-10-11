@@ -1,8 +1,9 @@
 import { KnModel, KnOperation } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
-import { VerifyError, KnValidateInfo, KnContextInfo, KnDataEntity, KnDataTable } from '@willsofts/will-core';
 import { Utilities } from "@willsofts/will-util";
+import { KnValidateInfo, KnContextInfo, KnDataEntity, KnDataTable } from '@willsofts/will-core';
+import { VerifyError } from '@willsofts/will-core';
 import { TknOperateHandler } from '@willsofts/will-serv';
 import { OPERATE_HANDLERS } from "@willsofts/will-serv";
 
@@ -327,14 +328,8 @@ export class Sfte002Handler extends TknOperateHandler {
     }
 
     public async insertPermits(context: KnContextInfo, model: KnModel, db: KnDBConnector) : Promise<KnRecordSet> {
-        let permnames = context.params.permname;        
-        let permvalues = context.params.permvalue;
-        if(Utilities.isString(permnames)) {
-            permnames = [permnames];
-        }
-        if(Utilities.isString(permvalues)) {
-            permvalues = [permvalues];
-        }
+        let permnames = this.getParameterArray("permname",context.params);        
+        let permvalues = this.getParameterArray("permvalue",context.params);
         let result = this.createRecordSet();
         let knsql = new KnSQL();
         knsql.append("insert into tpperm (groupid,progid,permname,permvalue) ");
