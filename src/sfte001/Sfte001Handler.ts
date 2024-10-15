@@ -4,7 +4,7 @@ import { HTTP } from "@willsofts/will-api";
 import { TknDataTableHandler, VerifyError, KnValidateInfo, KnContextInfo, KnDataTable } from '@willsofts/will-core';
 import { Utilities } from "@willsofts/will-util";
 import { TknOperateHandler } from '@willsofts/will-serv';
-import { CDN_URL } from "../utils/EnvironmentVariable";
+import { IMG_URL } from "../utils/EnvironmentVariable";
 
 export class Sfte001Handler extends TknOperateHandler {
 
@@ -125,9 +125,9 @@ export class Sfte001Handler extends TknOperateHandler {
     }
 
     protected getIconImage(iconfile?: string) : string {
-        let iconimage = CDN_URL+"/img/apps/apps.png";
+        let iconimage = IMG_URL+"/img/apps/apps.png";
         if(iconfile && iconfile.trim().length>0) {
-            iconimage = CDN_URL+"/img/apps/"+iconfile;
+            iconimage = IMG_URL+"/img/apps/"+iconfile;
         }
         return iconimage;
     }
