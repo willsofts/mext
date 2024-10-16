@@ -2,9 +2,13 @@ import { v4 as uuid } from 'uuid';
 import { KnModel, KnOperation } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL, KnResultSet } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
-import { KnUtility, KnPageUtility, VerifyError, KnValidateInfo, KnContextInfo, KnNotifyConfig, KnDataTable, KnTemplateInfo } from '@willsofts/will-core';
 import { Utilities } from "@willsofts/will-util";
 import { PasswordLibrary } from "@willsofts/will-lib";
+import { KnValidateInfo, KnContextInfo, KnDataTable, KnTemplateInfo } from '@willsofts/will-core';
+import { VerifyError } from '@willsofts/will-core';
+import { KnUtility } from '@willsofts/will-core';
+import { KnPageUtility } from '@willsofts/will-core';
+import { KnNotifyConfig } from '@willsofts/will-core';
 import { TknAccountHandler } from "@willsofts/will-serv";
 import { OPERATE_HANDLERS } from "@willsofts/will-serv";
 import { DEFAULT_PRIVILEGES } from "../utils/EnvironmentVariable";
@@ -29,6 +33,7 @@ export class Sfte016Handler extends TknOperateHandler {
             displayname: { type: "STRING", calculated: true },
             photoimage: { type: "STRING", calculated: true },
             email: { type: "STRING", calculated: true },
+            mobile: { type: "STRING", calculated: true },
             gender: { type: "STRING", calculated: true },
             lineid: { type: "STRING", calculated: true },
             inactive: { type: "STRING", calculated: true },
