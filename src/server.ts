@@ -5,6 +5,7 @@ import { TknAssureHandler } from "@willsofts/will-core";
 import { TknRouteManager } from '@willsofts/will-serv';
 import { TknSAMLManager } from '@willsofts/will-serv';
 import { TknReportManager } from '@willsofts/will-serv';
+import { UploadFileManager } from "./routers/UploadFileManager";
 
 const ExpressService : ServiceSchema = {
     name: "api",
@@ -43,6 +44,8 @@ runner.start(process.argv).then(() => {
         new TknSAMLManager(runner.service, __dirname).route(app);
         //this is report operator
         new TknReportManager(runner.service, __dirname).route(app);
+        //this is private upload file router
+        new UploadFileManager(runner.service, __dirname).route(app);
     }
     if(runner.broker) {
         runner.broker.call("$node.services").then((services: any) => {
