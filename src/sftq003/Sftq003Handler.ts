@@ -2,8 +2,10 @@ import { KnModel, KnOperation } from "@willsofts/will-db";
 import { KnSQLInterface, KnSQL, KnDBConnector, KnRecordSet } from "@willsofts/will-sql";
 import { Utilities } from "@willsofts/will-util";
 import { HTTP } from "@willsofts/will-api";
-import { KnUtility, KnContextInfo, KnDataTable, KnValidateInfo, VerifyError } from "@willsofts/will-core";
 import { OPERATE_HANDLERS } from "@willsofts/will-serv";
+import { KnContextInfo, KnDataTable, KnValidateInfo } from "@willsofts/will-core";
+import { VerifyError } from "@willsofts/will-core";
+import { KnUtility } from "@willsofts/will-core";
 import { TknOperateHandler } from '@willsofts/will-serv';
 
 export class Sftq003Handler extends TknOperateHandler {
@@ -84,7 +86,7 @@ export class Sftq003Handler extends TknOperateHandler {
             }
             if(params.trxstatus && params.trxstatus!="") {
                 knsql.append(filter).append(model.name).append(".trxstatus = ?trxstatus ");
-                knsql.set("trxstatus",params.status);
+                knsql.set("trxstatus",params.trxstatus);
                 filter = " and ";
             }
             if(params.owner && params.owner!="") {
