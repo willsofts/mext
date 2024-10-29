@@ -1,0 +1,8 @@
+/*#(10000) programmer code begin;*/
+#searchbutton { margin-top: 10px; margin-left: 5px; }
+#insertbutton { margin-top: 10px; margin-right: 5px; }
+#exportjsonbutton { margin-top: 10px; margin-left: 5px; }
+#exportexcelbutton { margin-top: 10px; margin-left: 5px; }
+#jsonstartuploadbutton { width:130px; margin-top: 10px; margin-left: 5px; }
+#excelstartuploadbutton { width:130px; margin-top: 10px; margin-left: 5px; }
+/*#(10000) programmer code end;*/

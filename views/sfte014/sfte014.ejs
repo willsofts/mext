@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Program Label Setting</title>
+		<%- include('../asset/meta') %>		
+		<%- include('../asset/styles') %>		
+		<%- include('../asset/scripts') %>	
+		<link rel="stylesheet" type="text/css" href="<%=meta.base_url%>/sfte014/sfte014.css" />
+		<script type="text/javascript" src="<%=meta.base_url%>/sfte014/sfte014.js"></script>
+	</head>
+	<body class="portalbody portalbody-off">
+		<%- include('../partials/page_waiting') %>
+		<div id="ptsearchpager" class="pt-page pt-page-current pt-page-controller sfte003-search-pager">
+			<%- page.createHeader({pid: 'sfte014', title: label.get('caption','Program Label Setting')}) %>
+			<div id="searchpanel" class="panel-body">
+				<form id="fssearchform" name="fssearchform" method="post">
+					<input type="hidden" name="ajax" value="true"/>
+					<input type="hidden" name="rowsPerPage" value="<%=page.setting?.rowsPerPage%>"/>
+					<input type="hidden" name="limit" value="<%=page.setting?.limit%>"/>
+					<input type="hidden" name="page" value="1"/>
+					<input type="hidden" name="orderBy" value=""/>
+					<input type="hidden" name="orderDir" value=""/>
+					<%- include('./sfte014_filter') %>
+				</form>
+				<div id="listpanel" class="table-responsive fa-list-panel">
+					<%- include('./sfte014_data') %>
+				</div>
+			</div>
+		</div>
+		<div id="dialogpanel"></div>
+		<div id="jsondialogpanel">
+			<%- include('./sfte014_dialog_json') %>
+		</div>
+		<div id="exceldialogpanel">
+			<%- include('./sfte014_dialog_excel') %>
+		</div>
+		<div class="fa-hidden">
+			<iframe id="sfte014_json_window" name="sfte014_json_window"></iframe>			
+			<iframe id="sfte014_excel_window" name="sfte014_excel_window"></iframe>				
+		</div>
+	</body>
+</html>

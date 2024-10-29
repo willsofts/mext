@@ -1,0 +1,61 @@
+<% 
+let fs_express_readonly = page.isRetrieveMode()?" readonly ":""; 
+let fs_express_disabled = page.isRetrieveMode()?" disabled ":"";
+%>		
+		<div class="row row-height">
+			<div class="col-md-12 col-height">
+					<div class="table-layer-class">
+						<div class="row row-height">
+							<div class="col-height col-md-5">
+<label for="labelid" id="labelid_label" class="control-label"><%=label.get('labelid_label','Program')%></label>
+<%if(page.isUpdateMode()) { %>
+<input type="text" id="labelid" name="labelid" class="form-control input-md" value="<%=data.dataset?.labelid%>" readonly />
+<%} else {%>
+<div class="input-group">
+	<%-page.html('select',{map: data.entity?.tprog, value: data.dataset?.labelid, id: "labelid", name: "labelid", class: "form-control input-md ikeyclass alert-input"})%>
+	<div class="input-group-required"><label class="required">*</label></div>
+</div>
+<div id="labelid_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('labelid_alert','You can not leave this empty')%></div>
+<%}%>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div class="row row-height">
+			<div class="col-md-12 col-height">
+					<div class="table-layer-class">
+						<div class="row row-height">
+							<div class="col-height col-md-5">
+<label for="langcode" id="langcode_label" class="control-label"><%=label.get('langcode_label','Language')%></label>
+<%if(page.isUpdateMode()) { %>
+	<input type="hidden" id="langcode" name="langcode" class="form-control input-md" value="<%=data.dataset?.langcode%>" />
+	<input type="text" id="langname" class="form-control input-md" value="<%=data.dataset?.langname%>" readonly />
+<%} else {%>
+<div class="input-group">
+	<%-page.html('select',{map: data.entity?.tklanguage, value: data.dataset?.langcode, id: "langcode", name: "langcode", class: "form-control input-md ikeyclass alert-input"})%>
+	<div class="input-group-required"><label class="required">*</label></div>
+</div>
+<div id="langcode_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('langcode_alert','You can not leave this empty')%></div>
+<%}%>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div class="row row-height">
+			<div class="col-md-12 col-height">
+					<div class="table-layer-class">
+						<div class="row row-height">
+							<div class="col-height col-md-8">
+<label for="labelname" id="labelname_label" class="control-label"><%=label.get('labelname_label','Label Name')%></label>
+<div class="input-group">
+	<input type="text" id="labelname" name="labelname" class="form-control input-md irequired ikeyclass alert-input" value="<%=data.dataset?.labelname%>" maxlength="50" <%=fs_express_readonly%> />
+	<div class="input-group-required"><label class="required">*</label></div>
+</div>
+<div id="labelname_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('labelname_alert','You can not leave this empty')%></div>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>

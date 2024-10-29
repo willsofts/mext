@@ -1,0 +1,32 @@
+[
+	{
+		"language": "TH",
+		"label": [
+			{"name": "caption", "value": "จัดตั้งป้ายโปรแกรม"},
+			{"name": "labelids_label", "value": "โปรแกรม"},
+			{"name": "labelid_label", "value": "โปรแกรม"},
+			{"name": "langcode_label", "value": "ภาษา"},
+			{"name": "langcodedesc_label", "value": "ภาษา"},
+			{"name": "labelname_label", "value": "ชื่อ"},
+			{"name": "langcode_headerlabel", "value": "ภาษา"},
+			{"name": "labelname_headerlabel", "value": "ชื่อ"},
+			{"name": "labelvalue_label", "value": "ข้อความ"},
+			{"name": "labelvalue_headerlabel", "value": "ข้อความ"}
+		]
+	},
+	{
+		"language": "EN",
+		"label": [
+			{"name": "caption", "value": "Label Setting"},
+			{"name": "labelids_label", "value": "Program"},
+			{"name": "labelid_label", "value": "Program"},
+			{"name": "langcode_label", "value": "Language"},
+			{"name": "langcodedesc_label", "value": "Language"},
+			{"name": "labelname_label", "value": "Label Name"},
+			{"name": "langcode_headerlabel", "value": "Language"},
+			{"name": "labelname_headerlabel", "value": "Label Name"},
+			{"name": "labelvalue_label", "value": "Value"},
+			{"name": "labelvalue_headerlabel", "value": "Value"}
+		]
+	}
+]

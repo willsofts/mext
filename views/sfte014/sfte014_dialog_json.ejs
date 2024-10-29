@@ -1,0 +1,42 @@
+<div id="fsmodaldialog_layerjson" class="modal fade pt-page pt-page-item" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-xm">
+		<div class="modal-content portal-area fa-portal-area">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<%=label.get('modalheadertitle_upload_json','Upload JSON')%>
+				</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div id="entrydialoglayerjson" class="entry-dialog-layer">
+			<form id="fsentryformjson" role="form" data-toggle="validator" name="fsentryformjson" method="post">
+				<input type="hidden" name="ajax" value="true"/>
+				<input type="hidden" name="type" value="json"/>
+				<div class="row row-height">
+					<div class="col-height col-md-5">
+						<label for="jsonlabelid" id="jsonlabelid_label" class="control-label"><%=label.get('labelid_label','Program')%></label>
+						<div class="input-group">
+							<%-page.html('select',{map: data.entity?.tprog, value: data.dataset?.labelid, id: "jsonlabelid", name: "labelid", class: "form-control input-md ikeyclass alert-input"})%>
+							<div class="input-group-required"><label class="required">*</label></div>
+						</div>
+						<div id="jsonlabelid_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('labelid_alert','You can not leave this empty')%></div>
+					</div>					
+				</div>
+				<div class="row row-height">
+					<div class="col-height col-md-11">
+						<label for="jsonfile" id="jsonfile_label" class="control-label"><%=label.get('jsonfile_label','Upload File JSON')%></label>
+						<div class="input-group">
+							<input type="file" id="jsonfile" name="filename" class="form-control input-md" accept=".json"/>
+							<div class="input-group-required"><label class="required">*</label></div>
+						</div>
+						<div id="jsonfile_alert" role="alert" class="has-feedback has-error fa-hidden">${fsLabel.getText('sourcefile_alert','You can not leave this empty')}</div>
+					</div>
+				</div>
+			</form>	
+			</div>
+			<div class="row-heighter modal-footer" >
+				<input type="button" id="jsonuploadbutton" class="btn btn-dark btn-sm" value="<%=label.get('uploadbutton','Upload')%>"/>
+				<input type="button" id="jsoncanceldialogbutton" class="btn btn-dark btn-sm" data-dismiss="modal" value="<%=label.get('canceldialogbutton','Cancel')%>"/>
+			</div>
+		</div>
+	</div>
+</div>

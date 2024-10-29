@@ -1,0 +1,21 @@
+			<div class="row row-height">
+				<div class="col-md-12 col-height">
+						<div class="table-layer-class">
+							<div class="row row-height">
+								<div class="col-height col-md-3">
+<label for="labelids" id="labelids_label" class="control-label"><%=label.get('labelids_label','Program')%></label>
+<%-page.html('select',{map: data.entity?.tprog, value: data.dataset?.labelid, id: "labelids", name: "labelid", class: "form-control input-md"})%>
+								</div>
+								<div class="col-md">
+									<br/>
+									<button type="button" id="searchbutton" class="btn btn-dark btn-sm"><i class="fa fa-search fa-btn-icon" aria-hidden="true"></i><%=label.get('searchbutton','Search')%></button>
+									<button type="button" id="exportjsonbutton" class="btn btn-dark btn-sm fa-btn-left" title="Export JSON"><i class="fa fa-file-code-o fa-btn-icon" aria-hidden="true"></i><%=label.get('jsonexport','JSON')%></button>
+									<button type="button" id="exportexcelbutton" class="btn btn-dark btn-sm fa-btn-left" title="Export Excel"><i class="fa fa-file-excel-o fa-btn-icon" aria-hidden="true"></i><%=label.get('exportexcelbutton','Excel')%></button>
+									<button type="button" id="jsonstartuploadbutton" class="btn btn-dark btn-sm fa-btn-left" title="Upload JSON"><i class="fa fa-upload fa-btn-icon" aria-hidden="true"></i><%=label.get('jsonuploadbutton','Upload JSON')%></button>
+									<button type="button" id="excelstartuploadbutton" class="btn btn-dark btn-sm fa-btn-left" title="Upload Excel"><i class="fa fa-upload fa-btn-icon" aria-hidden="true"></i><%=label.get('exceluploadbutton','Upload Excel')%></button>
+									<button type="button" id="insertbutton" class="btn btn-dark btn-sm pull-right"><i class="fa fa-plus fa-btn-icon" aria-hidden="true"></i><%=label.get('insertbutton','Insert')%></button>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
