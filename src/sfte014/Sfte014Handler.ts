@@ -46,7 +46,9 @@ export class Sfte014Handler extends TknOperateHandler {
             if(tprog) {
                 let rows = tprog.resultset?.rows;
                 if(rows) {
-                    rows = this.default_proglists.concat(rows);
+                    let datarows : Array<any> = [];
+                    this.default_proglists.forEach((item:any) => datarows.push({...item}));
+                    rows = datarows.concat(rows);
                     tprog.resultset.rows = rows.map((item:any) => { item.programid = item.programid+".xml"; return item; });
                 }
             }
