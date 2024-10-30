@@ -480,20 +480,36 @@ function uploadDialog(filetype) {
 	if("json"==filetype) {
 		$("#jsonuploadbutton").unbind("click").bind("click",function() {
 			disableControls($("#jsonuploadbutton"));
-			upload(filetype);
+			startUpload(filetype);
 		});
 	} else {
 		$("#exceluploadbutton").unbind("click").bind("click",function() {
 			disableControls($("#exceluploadbutton"));
-			upload(filetype);
+			startUpload(filetype);
 		});
 	}
 	$("#fsmodaldialog_layer"+filetype).modal("show");
 	return false;
 }
+function startUpload(filetype) {
+	if("json"==filetype) {
+		if($.trim($("#jsonfile").val())=="") {
+			$("#jsonfile").focus();
+			return;
+		}
+	} else {
+		if($.trim($("#excelfile").val())=="") {
+			$("#excelfile").focus();
+			return;
+		}
+	}
+	confirmImport(function() {
+		upload(filetype);
+	});
+}
 function upload(filetype) {
 	var url = BASE_URL+'/upload/sfte014/uploader';
-	var aform = "json"==filetype ? fsentryformjson : fsentryformexcel;
+	var aform = "json"==filetype ? fsentryformjson : fsentryformexcel;	
 	var fd = new FormData(aform);
 	jQuery.ajax({
 		url: url,
