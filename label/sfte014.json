@@ -11,7 +11,8 @@
 			{"name": "langcode_headerlabel", "value": "ภาษา"},
 			{"name": "labelname_headerlabel", "value": "ชื่อ"},
 			{"name": "labelvalue_label", "value": "ข้อความ"},
-			{"name": "labelvalue_headerlabel", "value": "ข้อความ"}
+			{"name": "labelvalue_headerlabel", "value": "ข้อความ"},
+			{"name": "layoutfile_label", "value": "ตัวอย่างไฟล์นำเข้า"}
 		]
 	},
 	{
@@ -26,7 +27,8 @@
 			{"name": "langcode_headerlabel", "value": "Language"},
 			{"name": "labelname_headerlabel", "value": "Label Name"},
 			{"name": "labelvalue_label", "value": "Value"},
-			{"name": "labelvalue_headerlabel", "value": "Value"}
+			{"name": "labelvalue_headerlabel", "value": "Value"},
+			{"name": "layoutfile_label", "value": "Import Layout File"}
 		]
 	}
 ]
