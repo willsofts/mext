@@ -5,4 +5,6 @@
 #exportexcelbutton { margin-top: 10px; margin-left: 5px; }
 #jsonstartuploadbutton { width:130px; margin-top: 10px; margin-left: 5px; }
 #excelstartuploadbutton { width:130px; margin-top: 10px; margin-left: 5px; }
+#exceluploadbutton { min-width: 100px; }
+#jsonuploadbutton { min-width: 100px; }
 /*#(10000) programmer code end;*/
