@@ -84,7 +84,6 @@ export class Sfte014Handler extends TknOperateHandler {
             let filter = " where ";
             let labelid = params.labelid;
             if(labelid && labelid!="") {
-                if(labelid.lastIndexOf(".xml")<0) labelid += ".xml";
                 knsql.append(filter).append(model.name).append(".labelid = ?labelid");
                 knsql.set("labelid",labelid);
                 filter = " and ";
@@ -115,7 +114,6 @@ export class Sfte014Handler extends TknOperateHandler {
 
     protected async performRetrieving(context: KnContextInfo, model: KnModel, db: KnDBConnector): Promise<KnRecordSet> {
         let labelid = context.params.labelid;
-        if(labelid.lastIndexOf(".xml")<0) labelid += ".xml";
         let knsql = new KnSQL();
         knsql.append("select tlabel.*, tconstant.nameen as langname ");
         knsql.append("from tlabel ");
