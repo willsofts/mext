@@ -206,7 +206,7 @@ export class Sfte012Handler extends TknOperateHandler {
             await db.commitWork(); 
             return result;                   
         } catch(ex: any) {
-            await db.rollbackWork();
+            try { await db.rollbackWork(); } catch(er) { this.logger.error(er); }
             this.logger.error(this.constructor.name,ex);
             return Promise.reject(ex);
         }

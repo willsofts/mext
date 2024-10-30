@@ -415,7 +415,7 @@ export class Sfte002Handler extends TknOperateHandler {
             return rs;
         } catch(ex: any) {
             this.logger.error(this.constructor.name,ex);
-            await db.rollbackWork();
+            try { await db.rollbackWork(); } catch(er) { this.logger.error(er); }
             return Promise.reject(this.getDBError(ex));
 		} finally {
 			if(db) db.close();
@@ -438,7 +438,7 @@ export class Sfte002Handler extends TknOperateHandler {
             return rs;
         } catch(ex: any) {
             this.logger.error(this.constructor.name,ex);
-            await db.rollbackWork();
+            try { await db.rollbackWork(); } catch(er) { this.logger.error(er); }
             return Promise.reject(this.getDBError(ex));
 		} finally {
 			if(db) db.close();
@@ -461,7 +461,7 @@ export class Sfte002Handler extends TknOperateHandler {
             return rs;
         } catch(ex: any) {
             this.logger.error(this.constructor.name,ex);
-            await db.rollbackWork();
+            try { await db.rollbackWork(); } catch(er) { this.logger.error(er); }
             return Promise.reject(this.getDBError(ex));
 		} finally {
 			if(db) db.close();
@@ -496,7 +496,7 @@ export class Sfte002Handler extends TknOperateHandler {
             return this.createRecordSet(rs);
         } catch(ex: any) {
             this.logger.error(this.constructor.name,ex);
-            await db.rollbackWork();
+            try { await db.rollbackWork(); } catch(er) { this.logger.error(er); }
             return Promise.reject(this.getDBError(ex));
 		} finally {
 			if(db) db.close();
