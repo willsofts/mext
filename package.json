@@ -30,7 +30,7 @@
     "@willsofts/will-core": "^1.1.24",
     "@willsofts/will-db": "^1.0.55",
     "@willsofts/will-dh": "^1.0.2",
-    "@willsofts/will-lib": "^1.0.27",
+    "@willsofts/will-lib": "^1.0.28",
     "@willsofts/will-run": "^1.0.13",
     "@willsofts/will-saml": "^1.0.5",
     "@willsofts/will-serv": "^1.0.46",
@@ -63,7 +63,8 @@
     "path": "^0.12.7",
     "qrcode": "^1.5.3",
     "random-js": "^2.1.0",
-    "randomcolor": "^0.6.2"
+    "randomcolor": "^0.6.2",
+    "uuid": "^11.0.2"
   },
   "devDependencies": {
     "@types/bigi": "^1.4.3",
@@ -72,6 +73,7 @@
     "@types/jsbn": "^1.2.30",
     "@types/multer": "^1.4.7",
     "@types/node": "^18.11.9",
+    "@types/uuid": "^10.0.0",
     "moleculer-repl": "^0.7.3",
     "nats": "^2.15.1",
     "ts-node": "^10.9.1",
