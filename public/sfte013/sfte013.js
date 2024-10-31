@@ -434,13 +434,14 @@ function setupEntryComponent(){
 		branding: false,
 		height: 200,				
 		plugins: [
-			'advlist autolink lists link charmap print preview hr anchor pagebreak',
+			'advlist autolink lists link image charmap print preview hr anchor pagebreak',
 			'searchreplace wordcount visualblocks visualchars code fullscreen',
 			'insertdatetime media nonbreaking save table contextmenu directionality',
 			'emoticons template paste textcolor colorpicker textpattern imagetools'
 		],				
-		toolbar1: 'undo redo | styleselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | insertsymbols'
-		,
+		toolbar: 'undo redo | styleselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | insertsymbols',
+        images_upload_url: '/upload/docimage',
+		images_upload_base_path: '/uploaded/docimages',
 		setup: function (editor) {
 			editor.addButton('insertsymbols', { //add custom
 					type: 'listbox',
