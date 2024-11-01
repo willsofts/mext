@@ -33,7 +33,7 @@
     "@willsofts/will-lib": "^1.0.28",
     "@willsofts/will-run": "^1.0.13",
     "@willsofts/will-saml": "^1.0.5",
-    "@willsofts/will-serv": "^1.0.46",
+    "@willsofts/will-serv": "^1.0.47",
     "@willsofts/will-sql": "^1.0.31",
     "@willsofts/will-util": "^1.0.20",
     "activedirectory": "^0.7.2",
