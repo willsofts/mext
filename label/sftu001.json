@@ -1,0 +1,38 @@
+[
+	{
+		"language": "TH",
+		"label": [
+			{"name": "caption", "value": "การกำหนดค่า API"},
+			{"name": "apinames_label", "value": "ชื่อ API"},
+			{"name": "fromdates_label", "value": "จากวันที่"},
+			{"name": "todates_label", "value": "ถึงวันที่"},
+			{"name": "apiname_headerlabel", "value": "ชื่อ API"},
+			{"name": "createdate_headerlabel", "value": "วันที่"},
+			{"name": "createtime_headerlabel", "value": "เวลา"},
+			{"name": "inactive_headerlabel", "value": "ใช้งาน"},
+			{"name": "createdate_label", "value": "วันที่"},
+			{"name": "apiname_label", "value": "ชื่อ API"},
+			{"name": "apiquery_label", "value": "คำสั่งแบบสอบถาม"},
+			{"name": "createtime_label", "value": "เวลา"},
+			{"name": "inactive_label", "value": "ใช้งาน"}
+		]
+	},
+	{
+		"language": "EN",
+		"label": [
+			{"name": "caption", "value": "API Configuration"},
+			{"name": "apinames_label", "value": "API Name"},
+			{"name": "fromdates_label", "value": "From Date"},
+			{"name": "todates_label", "value": "To Date"},
+			{"name": "apiname_headerlabel", "value": "API Name"},
+			{"name": "createdate_headerlabel", "value": "Date"},
+			{"name": "createtime_headerlabel", "value": "Time"},
+			{"name": "inactive_headerlabel", "value": "Active"},
+			{"name": "apiname_label", "value": "API Name"},
+			{"name": "apiquery_label", "value": "Query Statement"},			
+			{"name": "createdate_label", "value": "Date"},
+			{"name": "createtime_label", "value": "Time"},
+			{"name": "inactive_label", "value": "Active"}
+		]
+	}
+]
