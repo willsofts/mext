@@ -70,7 +70,16 @@ curl -v -X POST http://localhost:8080/api/captcha/create
 upload file
 curl -X POST http://localhost:8080/upload/file
 ex.
-curl -X POST http://localhost:8080/upload/file -F filename=@D:\images\birth.png -F type=IMG -F no=123456
+curl -X POST http://localhost:8080/upload/file -F filename=@D:\images\birth.png -F type=IMG -F no=123456 -F group=FI
+defined id:
+curl -X POST http://localhost:8080/upload/file -F filename=@D:\images\birth.png -F type=IMG -F no=123456 -F id=12345
+
+remove upload file
+ex. 
+with attach id:
+curl -X POST http://localhost:8080/api/attach/remove -d id=12345
+with attach no:
+curl -X POST http://localhost:8080/api/attach/remove -d no=123456
 
 data table service
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/get -d "tablename=tactive&keyfield=activeid"
@@ -82,7 +91,7 @@ curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/get -d "table
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/category -d "tablename=kt_marrystatus&keyfield=statusid&valuefield=nameen"
 curl -X POST -H "AuthToken: ?" -H "Content-Type: application/json" http://localhost:8080/api/datatable/list -d "{\"tablename\": [\"kt_marrystatus\", \"kt_languages\"], \"orderfield\": \"seqno\"}"
 
-category service
+category
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/groups -d "names=tactive"
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/groups -d "names=tactive&names=tlanguage"
 curl -X POST -H "AuthToken: ?" -H "Content-Type: application/json" http://localhost:8080/api/category/groups -d "{\"names\":\"tactive\"}"
@@ -150,3 +159,23 @@ expose service
 curl -X POST -H "Content-Type: application/json" -H "AuthToken: ?" http://localhost:8080/api/expose/cipher -d "{ \"ciphertext\": \"???\" }"
 ex.
 curl -X POST -H "Content-Type: application/json" -H "AuthToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiMWEzMDkzNjktNWFjMi00YWU2LTgwMmQtNWYwZGI4ODZjYjFkIiwic2l0ZSI6IkZXUyIsImFjY2Vzc29yIjoidHNvIiwidHlwZSI6IlMiLCJpYXQiOjE3MjQzODc1MDksImV4cCI6MTcyNDQ1MjMwOX0.IM_3FSVs5-IBT40xes3yFmiYfx0_T6JedP2KajUWFZs" http://localhost:8080/api/expose/cipher -d "{ \"ciphertext\": \"XdYju1WEh7CFK76KIf3NsnB/cIQL0nTCVcOlXjiAzeLWs1b5cn/fSLCPYZSBwn+eZd76jmalq2GzKHpLpuofngennC9Lkmdy7XUdWfHzYD2qIpDa1UF/mI1FAH8abD//GIJZ/I9VYctEzJTNpoyjir+/0IefPzvZocDvAEIIFi6DU3f5UeCwwDdBHQ05tt9Q\" }"
+
+PM2
+pm2 start -i max --name server dist/server.js
+pm2 start -i max --name server dist/server.js -- ./dist/services ./dist/workers ./dist/operators
+
+Report
+curl http://localhost:8080/report/demo002
+curl http://localhost:8080/report/demo002/demo002/pdf
+
+config(tconfig)
+curl http://localhost:8080/api/config/get?category=S3
+ex. response
+{"head":{"model":"api","method":"config.get","errorcode":"0","errorflag":"N","errordesc":""},"body":{"S3":{"ACCESS_KEY":"S3AccessKey","BUCKET":"S3Bucket","REGION":"S3Region","SECRET_KEY":"S3SecretKey"}}}
+
+data service
+difference from data table, this is custom query from table api_config
+ex.
+curl "http://localhost:8080/api/dataservice/lookup?apiname=api_role&site=FWS"
+curl -X POST http://localhost:8080/api/dataservice/lists -d "apiname=api_prog&apiname=api_prod"
+curl -X POST -H "Content-Type: application/json" http://localhost:8080/api/dataservice/lists -d "{\"apiname\":[\"api_prog\",\"api_prod\"]}"
