@@ -1,0 +1,32 @@
+[
+	{
+		"language": "TH",
+		"label": [
+			{"name": "caption", "value": "ข้อมูลบทบาทหน้าที่"},
+			{"name": "nameens_label", "value": "บทบาทภาษาอังกฤษ"},
+			{"name": "nameths_label", "value": "บทบาทภาษาไทย"},
+			{"name": "inactives_label", "value": "สถานะ"},
+			{"name": "nameen_headerlabel", "value": "บทบาทภาษาอังกฤษ"},
+			{"name": "nameth_headerlabel", "value": "บทบาทภาษาไทย"},
+			{"name": "inactive_headerlabel", "value": "สถานะ"},
+			{"name": "nameen_label", "value": "บทบาทภาษาอังกฤษ"},
+			{"name": "nameth_label", "value": "บทบาทภาษาไทย"},
+			{"name": "inactive_label", "value": "สถานะ"}
+		]
+	},
+	{
+		"language": "EN",
+		"label": [
+			{"name": "caption", "value": "Role Information"},
+			{"name": "nameens_label", "value": "Role Name (English)"},
+			{"name": "nameths_label", "value": "Role Name (Thai)"},
+			{"name": "inactives_label", "value": "Status"},
+			{"name": "nameen_headerlabel", "value": "Role Name (English)"},
+			{"name": "nameth_headerlabel", "value": "Role Name (Thai)"},
+			{"name": "inactive_headerlabel", "value": "Status"},
+			{"name": "nameen_label", "value": "Role Name (English)"},
+			{"name": "nameth_label", "value": "Role Name (Thai)"},
+			{"name": "inactive_label", "value": "Status"}
+		]
+	}
+]
