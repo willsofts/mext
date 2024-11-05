@@ -1,0 +1,23 @@
+			<div class="row row-height">
+				<div class="col-md-12 col-height">
+						<div class="table-layer-class">
+							<div class="row row-height">
+								<div class="col-height col-md-3">
+<label for="nameens" id="nameens_label" class="control-label"><%=label.get('nameens_label','Branch Name (English)')%></label><input type="text" id="nameens" name="nameen" class="form-control input-md" value="<%=data.dataset?.nameen%>" maxlength="100" />
+								</div>
+								<div class="col-height col-md-3">
+<label for="nameths" id="nameths_label" class="control-label"><%=label.get('nameths_label','Branch Name (Thai)')%></label><input type="text" id="nameths" name="nameth" class="form-control input-md" value="<%=data.dataset?.nameth%>" maxlength="100" />
+								</div>
+								<div class="col-height col-md-2">
+<label for="branchtypes" id="branchtypes_label" class="control-label"><%=label.get('branchtypes_label','Branch Type')%></label>
+<%-page.html('select',{map: data.entity?.tkbranchtype, value: data.dataset?.branchtype, id: "branchtypes", name: "branchtype", class: "form-control input-md", empty: true })%>
+								</div>
+								<div class="col-md">
+									<br/>
+									<button type="button" id="searchbutton" class="btn btn-dark btn-sm"><i class="fa fa-search fa-btn-icon" aria-hidden="true"></i><%=label.get('searchbutton','Search')%></button>
+									<button type="button" id="insertbutton" class="btn btn-dark btn-sm pull-right"><i class="fa fa-plus fa-btn-icon" aria-hidden="true"></i><%=label.get('insertbutton','Insert')%></button>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>

@@ -1,0 +1,40 @@
+[
+	{
+		"language": "TH",
+		"label": [
+			{"name": "caption", "value": "ข้อมูลสาขา"},
+			{"name": "nameens_label", "value": "ชื่อสาขาภาษาอังกฤษ"},
+			{"name": "nameths_label", "value": "ชื่อสาขาภาษาไทย"},
+			{"name": "branchtypes_label", "value": "ประเภทสาขา"},
+			{"name": "branch_headerlabel", "value": "สาขา"},
+			{"name": "nameen_headerlabel", "value": "ชื่อสาขาภาษาอังกฤษ"},
+			{"name": "nameth_headerlabel", "value": "ชื่อสาขาภาษาไทย"},
+			{"name": "branchtype_headerlabel", "value": "ประเภทสาขา"},
+			{"name": "branch_label", "value": "สาขา"},
+			{"name": "nameen_label", "value": "ชื่อสาขาภาษาอังกฤษ"},
+			{"name": "nameth_label", "value": "ชื่อสาขาภาษาไทย"},
+			{"name": "addressen_label", "value": "ที่อยู่ภาษาอังกฤษ"},
+			{"name": "addressth_label", "value": "ที่อยู่ภาษาไทย"},
+			{"name": "branchtype_label", "value": "ประเภทสาขา"}
+		]
+	},
+	{
+		"language": "EN",
+		"label": [
+			{"name": "caption", "value": "Branch Information"},
+			{"name": "nameens_label", "value": "Branch Name (English)"},
+			{"name": "nameths_label", "value": "Branch Name (Thai)"},
+			{"name": "branchtypes_label", "value": "Branch Type"},
+			{"name": "branch_headerlabel", "value": "Branch"},
+			{"name": "nameen_headerlabel", "value": "Branch Name (English)"},
+			{"name": "nameth_headerlabel", "value": "Branch Name (Thai)"},
+			{"name": "branchtype_headerlabel", "value": "Branch Type"},
+			{"name": "branch_label", "value": "Branch"},
+			{"name": "nameen_label", "value": "Branch Name (English)"},
+			{"name": "nameth_label", "value": "Branch Name (Thai)"},
+			{"name": "addressen_label", "value": "Address (English)"},
+			{"name": "addressth_label", "value": "Address (Thai)"},
+			{"name": "branchtype_label", "value": "Branch Type"}
+		]
+	}
+]
