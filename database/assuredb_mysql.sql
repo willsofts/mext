@@ -415,6 +415,7 @@ CREATE TABLE IF NOT EXISTS `tgroup` (
   `usertype` varchar(1) DEFAULT NULL COMMENT 'tconstant.typeid and typename=''tusertype''',
   `mobilegroup` varchar(50) DEFAULT NULL,
   `xmltext` text,
+  `menutext` text,
   `editdate` date DEFAULT NULL,
   `edittime` time DEFAULT NULL,
   `edituser` varchar(50) DEFAULT NULL,
