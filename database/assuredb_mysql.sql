@@ -1110,6 +1110,7 @@ CREATE TABLE IF NOT EXISTS `tuser` (
   `approveflag` varchar(1) DEFAULT '0' COMMENT '1=Approver',
   `changeflag` varchar(1) DEFAULT '0' COMMENT '1=Force change password',
   `newflag` varchar(1) DEFAULT '0' COMMENT '1=Can new window',
+  `activeflag` varchar(1) DEFAULT '0' COMMENT '1=Active Directory User',
   `mistakens` tinyint(4) DEFAULT '0',
   `mistakentime` bigint(20) DEFAULT NULL,
   `editdate` date DEFAULT NULL,
