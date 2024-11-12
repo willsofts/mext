@@ -365,7 +365,7 @@ function deleted(aform) {
 	//#(345000) programmer code begin;
 	//#(345000) programmer code end;
 	if(!aform) aform = fsentryform;
-	confirmDelete(function() {
+	confirmDelete([],function() {
 		let formdata = serializeDataForm(aform);
 		//#(347000) programmer code begin;
 		//#(347000) programmer code end;

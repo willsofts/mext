@@ -33,6 +33,7 @@
 	<msg code="QS0031"><TH>คุณต้องการยกเลิกระงับการใช้งานระบบใช่หรือไม่</TH><EN>Do you want to unlock the system?</EN></msg>
 	<msg code="QS0032"><TH>คุณต้องการส่งรายการนี้ใหม่ใช่หรือไม่?</TH><EN>Do you want to resend this transaction?</EN></msg>
 	<msg code="QS0033"><TH>คุณต้องการยืนยันการแก้ไขใหม่  %s รายการนี้ใช่หรือไม่</TH><EN>Are you sure to revise %s?</EN></msg>
+	<msg code="QS0034"><TH>คุณต้องการลบรายการ node นี้ใช่หรือไม่</TH><EN>Do you want to remove this node?</EN></msg>
 	
 	<msg code="fsconfirmbtn"><TH>ตกลง</TH><EN>OK</EN></msg>
 	<msg code="fscancelbtn"><TH>ยกเลิก</TH><EN>Cancel</EN></msg>
