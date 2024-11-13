@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Menu Administration</title>
+		<%- include('../asset/meta') %>		
+		<%- include('../asset/styles') %>		
+		<%- include('../asset/scripts') %>	
+		<link rel="stylesheet" type="text/css" href="<%=meta.base_url%>/sfte008/sfte008.css" />
+		<script type="text/javascript" src="<%=meta.base_url%>/sfte008/sfte008.js"></script>
+		<script type="text/javascript" nonce="YXNzdXJl">
+			var permits = <%-JSON.stringify(data.entity?.tkpermit) %>;
+			var programs = <%-JSON.stringify(data.entity?.tprog) %>;
+		</script>
+	</head>
+	<body class="portalbody portalbody-off">
+		<%- include('../partials/page_waiting') %>
+		<div id="ptsearchpager" class="pt-page pt-page-current pt-page-controller sfte008-search-pager">
+			<%- page.createHeader({pid: 'sfte008', title: label.get('caption','Menu Administration')}) %>
+			<div id="searchpanel" class="panel-body">
+				<form id="fssearchform" name="fssearchform" method="post">
+					<input type="hidden" name="ajax" value="true"/>
+					<input type="hidden" name="rowsPerPage" value="<%=page.setting?.rowsPerPage%>"/>
+					<input type="hidden" name="limit" value="<%=page.setting?.limit%>"/>
+					<input type="hidden" name="page" value="1"/>
+					<input type="hidden" name="orderBy" value=""/>
+					<input type="hidden" name="orderDir" value=""/>
+					<%- include('./sfte008_filter') %>
+				</form>
+				<hr class="entry-horizontal"/>
+				<div id="entrypanel">
+					<div class="row data-layer">
+						<div id="menubarcolumnlayer" class="col-md-7">
+							<div id="menubarlayer" class="menubar-layer">									
+							</div>
+						</div>
+						<%- include('./sfte008_item') %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="dialogpanel"></div>
+		<%- include('./sfte008_task_dialog') %>
+		<%- include('./sfte008_item_dialog') %>
+	</body>
+</html>

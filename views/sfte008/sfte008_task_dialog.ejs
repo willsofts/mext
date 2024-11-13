@@ -1,0 +1,22 @@
+<div id="task_dialog_layer" class="modal fade pt-page pt-page-item" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content portal-area fa-portal-area">
+			<div class="modal-header">
+				<h4 class="modal-title" id="taskheader"><%=label.get('task_dialog_title','Task Info')%></h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="row row-heighter center-block">
+                <div class="col-md-2 col-height col-label">
+                    <label id="progtitletask_label" class="control-label" required="true"><%=label.get('progtitle_label','Title')%></label>
+                </div>
+                <div class="col-md-8 col-height">
+                    <input class="form-control input-sm input-task" id="progtitletask" autocomplete="off" size="50" maxlength="100" />
+                </div>
+			</div>
+			<div class="row-heighter modal-footer" >
+                <input type="button" id="okbuttondialogtask" class="btn btn-dark btn-sm" value="<%=label.get('okbutton','OK')%>"/>
+                <input type="button" id="cancelbuttondialogtask" class="btn btn-dark btn-sm" data-dismiss="modal" value="<%=label.get('canceldialogbutton','Cancel')%>"/>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,94 @@
+<div id="itemlayer" class="col-md">
+    <div class="row">
+        <button id="tasklinker" class="btn btn-dark btn-sm ctrl-linker fa fa-tasks" title="New Task" disabled></button>
+        &nbsp;
+        <button id="inserttasklinker" class="btn btn-dark btn-sm ctrl-linker fa fa-indent" title="Insert Task" disabled></button>
+        &nbsp;
+        <button id="itemlinker" class="btn btn-dark btn-sm ctrl-linker fa fa-desktop" title="New Item" disabled></button>
+        &nbsp;
+        <button id="deletelinker" class="btn btn-dark btn-sm ctrl-linker fa fa-trash" title="Delete" disabled></button>
+    </div>
+    <form id="fsentryform" name="fsentryform" method="post">
+        <div class="row">
+            <fieldset id="propertyfieldset">
+                <legend><label class="lclass" id="properties_label"><%=label.get('properties_label','Properties')%></label></legend>
+            </fieldset>
+        </div>
+        <div class="row row-heighter center-block">
+                <div class="col-md-3 col-height col-label">
+                    <label id="progid_label" class="control-label"><%=label.get('progid_label','Program')%></label>
+                </div>
+                <div class="col-md-5 col-height">
+                    <input type="hidden" id="groupid" name="groupname" />
+                    <input type="hidden" id="menutext" name="menutext" />
+                    <input type="text" class="form-control input-sm input-entry alert-input" id="progid" autocomplete="off" size="10" maxlength="20" />
+                </div>
+        </div>
+        <div class="row row-heighter center-block">
+                <div class="col-md-3 col-height col-label">
+                    <label id="progtitle_label" class="control-label"><%=label.get('progtitle_label','Title')%></label>
+                </div>
+                <div class="col-md-9 col-height">
+                    <input type="text" class="form-control input-sm alert-input" id="progtitle" autocomplete="off" size="50" maxlength="100" />
+                </div>
+        </div>
+        <div class="row">
+            <fieldset id="permissionfieldset">
+                <legend><label id="permissions_label" class="lclass"><%=label.get('permissions_label','Permissions')%></label></legend>
+            </fieldset>
+        </div>        
+        <%
+            let permmap = data.entity?.tkpermit;
+            let permkey = Object.keys(permmap);
+            let isz = permkey.length;
+            if(isz>0) {
+                let index = -1;
+                let counter = isz;
+                let max = 3;
+                do {
+                %>
+                <div class="row row-heighter center-block">
+                <%	
+                for(let k = 0; k < max; k++ ) {
+                    index++;
+                    if(index < isz) {
+                        let key = permkey[index];
+                        let permtitle = permmap[key];
+                %>
+                    <div class="col-md-4 col-height form-check">						
+                        <table class="radio"><tr><td>
+                            <input type="checkbox" id="permitbox<%=key%>" class="permit-checkbox" />
+                        </td><td>
+                            <label id="permitbox<%=key%>_label" class="control-label" for="permitbox<%=key%>"><%=permtitle%></label>
+                        </td></tr></table>
+                    </div>
+                <%							
+                    }
+                }
+                %>
+                </div>
+                <%
+                    counter -= max;
+                }while(counter>0);
+            }
+        %>
+        <div class="row row-heighter center-block">
+            <div class="col-md-3 col-height col-label">
+                <label id="parameters_label" class="control-label"><%=label.get('parameters_label','Parameters')%></label>
+            </div>
+            <div class="col-md-9 col-height">
+                <input type="text" class="form-control input-sm input-entry" id="parameters" autocomplete="off" size="30" maxlength="80" />
+            </div>
+        </div>
+    </form>
+    <div id="buttoncontrollayer" class="row">
+        <div class="col-md-2">
+        <input type="button" id="updatebutton" class="btn btn-dark btn-sm" value="<%=label.get('updatebutton','Update')%>" disabled />
+        </div>
+        <div class="col-md pull-right text-right">
+            <input type="button" id="savebutton" class="btn btn-dark btn-sm" value="<%=label.get('savebutton','Save')%>" disabled />
+            &nbsp;
+            <input type="button" id="cancelbutton" class="btn btn-dark btn-sm" value="<%=label.get('cancelbutton','Cancel')%>"/>
+        </div>
+    </div>
+</div>

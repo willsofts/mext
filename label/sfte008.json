@@ -1,0 +1,32 @@
+[
+	{
+		"language": "TH",
+		"label": [
+			{"name": "caption", "value": "ตั้งค่าระบบเมนู"},
+			{"name": "groupname_label", "value": "กลุ่ม"},
+			{"name": "properties_label", "value": "คุณสมบัติ"},
+			{"name": "progid_label", "value": "โปรแกรม"},
+			{"name": "progtitle_label", "value": "หัวเรื่อง"},
+			{"name": "permissions_label", "value": "การอนุญาต"},
+			{"name": "parameters_label", "value": "พารามิเตอร์"},
+			{"name": "task_dialog_title", "value": "ข้อมูลงาน"},
+			{"name": "item_dialog_title", "value": "ข้อมูลโปรแกรม"},
+			{"name": "explorebutton", "value": "เปิด"}
+		]
+	},
+	{
+		"language": "EN",
+		"label": [
+			{"name": "caption", "value": "Menu Administration"},
+			{"name": "groupname_label", "value": "Group"},
+			{"name": "properties_label", "value": "Properties"},
+			{"name": "progid_label", "value": "Program"},
+			{"name": "progtitle_label", "value": "Title"},
+			{"name": "permissions_label", "value": "Permissions"},
+			{"name": "parameters_label", "value": "Parameters"},
+			{"name": "task_dialog_title", "value": "Task Info"},
+			{"name": "item_dialog_title", "value": "Item Info"},
+			{"name": "explorebutton", "value": "Explore"}
+		]
+	}
+]

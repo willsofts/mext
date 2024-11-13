@@ -1,0 +1,86 @@
+<div id="item_dialog_layer" class="modal fade pt-page pt-page-item" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content portal-area fa-portal-area">
+			<div class="modal-header">
+				<h4 class="modal-title" id="modalheadertitle"><%=label.get('item_dialog_title','Item Info')%></h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div id="entrydialoglayer" class="entry-dialog-layer">
+				<form id="fspermitform" role="form" data-toggle="validator" name="fspermitform" method="post">
+					<input type="hidden" name="rowsPerPage" value="<%=page.setting?.rowsPerPage%>"/>
+					<input type="hidden" name="limit" value="<%=page.setting?.limit%>"/>
+					<input type="hidden" name="page" value="<%=page.setting?.page%>"/>
+					<input type="hidden" name="groupname" id="groupnamedialog" />			
+					<div class="row row-heighter center-block first-row-layer">
+						<div class="col-md-3 col-height col-label">
+							<label id="progiddialog_label" class="control-label" required="true"><%=label.get('progid_label','Program')%></label>
+						</div>
+						<div class="col-md-4 col-height">
+							<input class="form-control input-sm input-item" id="progiddialog" name="programid" autocomplete="off" size="10" maxlength="20" />
+						</div>
+					</div>
+					<div class="row row-heighter center-block">
+						<div class="col-md-3 col-height col-label">
+							<label id="progtitledialog_label" tagclass="control-label" required="true"><%=label.get('progtitle_label','Title')%></label>
+						</div>
+						<div class="col-md-9 col-height">
+							<input class="form-control input-sm input-item" id="progtitledialog" placeholder="" autocomplete="off" size="50" maxlength="100" />
+						</div>
+					</div>
+					<div class="row">
+						<fieldset id="permitfieldset">
+							<legend><label class="lclass" id="permissionsdialog_label"><%=label.get('permissions_label','Permissions')%></label></legend>
+						</fieldset>
+					</div>					
+					<%
+					let permmap = data.entity?.tkpermit;
+					let permkey = Object.keys(permmap);
+					let isz = permkey.length;
+					if(isz>0) {
+						let index = -1;
+						let counter = isz;
+						let max = 3;
+						do {
+						%>
+						<div class="row row-heighter center-block permit-block">
+						<%	
+						for(let k = 0; k < max; k++ ) {
+							index++;
+							if(index < isz) {
+								let key = permkey[index];
+								let permtitle = permmap[key];
+						%>
+							<div class="col-md-4 col-height form-check">						
+								<table class="radio"><tr><td>
+									<input type="checkbox" id="permitdialog<%=key%>" class="permitdialog-checkbox" />
+								</td><td>
+									<label id="permitdialog<%=key%>_label" class="control-label" for="permitdialog<%=key%>"><%=permtitle%></label>
+								</td></tr></table>
+							</div>
+						<%							
+							}
+						}
+						%>
+						</div>
+						<%
+							counter -= max;
+						}while(counter>0);
+					}
+					%>					
+					<div class="row row-heighter center-block">
+						<div class="col-md-3 col-height col-label">
+							<label id="parametersdialog_label" class="control-label"><%=label.get('parameters_label','Parameters')%></label>
+						</div>
+						<div class="col-md-9 col-height">
+							<input class="form-control input-sm input-item" id="parametersdialog" name="parameters" autocomplete="off" size="30" maxlength="80" />
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="row-heighter modal-footer" >
+				<input type="button" id="okbuttondialogitem" class="btn btn-dark btn-sm" value="<%=label.get('okbutton','OK')%>"/>
+				<input type="button" id="cancelbuttondialogitem" class="btn btn-dark btn-sm" data-dismiss="modal" value="<%=label.get('canceldialogbutton','Cancel')%>"/>
+			</div>
+		</div>
+	</div>
+</div>
