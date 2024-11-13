@@ -76,6 +76,7 @@
 	<msg code="QS0121"><TH>นำเข้าข้อมูลซ้ำซ้อน</TH><EN>Duplicate record</EN></msg>
 	<msg code="QS0122"><TH>ไม่พบผู้ใช้</TH><EN>User not found</EN></msg>
 	<msg code="QS0123"><TH>ไม่ได้ระบุโปรแกรม ID</TH><EN>Program ID is undefined</EN></msg>
+	<msg code="QS0124"><TH>ไม่สามารถลบ node นี้ได้</TH><EN>Can not remove root node</EN></msg>
 	
 	<msg code="QS0200"><TH>Reset password success, Please verify email for new password changed</TH><EN>Reset password success, Please verify email for new password changed</EN></msg>
 	<msg code="QS0201"><TH>Reset password success, Please verify your email for new password changed</TH><EN>Reset password success, Please verify your email for new password changed</EN></msg>
