@@ -1,6 +1,5 @@
-#menubarlayer { border : 2px solid #2F4F4F; overflow: auto; min-height: 500px; padding: 5px; }
+#menubarlayer { border : 2px solid #2F4F4F; overflow: auto; padding: 5px; min-height: 500px; max-height: 500px; overflow-y: auto; }
 a.selected-linker span { text-decoration: underline; }
-/*#item_dialog_layer { z-Index:1002 }*/
 div.first-row-layer { padding-top:10px; padding-bottom:0px; }
 #permitfieldset { height:30px; margin-left: 20px; margin-right: 20px; }
 button.ctrl-linker { width:40px; }
@@ -9,3 +8,5 @@ button.ctrl-linker { width:40px; }
 #buttoncontrollayer { padding-top: 15px; padding-right:0px; }
 #explorebutton { margin-top: 5px; }
 .autocomplete-fixed-height { max-height: 350px; margin-bottom: 10px; overflow-x: auto; overflow-y: auto; }
+#searchpanel { margin-bottom: 0px; }
+#menubarlayer { max-height: 500px; overflow-y: auto; }

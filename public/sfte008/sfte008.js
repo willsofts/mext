@@ -102,7 +102,6 @@ function searchComplete(xhr,data) {
 	//#(90000) programmer code end;
 	stopWaiting();
 	//#(100000) programmer code begin;
-	stopWaiting();	
 	let menu_texts = data?.body?.dataset?.menutext;
 	if(!menu_texts || menu_texts.trim().length==0) {
 		let text = $("option:selected",$("#groupname")).text();
@@ -122,7 +121,6 @@ function clearingFields() {
 	//#(140000) programmer code begin;
 	$("#savebutton").prop("disabled",true);
 	$("#updatebutton").prop("disabled",true);
-	$("input.permit-checkbox").prop("disabled",false);
 	$(".ctrl-linker").prop("disabled",true);
 	$("#deletelinker").unbind("click").bind("click",function() { return false; });
 	$("#updatebutton").unbind("click");
@@ -132,12 +130,18 @@ function clearingFields() {
 	$("input[type=text]",$("#fsentryform")).prop("readonly","true");
 	menuCounter = 0;
 	currentParentNode = null;
+	clearingItems();
+	//#(140000) programmer code end;
+}
+function clearingItems() {
 	currentNode = null;
 	currentMenu = null;
 	for(let p in permits) {
 		$("#permitbox"+p).prop("checked",false);
 	}
-	//#(140000) programmer code end;
+	$("input.permit-checkbox").prop("disabled",true);
+	$("input.input-entry").prop("disabled",true).val("");
+	$("#progtitle").val("");
 }
 function cancel() {
 	//#(150000) programmer code begin;
@@ -361,6 +365,7 @@ function bindingTask(curnode,parentnode,$span,menu,linker) {
 				parentnode.items = items;
 				menu.remove();
 				linker.parent().remove();
+				clearingItems();
 				//console.log("Task-Remove: grpmenudoc",grpmenudoc);
 			});
 		}
@@ -420,6 +425,7 @@ function bindingItem(curnode,parentnode,$span,menu,linker) {
 				let items = parentnode.items.filter((element) => element != curnode);
 				parentnode.items = items;
 				linker.parent().remove();
+				clearingItems();
 				//console.log("Item-Remove: grpmenudoc",grpmenudoc);
 			});	
 		}
