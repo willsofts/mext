@@ -1,7 +1,9 @@
 import { KnModel, KnOperation, KnPageSetting, KnActionQuery } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
-import { KnUtility, VerifyError, KnValidateInfo, KnContextInfo, KnDataTable } from '@willsofts/will-core';
+import { KnValidateInfo, KnContextInfo, KnDataTable } from '@willsofts/will-core';
+import { VerifyError } from '@willsofts/will-core';
+import { KnUtility } from '@willsofts/will-core';
 import { Utilities } from "@willsofts/will-util";
 import { TknOperateHandler } from '@willsofts/will-serv';
 
@@ -37,12 +39,12 @@ export class Sfte017Handler extends TknOperateHandler {
         }
         return Promise.resolve(vi);
     }
-    protected override buildFilterQuery(context: any, model: KnModel, knsql: KnSQLInterface, selector: string, action?: string, subaction?: string): KnSQLInterface {
-        if(this.isCollectMode(action)) {
+    protected override buildFiltersQuery(context: any, model: KnModel, knsql: KnSQLInterface, actions: KnActionQuery): KnSQLInterface {
+        if(this.isCollectMode(actions.action)) {
             let eng = KnUtility.isEnglish(context);
             let params = context.params;
-            let counting = KnOperation.COUNT==subaction;
-            knsql.append(selector);
+            let counting = KnOperation.COUNT==actions.subaction;
+            knsql.append(actions.selector);
             if(!counting) {
                 if(eng) {
                     knsql.append(", tuserinfo.userename as username, ");
@@ -94,7 +96,7 @@ export class Sfte017Handler extends TknOperateHandler {
             }
             return knsql;    
         }
-        return super.buildFilterQuery(context, model, knsql, selector, action, subaction);
+        return super.buildFiltersQuery(context, model, knsql, actions);
     }
 
     protected override buildOrderQuery(context: any, model: KnModel, knsql: KnSQLInterface, pageSetting: KnPageSetting, actions?: KnActionQuery): KnSQLInterface {
