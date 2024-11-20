@@ -15,6 +15,7 @@
         "tkrxstatus" : {"tableName": "tconstant", "addonFilters": "typename='trxstatus'", "keyField": "typeid", "addonFields": "seqno", "orderFields": "seqno", "setting": { "categoryName": "tkrxstatus", "keyName": "typeid", "valueNames": ["namen"]} },
         "tkvisible" : {"tableName": "tconstant", "addonFilters": "typename='tvisible'", "keyField": "typeid", "addonFields": "seqno", "orderFields": "seqno", "setting": { "categoryName": "tkvisible", "keyName": "typeid", "valueNames": ["namen"]} },
         "tkbranchtype" : {"tableName": "tconstant", "addonFilters": "typename='tbranchtype'", "keyField": "typeid", "addonFields": "seqno", "orderFields": "seqno", "setting": { "categoryName": "tkbranchtype", "keyName": "typeid", "valueNames": ["namen"]} },
+        "tkexpire" : {"tableName": "tconstant", "addonFilters": "typename='texpire'", "keyField": "typeid", "addonFields": "seqno", "orderFields": "seqno", "setting": { "categoryName": "tkexpire", "keyName": "typeid", "valueNames": ["namen"]} },
 
         "tprod" : {"tableName": "tprod", "keyField": "product", "addonFields": "seqno", "orderFields": "seqno", "setting": { "keyName": "product", "valueNames": ["nameen"]} },
         "tprog" : {"tableName": "tprog", "keyField": "programid", "orderFields": "programid", "captionFields": "progname,prognameth", "nameen": "progname", "nameth": "prognameth", "setting": { "keyName": "programid", "valueNames": ["progname"]} },        
