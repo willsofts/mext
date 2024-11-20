@@ -1,4 +1,4 @@
-import { KnModel, KnOperation, KnPageSetting } from "@willsofts/will-db";
+import { KnModel, KnOperation, KnPageSetting, KnActionQuery } from "@willsofts/will-db";
 import { KnDBConnector, KnSQLInterface, KnRecordSet, KnSQL } from "@willsofts/will-sql";
 import { HTTP } from "@willsofts/will-api";
 import { KnUtility, VerifyError, KnValidateInfo, KnContextInfo, KnDataTable } from '@willsofts/will-core';
@@ -97,7 +97,7 @@ export class Sfte017Handler extends TknOperateHandler {
         return super.buildFilterQuery(context, model, knsql, selector, action, subaction);
     }
 
-    protected override buildOrderQuery(context: any, model: KnModel, knsql: KnSQLInterface, pageSetting: KnPageSetting, action?: string, subaction?: string): KnSQLInterface {
+    protected override buildOrderQuery(context: any, model: KnModel, knsql: KnSQLInterface, pageSetting: KnPageSetting, actions?: KnActionQuery): KnSQLInterface {
         let order = pageSetting.orderDir?pageSetting.orderDir:"";
         if("username_surname"==pageSetting.orderBy) {
             let eng = KnUtility.isEnglish(context);
@@ -114,7 +114,7 @@ export class Sfte017Handler extends TknOperateHandler {
             knsql.append(" order by confirmdate ").append(order).append(", confirmtime ").append(order).append(" ");
             return knsql;
         }
-        return super.buildOrderQuery(context, model, knsql, pageSetting, action, subaction);
+        return super.buildOrderQuery(context, model, knsql, pageSetting, actions);
     }
 
     protected override async doRetrieving(context: KnContextInfo, model: KnModel, action: string = KnOperation.RETRIEVE): Promise<KnDataTable> {
