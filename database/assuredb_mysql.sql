@@ -10,88 +10,26 @@
 CREATE DATABASE IF NOT EXISTS `assuredb` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `assuredb`;
 
-CREATE TABLE IF NOT EXISTS `kt_languages` (
-  `langid` varchar(5) NOT NULL,
-  `nameen` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `nameth` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `seqno` int NOT NULL,
-  PRIMARY KEY (`langid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-
-CREATE TABLE IF NOT EXISTS `kt_marrystatus` (
-  `statusid` varchar(1) NOT NULL,
-  `nameen` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `nameth` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `seqno` int NOT NULL,
-  PRIMARY KEY (`statusid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-
-CREATE TABLE IF NOT EXISTS `sample` (
-  `fieldchar` char(20) NOT NULL,
-  `fielddecimal` decimal(22,6) DEFAULT NULL,
-  `fielddate` date DEFAULT NULL,
-  `fieldtime` time DEFAULT NULL,
-  `fieldinteger` bigint unsigned DEFAULT NULL,
-  `fieldvarchar` varchar(15) DEFAULT NULL,
-  `fieldflag` char(1) DEFAULT NULL,
-  `fieldbox` varchar(50) DEFAULT NULL,
-  `fieldtext` text,
-  `fielddatetime` datetime DEFAULT NULL,
-  `fieldtimestamp` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`fieldchar`)
-) ENGINE=InnoDB DEFAULT CHARSET=tis620;
-
-
-CREATE TABLE IF NOT EXISTS `sampling` (
-  `account` varchar(50) NOT NULL,
-  `amount` decimal(16,2) DEFAULT NULL,
-  `age` int DEFAULT NULL,
-  `gender` varchar(1) DEFAULT NULL,
-  `domestic` varchar(1) DEFAULT NULL,
-  `effectdate` date DEFAULT NULL,
-  `effecttime` time DEFAULT NULL,
-  `pincode` varchar(50) DEFAULT NULL,
-  `marrystatus` varchar(1) DEFAULT NULL,
-  `licenses` varchar(200) DEFAULT NULL,
-  `languages` varchar(200) DEFAULT NULL,
-  `remark` varchar(100) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `caption` varchar(100) DEFAULT NULL,
-  `assets` int DEFAULT NULL,
-  `credit` decimal(16,2) DEFAULT NULL,
-  `passcode` varchar(50) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `api_config` (
+  `apiname` varchar(50) NOT NULL,
+  `apiquery` text NOT NULL,
+  `apiparams` text,
+  `apisection` varchar(50) DEFAULT NULL,
+  `inactive` varchar(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0' COMMENT '1=Inactive',
   `createdate` date DEFAULT NULL,
   `createtime` time DEFAULT NULL,
+  `createuser` varchar(50) DEFAULT NULL,
   `editdate` date DEFAULT NULL,
   `edittime` time DEFAULT NULL,
-  PRIMARY KEY (`account`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `edituser` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`apiname`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='table keep api lookup config';
 
-INSERT INTO `sampling` (`account`, `amount`, `age`, `gender`, `domestic`, `effectdate`, `effecttime`, `pincode`, `marrystatus`, `licenses`, `languages`, `remark`, `title`, `caption`, `assets`, `credit`, `passcode`, `createdate`, `createtime`, `editdate`, `edittime`) VALUES
-	('1-0-12345-0', 200000.00, 28, 'M', '1', '2024-07-29', '14:15:00', '101010', 'S', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-0-12345-1', 110000.00, 31, 'F', '1', '2024-07-01', '15:26:19', '', 'S', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-0-12345-2', 120000.00, 30, 'F', '1', '2024-07-01', '15:26:19', '', 'S', 'CAR', 'CN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:01', '2024-06-25', '12:00:01'),
-	('1-0-12345-3', 120000.00, 32, 'F', '1', '2024-07-31', '14:15:01', '454545', 'S', 'CAR', 'CN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:01', '2024-06-25', '12:00:01'),
-	('1-0-12345-4', 130000.00, 33, 'F', '1', '2024-07-31', '14:15:00', '555555', 'S', 'CAR', 'CN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-0-12345-5', 150000.00, 29, 'M', '1', '2024-07-30', '14:15:00', '151515', 'S', 'CAR,TRUCK', 'TH,CN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-0-12345-6', 15000.00, 25, 'M', '1', '2024-06-27', '16:24:02', '123456', 'S', 'CAR,BOAT', 'TH,EN', NULL, NULL, NULL, 1, 650000.00, 'A1200', '2024-06-27', '16:24:51', '2024-06-27', '16:24:54'),
-	('1-0-12345-7', 200000.00, 27, 'M', '1', '2024-06-01', '13:05:00', 'AAAAAAAA', 'S', 'CAR,TRUCK', 'TH,EN,CN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-0-12345-8', 180000.00, 26, 'M', '1', '2024-07-29', '14:15:00', '181818', 'S', 'CAR,TRUCK', 'TH,EN,CN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-0-12345-9', 190000.00, 34, 'M', '1', '2024-07-29', '14:15:01', '191919', 'S', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:01', '2024-06-25', '12:00:01'),
-	('1-1-12345-0', 1500000.00, 47, 'M', '1', '2024-07-29', '14:15:00', '301230', 'M', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-1-12345-1', 1200000.00, 30, 'M', '1', '2024-07-29', '14:15:00', '2120000', 'S', 'CAR,TRUCK', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-1-12345-2', 1500000.00, 30, 'M', '1', '2024-07-29', '14:15:01', '252525', 'S', 'CAR,TRUCK', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:01', '2024-06-25', '12:00:01'),
-	('1-1-12345-3', 1500000.00, 30, 'M', '1', '2024-07-29', '14:15:00', '353535', 'S', 'CAR,TRUCK', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-1-12345-4', 1500000.00, 30, 'F', '1', '2024-07-29', '14:15:00', '454545', 'S', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-1-12345-5', 1500000.00, 36, 'F', '1', '2024-07-29', '14:15:00', '787878', 'S', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-1-12345-6', 1500000.00, 40, 'F', '1', '2024-07-29', '14:15:01', '898998', 'M', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:01', '2024-06-25', '12:00:01'),
-	('1-1-12345-7', 1500000.00, 40, 'F', '1', '2024-07-29', '14:15:01', '771122', 'M', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:01', '2024-06-25', '12:00:01'),
-	('1-1-12345-8', 1500000.00, 42, 'F', '1', '2024-07-29', '14:15:00', '848563', 'M', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-1-12345-9', 1500000.00, 45, 'F', '1', '2024-07-29', '14:15:01', '921931', 'M', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:01', '2024-06-25', '12:00:01'),
-	('1-2-12345-0', 1500000.00, 50, 'M', '1', '2024-07-29', '14:15:00', '230000', 'M', 'CAR,TRUCK', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00'),
-	('1-2-12345-1', 1500000.00, 50, 'M', '1', '2024-07-29', '14:15:00', '510000', 'M', 'CAR', 'TH,EN', '', '', '', 1, 2500.55, '', '2024-06-25', '12:00:00', '2024-06-25', '12:00:00');
+INSERT INTO `api_config` (`apiname`, `apiquery`, `apiparams`, `apisection`, `inactive`, `createdate`, `createtime`, `createuser`, `editdate`, `edittime`, `edituser`) VALUES
+	('api_languages', 'select * from kt_languages', NULL, NULL, '0', '2024-11-20', '09:08:41', NULL, '2024-11-20', '09:08:41', NULL),
+	('api_prod', 'select * from tprod', NULL, 'MYSQL', '0', '2023-03-24', '18:04:23', NULL, '2023-03-24', '18:07:07', NULL),
+	('api_prog', 'select * from tprog', NULL, NULL, '0', '2024-11-04', '10:18:48', NULL, '2024-11-04', '10:18:49', NULL),
+	('api_role', 'select * from trole where site=?site order by roleid', NULL, NULL, '0', '2023-03-24', '18:00:20', NULL, '2024-11-20', '08:50:02', NULL);
 
 CREATE TABLE IF NOT EXISTS `tactivate` (
   `activatekey` varchar(100) NOT NULL,
@@ -430,22 +368,23 @@ CREATE TABLE IF NOT EXISTS `tgroup` (
   `usertype` varchar(1) DEFAULT NULL COMMENT 'tconstant.typeid and typename=''tusertype''',
   `mobilegroup` varchar(50) DEFAULT NULL,
   `xmltext` text,
+  `menutext` text,
   `editdate` date DEFAULT NULL,
   `edittime` time DEFAULT NULL,
   `edituser` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`groupname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='table group info';
 
-INSERT INTO `tgroup` (`groupname`, `supergroup`, `nameen`, `nameth`, `seqno`, `iconstyle`, `privateflag`, `usertype`, `mobilegroup`, `xmltext`, `editdate`, `edittime`, `edituser`) VALUES
-	('ADMIN', 'MD', 'Administrator', 'ผู้ดูแลระบบ', 1, 'fa fa-globe', '0', 'A', NULL, NULL, NULL, NULL, NULL),
-	('CENTER', 'MD', 'Center Administrator', 'ผู้บริหารระบบส่วนกลาง', 5, 'fa fa-tasks', '1', 'A', NULL, NULL, NULL, NULL, NULL),
-	('DIRECTOR', NULL, 'Director', 'ผู้อำนวยการ', 7, NULL, '0', 'D', NULL, NULL, NULL, NULL, NULL),
-	('EMPLOYEE', NULL, 'Employee', 'พนักงาน', 8, NULL, '0', 'E', NULL, NULL, NULL, NULL, NULL),
-	('EXECUTIVE', NULL, 'Executive', 'ผู้บริหาร', 9, NULL, '0', 'X', NULL, NULL, NULL, NULL, NULL),
-	('MANAGER', NULL, 'Manager', 'ผู้จัดการ', 10, NULL, '0', 'M', NULL, NULL, NULL, NULL, NULL),
-	('OPERATOR', 'ADMIN', 'Operator', 'เจ้าหน้าที่ปฏิบัติการ', 11, 'fa fa-cogs', '0', 'O', NULL, NULL, NULL, NULL, NULL),
-	('SUPERVISOR', NULL, 'Supervisor', 'ผู้ควบคุม', 12, NULL, '0', 'S', NULL, NULL, NULL, NULL, NULL),
-	('TESTER', 'ADMIN', 'Tester', 'ผู้ทดสอบ', 13, 'fa fa-desktop', '0', 'O', NULL, NULL, '2023-09-09', '14:33:09', 'tso');
+INSERT INTO `tgroup` (`groupname`, `supergroup`, `nameen`, `nameth`, `seqno`, `iconstyle`, `privateflag`, `usertype`, `mobilegroup`, `xmltext`, `menutext`, `editdate`, `edittime`, `edituser`) VALUES
+	('ADMIN', 'MD', 'Administrator', 'ผู้ดูแลระบบ', 1, 'fa fa-globe', '0', 'A', NULL, NULL, NULL, NULL, NULL, NULL),
+	('CENTER', 'MD', 'Center Administrator', 'ผู้บริหารระบบส่วนกลาง', 5, 'fa fa-tasks', '1', 'A', NULL, NULL, NULL, NULL, NULL, NULL),
+	('DIRECTOR', NULL, 'Director', 'ผู้อำนวยการ', 7, NULL, '0', 'D', NULL, NULL, NULL, NULL, NULL, NULL),
+	('EMPLOYEE', NULL, 'Employee', 'พนักงาน', 8, NULL, '0', 'E', NULL, NULL, NULL, NULL, NULL, NULL),
+	('EXECUTIVE', NULL, 'Executive', 'ผู้บริหาร', 9, NULL, '0', 'X', NULL, NULL, NULL, NULL, NULL, NULL),
+	('MANAGER', NULL, 'Manager', 'ผู้จัดการ', 10, NULL, '0', 'M', NULL, NULL, NULL, NULL, NULL, NULL),
+	('OPERATOR', 'ADMIN', 'Operator', 'เจ้าหน้าที่ปฏิบัติการ', 11, 'fa fa-cogs', '0', 'O', NULL, NULL, NULL, NULL, NULL, NULL),
+	('SUPERVISOR', NULL, 'Supervisor', 'ผู้ควบคุม', 12, NULL, '0', 'S', NULL, NULL, NULL, NULL, NULL, NULL),
+	('TESTER', 'ADMIN', 'Tester', 'ผู้ทดสอบ', 13, 'fa fa-desktop', '0', 'O', NULL, NULL, NULL, NULL, NULL, NULL);
 
 CREATE TABLE IF NOT EXISTS `tlabel` (
   `labelid` varchar(50) NOT NULL COMMENT 'program id',
@@ -671,7 +610,8 @@ CREATE TABLE IF NOT EXISTS `tprod` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='table keep product or module';
 
 INSERT INTO `tprod` (`product`, `nameen`, `nameth`, `seqno`, `serialid`, `startdate`, `url`, `capital`, `verified`, `centerflag`, `iconfile`, `editdate`, `edittime`, `edituser`) VALUES
-	('PROMPT', 'Prompt Module', 'Prompt Module', 99, NULL, NULL, NULL, NULL, '0', '1', 'prompt.png', NULL, NULL, NULL);
+	('PROMPT', 'Prompt Module', 'Prompt Module', 99, NULL, NULL, NULL, NULL, '0', '1', 'prompt.png', NULL, NULL, NULL),
+	('VUE', 'Vue Application', 'Vue Application', 98, NULL, NULL, NULL, NULL, '0', '1', NULL, NULL, NULL, NULL);
 
 CREATE TABLE IF NOT EXISTS `tprog` (
   `product` varchar(30) NOT NULL DEFAULT '' COMMENT 'tprod.product',
@@ -695,21 +635,48 @@ CREATE TABLE IF NOT EXISTS `tprog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='table keep program name';
 
 INSERT INTO `tprog` (`product`, `programid`, `progname`, `prognameth`, `progtype`, `appstype`, `description`, `parameters`, `progsystem`, `iconfile`, `iconstyle`, `shortname`, `shortnameth`, `progpath`, `editdate`, `edittime`, `edituser`) VALUES
-	('PROMPT', 'sfte001', 'Program Information', 'ข้อมูลโปรแกรม', 'F', 'W', 'Program Information', NULL, 'A', 'sfte001.png', NULL, 'Program', 'โปรแกรม', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sfte001', 'Program Information', 'ข้อมูลโปรแกรม', 'F', 'W', 'Program Information', '', 'A', 'sfte001.png', NULL, 'Program', 'โปรแกรม', '/gui/sfte001', NULL, NULL, NULL),
 	('PROMPT', 'sfte002', 'Group Information', 'กลุ่มผู้ใช้งาน', 'F', 'W', 'Group Information', NULL, 'A', 'sfte002.png', NULL, 'Group', 'กลู่มผู้ใช้', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sfte003', 'Product Information', 'ข้อมูลผลิตภัณท์', 'F', 'W', 'Product Information', NULL, 'A', 'sfte003.png', NULL, 'Product', 'ผลิตภัณท์', NULL, NULL, NULL, NULL),
-	('PROMPT', 'sfte005', 'User', 'ข้อมูลผู้ใช้', 'F', 'W', 'User', NULL, 'A', 'sfte005.png', NULL, 'User', 'ผู้ใช้งาน', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sfte004', 'Role Information', 'ข้อมูลบทบาท', 'F', 'W', 'Role Information', NULL, 'A', 'sfte004.png', NULL, 'Role', 'บทบาท', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sfte005', 'User Information', 'ข้อมูลผู้ใช้', 'F', 'W', 'User Information', NULL, 'A', 'sfte005.png', NULL, 'User', 'ผู้ใช้งาน', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sfte007', 'User Privilege', 'สิทธิผู้ใช้', 'F', 'W', 'User Privilege', NULL, 'A', 'sfte007.png', NULL, 'Privilege', 'สิทธิผู้ใช้', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sfte008', 'Menu Administration', 'จัดตั้งระบบเมนู', 'F', 'W', 'Menu Administration', NULL, 'A', 'sfte008.png', NULL, 'Menu', 'ตั้งค่าเมนู', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sfte009', 'Active Directory', 'ข้อมูลโครงสร้าง', 'F', 'W', 'Active Directory', NULL, 'A', 'sfte009.png', NULL, 'Active Directory', 'โครงสร้าง', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sfte010', 'Password Policy Setting', 'นโยบายจัดตั้งรหัสผ่าน', 'F', 'W', 'Password Policy Setting', NULL, 'A', 'sfte010.png', NULL, 'Password Policy', 'นโยบายรหัสผ่าน', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sfte011', 'Password Policy', 'Password Policy', 'F', 'W', 'Password Policy', NULL, 'A', 'sfte011.png', NULL, 'Password Policy', 'Password Policy', NULL, NULL, NULL, NULL),
-	('PROMPT', 'sfte012', 'Configuration Setting', 'ตั้งค่าเบื้องต้น', 'F', 'W', 'Configuration Setting', NULL, 'A', 'sfte012.png', NULL, 'Configuration', 'ตั้งค่าเบื้องต้น', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sfte012', 'Configuration Setting', 'ตั้งค่าเบื้องต้น', 'F', 'W', 'Configuration Setting', NULL, 'A', 'sfte012.png', NULL, 'Configure', 'ตั้งค่าเบื้องต้น', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sfte013', 'Mail Template Setting', 'ตั้งค่าต้นแบบเมล', 'F', 'W', 'Mail Template Setting', NULL, 'A', 'sfte013.png', NULL, 'Mail Template', 'ตั้งค่าเมล', NULL, NULL, NULL, NULL),
-	('PROMPT', 'sfte016', 'User Information', 'ข้อมูลผู้ใช้', 'F', 'W', 'User', NULL, 'A', 'sfte016.png', NULL, 'User', 'ผู้ใช้งาน', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sfte014', 'Label Setting', 'ตั้งค่าป้าย', 'F', 'W', 'Label Setting', NULL, 'A', 'sfte014.png', NULL, 'Label', 'ตั้งค่าป้าย', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sfte016', 'Account Information', 'ข้อมูลผู้ใช้', 'F', 'W', 'Account', NULL, 'A', 'sfte016.png', NULL, 'User', 'ผู้ใช้งาน', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sfte017', 'Two Factor Authentication', 'Two Factor Authentication', 'F', 'W', 'Two Factor Authentication', NULL, 'A', 'sfte017.png', NULL, '2Factor', '2Factor', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sfte018', 'Tenant Setting', 'Tenant Setting', 'F', 'W', 'Tenant', NULL, 'A', 'sfte018.png', NULL, 'Tenant', 'Tenant', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sfte019', 'Branch Information', 'ข้อมูลสาขา', 'F', 'W', 'Branch Information', NULL, 'A', 'sfte019.png', NULL, 'Branch', 'สาขา', NULL, NULL, NULL, NULL),
 	('PROMPT', 'sftq001', 'Tracking', 'การตรวจสอบ', 'F', 'W', 'Tracking', NULL, 'A', 'sftq001.png', NULL, 'Tracking', 'ตรวจสอบ', NULL, NULL, NULL, NULL),
-	('PROMPT', 'sftq003', 'Mail Tracking', 'Mail Tracking', 'Q', 'W', 'Mail Tracking', NULL, 'A', 'sftq003.png', NULL, 'Mail Tracking', 'Mail Tracking', NULL, NULL, NULL, NULL);
+	('PROMPT', 'sftq003', 'Mail Tracking', 'Mail Tracking', 'Q', 'W', 'Mail Tracking', NULL, 'A', 'sftq003.png', NULL, 'Mail Tracking', 'Mail Tracking', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sftu003', 'API Configuration', 'กำหนดค่า API', 'F', 'W', 'API Configuration', NULL, 'A', 'sftu003.png', NULL, 'API Config', 'กำหนดค่า API', NULL, NULL, NULL, NULL),
+	('PROMPT', 'sftu004', 'Access Token', 'กำหนด Token', 'F', 'W', 'Access Token', NULL, 'A', 'sftu004.png', NULL, 'Token', 'กำหนด Token', NULL, NULL, NULL, NULL),
+	('VUE', 'vfte001', 'Program Information', 'ข้อมูลโปรแกรม', 'F', 'W', 'Program Information', NULL, 'A', 'sfte001.png', NULL, 'Program', 'โปรแกรม', '/show/vfte001', NULL, NULL, NULL),
+	('VUE', 'vfte002', 'Group Information', 'กลุ่มผู้ใช้งาน', 'F', 'W', 'Group Information', NULL, 'A', 'sfte002.png', NULL, 'Group', 'กลุ่มผู้ใช้', '/show/vfte002', NULL, NULL, NULL),
+	('VUE', 'vfte003', 'Product Information', 'ข้อมูลผลิตภัณฑ์', 'F', 'W', 'Product Information', NULL, 'A', 'sfte003.png', NULL, 'Product', 'ผลิตภัณฑ์', '/show/vfte003', NULL, NULL, NULL),
+	('VUE', 'vfte004', 'Role Information', 'ข้อมูลบทบาท', 'F', 'W', 'Role Information', NULL, 'A', 'sfte004.png', NULL, 'Role', 'บทบาท', '/show/vfte004', NULL, NULL, NULL),
+	('VUE', 'vfte005', 'User Information', 'ข้อมูลผู้ใช้', 'F', 'W', 'User Information', NULL, 'A', 'sfte005.png', NULL, 'User', 'ผู้ใช้งาน', '/show/vfte005', NULL, NULL, NULL),
+	('VUE', 'vfte007', 'User Privilege', 'สิทธิผู้ใช้', 'F', 'W', 'User Privilege', NULL, 'A', 'sfte007.png', NULL, 'Privilege', 'สิทธิผู้ใช้', '/show/vfte007', NULL, NULL, NULL),
+	('VUE', 'vfte008', 'Menu Administration', 'ตั้งระบบเมนู', 'F', 'W', 'Menu Administration', NULL, 'A', 'sfte008.png', NULL, 'Menu', 'เมนู', '/show/vfte008', NULL, NULL, NULL),
+	('VUE', 'vfte009', 'Active Directory', 'ข้อมูลโครงสร้าง', 'F', 'W', 'Active Directory', NULL, 'A', 'sfte009.png', NULL, 'Active Directory', 'โครงสร้าง', '/show/vfte009', NULL, NULL, NULL),
+	('VUE', 'vfte010', 'Password Policy Setting', 'นโยบายจัดตั้งรหัสผ่าน', 'F', 'W', 'Password Policy Setting', NULL, 'A', 'sfte010.png', NULL, 'Password Policy', 'นโยบายรหัสผ่าน', '/show/vfte010', NULL, NULL, NULL),
+	('VUE', 'vfte011', 'Password Policy', 'Password Policy', 'F', 'W', 'Password Policy', NULL, 'A', 'sfte011.png', NULL, 'Password Policy', 'Password Policy', '/show/vfte011', NULL, NULL, NULL),
+	('VUE', 'vfte012', 'Configuration Setting', 'ตั้งค่าเบื้องต้น', 'F', 'W', 'Configuration Setting', NULL, 'A', 'sfte012.png', NULL, 'Configure', 'ตั้งค่าเบื้องต้น', '/show/vfte012', NULL, NULL, NULL),
+	('VUE', 'vfte013', 'Mail Template Setting', 'ตั้งค่าต้นแบบเมล', 'F', 'W', 'Mail Template Setting', NULL, 'A', 'sfte013.png', NULL, 'Mail Template', 'ตั้งค่าเมล', '/show/vfte013', NULL, NULL, NULL),
+	('VUE', 'vfte014', 'Label Setting', 'ตั้งค่าป้าย', 'F', 'W', 'Label Setting', NULL, 'A', 'sfte014.png', NULL, 'Label', 'ตั้งค่าป้าย', '/show/vfte014', NULL, NULL, NULL),
+	('VUE', 'vfte016', 'Account Information', 'ข้อมูลผู้ใช้', 'F', 'W', 'Account Information', NULL, 'A', 'sfte016.png', NULL, 'User', 'ผู้ใช้งาน', '/show/vfte016', NULL, NULL, NULL),
+	('VUE', 'vfte017', 'Two Factor Authentication', 'Two Factor Authentication', 'F', 'W', 'Two Factor Authentication', NULL, 'A', 'sfte017.png', NULL, '2Factor', '2Factor', '/show/vfte017', NULL, NULL, NULL),
+	('VUE', 'vfte018', 'Tenant Setting', 'Tenant Setting', 'F', 'W', 'Tenant Setting', NULL, 'A', 'sfte018.png', NULL, 'Tenant', 'Tenant', '/show/vfte018', NULL, NULL, NULL),
+	('VUE', 'vfte019', 'Branch Information', 'ข้อมูลสาขา', 'F', 'W', 'Branch Information', NULL, 'A', 'sfte019.png', NULL, 'Branch', 'สาขา', '/show/vfte019', NULL, NULL, NULL),
+	('VUE', 'vftq001', 'Tracking Information', 'การตรวจสอบ', 'F', 'W', 'Tracking Information', NULL, 'A', 'sftq001.png', NULL, 'Tracking', 'ตรวจสอบ', '/show/vftq001', NULL, NULL, NULL),
+	('VUE', 'vftq003', 'Mail Tracking', 'Mail Tracking', 'F', 'W', 'Mail Tracking', NULL, 'A', 'sftq003.png', NULL, 'Mail Tracking', 'Mail Tracking', '/show/vftq003', NULL, NULL, NULL),
+	('VUE', 'vftu003', 'API Configuration', 'กำหนดค่า API', 'F', 'W', 'API Configuration', NULL, 'A', 'sftu003.png', NULL, 'API Config', 'กำหนดค่า API', '/show/vftu003', NULL, NULL, NULL),
+	('VUE', 'vftu004', 'Access Token', 'กำหนด Token', 'F', 'W', 'Access Token', NULL, 'A', 'sftu004.png', NULL, 'Token', 'กำหนด Token', '/show/vftu004', NULL, NULL, NULL);
 
 CREATE TABLE IF NOT EXISTS `tproggrp` (
   `groupname` varchar(50) NOT NULL COMMENT 'tgroup.groupname',
@@ -724,39 +691,72 @@ INSERT INTO `tproggrp` (`groupname`, `programid`, `parameters`, `seqno`) VALUES
 	('ADMIN', 'sfte003', NULL, 2),
 	('ADMIN', 'sfte005', NULL, 3),
 	('ADMIN', 'sfte007', NULL, 4),
-	('ADMIN', 'sfte009', NULL, 5),
-	('ADMIN', 'sfte010', NULL, 6),
-	('ADMIN', 'sfte012', NULL, 7),
-	('ADMIN', 'sfte013', NULL, 8),
-	('ADMIN', 'sfte016', NULL, 9),
-	('ADMIN', 'sfte017', NULL, 10),
-	('ADMIN', 'sfte018', NULL, 11),
-	('ADMIN', 'sftq001', NULL, 12),
-	('ADMIN', 'sftq003', NULL, 13),
+	('ADMIN', 'sfte008', NULL, 5),
+	('ADMIN', 'sfte009', NULL, 6),
+	('ADMIN', 'sfte010', NULL, 7),
+	('ADMIN', 'sfte012', NULL, 8),
+	('ADMIN', 'sfte013', NULL, 9),
+	('ADMIN', 'sfte014', NULL, 10),
+	('ADMIN', 'sfte016', NULL, 11),
+	('ADMIN', 'sfte017', NULL, 12),
+	('ADMIN', 'sfte018', NULL, 13),
+	('ADMIN', 'sftq001', NULL, 14),
+	('ADMIN', 'sftq003', NULL, 15),
+	('ADMIN', 'sftu003', NULL, 16),
+	('ADMIN', 'sftu004', NULL, 17),
 	('CENTER', 'sfte001', NULL, 1),
 	('CENTER', 'sfte002', NULL, 3),
 	('CENTER', 'sfte003', NULL, 2),
 	('CENTER', 'sfte005', NULL, 4),
 	('CENTER', 'sfte007', NULL, 5),
 	('CENTER', 'sftq001', NULL, 6),
+	('OPERATOR', 'sfte001', NULL, 1),
 	('OPERATOR', 'sfte012', NULL, 2),
 	('OPERATOR', 'sfte013', NULL, 3),
 	('OPERATOR', 'sfte016', NULL, 4),
-	('OPERATOR', 'sftq001', NULL, 1),
+	('OPERATOR', 'sftq001', NULL, 5),
+	('QA', 'vfte001', NULL, 1),
+	('QA', 'vfte002', NULL, 2),
+	('QA', 'vfte003', NULL, 3),
+	('QA', 'vfte004', NULL, 4),
+	('QA', 'vfte005', NULL, 5),
+	('QA', 'vfte007', NULL, 6),
+	('QA', 'vfte008', NULL, 7),
+	('QA', 'vfte009', NULL, 8),
+	('QA', 'vfte010', NULL, 9),
+	('QA', 'vfte011', NULL, 10),
+	('QA', 'vfte012', NULL, 11),
+	('QA', 'vfte013', NULL, 12),
+	('QA', 'vfte014', NULL, 13),
+	('QA', 'vfte016', NULL, 14),
+	('QA', 'vfte017', NULL, 15),
+	('QA', 'vfte018', NULL, 16),
+	('QA', 'vfte019', NULL, 17),
+	('QA', 'vftq001', NULL, 18),
+	('QA', 'vftq003', NULL, 19),
+	('QA', 'vftu003', NULL, 20),
+	('QA', 'vftu004', NULL, 21),
 	('TESTER', 'sfte001', NULL, 1),
 	('TESTER', 'sfte002', NULL, 2),
 	('TESTER', 'sfte003', NULL, 3),
-	('TESTER', 'sfte005', NULL, 4),
-	('TESTER', 'sfte007', NULL, 5),
-	('TESTER', 'sfte009', NULL, 6),
-	('TESTER', 'sfte010', NULL, 7),
-	('TESTER', 'sfte012', NULL, 8),
-	('TESTER', 'sfte013', NULL, 9),
-	('TESTER', 'sfte016', NULL, 10),
-	('TESTER', 'sfte017', NULL, 11),
-	('TESTER', 'sfte018', NULL, 12),
-	('TESTER', 'sftq001', NULL, 13),
-	('TESTER', 'sftq003', NULL, 14);
+	('TESTER', 'sfte004', NULL, 4),
+	('TESTER', 'sfte005', NULL, 5),
+	('TESTER', 'sfte007', NULL, 6),
+	('TESTER', 'sfte008', NULL, 7),
+	('TESTER', 'sfte009', NULL, 8),
+	('TESTER', 'sfte010', NULL, 9),
+	('TESTER', 'sfte011', NULL, 10),
+	('TESTER', 'sfte012', NULL, 11),
+	('TESTER', 'sfte013', NULL, 12),
+	('TESTER', 'sfte014', NULL, 13),
+	('TESTER', 'sfte016', NULL, 14),
+	('TESTER', 'sfte017', NULL, 15),
+	('TESTER', 'sfte018', NULL, 16),
+	('TESTER', 'sfte019', NULL, 17),
+	('TESTER', 'sftq001', NULL, 18),
+	('TESTER', 'sftq003', NULL, 19),
+	('TESTER', 'sftu003', NULL, 20),
+	('TESTER', 'sftu004', NULL, 21);
 
 CREATE TABLE IF NOT EXISTS `trole` (
   `site` varchar(50) NOT NULL COMMENT 'tcomp.site',
@@ -1174,6 +1174,7 @@ INSERT INTO `tusergrp` (`userid`, `groupname`, `rolename`) VALUES
 	('centre', 'CENTER', NULL),
 	('tester', 'TESTER', NULL),
 	('tso', 'ADMIN', NULL),
+	('tso', 'QA', NULL),
 	('tso', 'TESTER', NULL);
 
 CREATE TABLE IF NOT EXISTS `tuserinfo` (
