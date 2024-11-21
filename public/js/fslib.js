@@ -12,7 +12,7 @@ var API_URL = "";
 var BASE_URL = "";
 var CDN_URL = "";
 var IMG_URL = "";
-var API_TOKEN = null;
+var API_TOKEN = "";
 var BASE_STORAGE = "";
 var SECURE_STORAGE = true;
 var META_INFO = {};
@@ -1728,7 +1728,7 @@ function getDH() {
 }
 function sendMessageInterface() {
 	let info = getAccessorInfo();
-	let msg = {type: "storage", API_URL: API_URL, BASE_URL: BASE_URL, API_TOKEN: API_TOKEN, BASE_STORAGE: BASE_STORAGE, SECURE_STORAGE: SECURE_STORAGE, accessorinfo: info};
+	let msg = {type: "storage", archetype: "willsofts", API_URL: API_URL, BASE_URL: BASE_URL, API_TOKEN: API_TOKEN, BASE_STORAGE: BASE_STORAGE, SECURE_STORAGE: SECURE_STORAGE, accessorinfo: info};
 	sendMessageToFrame(msg);
 }
 function sendMessageToFrame(data) {

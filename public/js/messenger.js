@@ -1,5 +1,5 @@
 function requestAccessorInfo() {
-    let msg = { type: "accessorinfo" };
+    let msg = { type: "accessorinfo", archetype: "willsofts" };
     sendMessageToParent(msg);
 }
 function sendMessageToParent(data) {
