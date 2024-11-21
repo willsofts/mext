@@ -153,6 +153,16 @@ export class Sftu004Handler extends TknOperateHandler {
      */
     public override async getDataSearch(context: KnContextInfo, model: KnModel) : Promise<KnDataTable> {
         let rs = await this.doCollecting(context, model);
+        if(rs && rs.rows.length > 0) {
+            let now = new Date();
+            let curtimes = now.getTime();
+            for(let row of rs.rows) {
+                row.expired = "";
+                if(curtimes > row.expiretimes) {
+                    row.expired = '<em class="fa fa-check-square-o alert-color" aria-hidden="true"></em>';
+                }
+            }
+        }
         return this.createDataTable(KnOperation.COLLECT, this.createRecordSet(rs), {}, "sftu004/sftu004_data");
     }
 

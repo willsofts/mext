@@ -22,6 +22,7 @@
 			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort" data-sorter="createtime"><label id="createtime_headerlabel"><%=label.get('createtime_headerlabel','Create Time')%></label></a></th>
 			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort" data-sorter="expiredate"><label id="expiredate_headerlabel"><%=label.get('expiredate_headerlabel','Expire Date')%></label></a></th>
 			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort" data-sorter="expiretime"><label id="expiretime_headerlabel"><%=label.get('expiretime_headerlabel','Expire Time')%></label></a></th>
+			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort"><label id="expireflag_headerlabel"><%=label.get('expireflag_headerlabel','Expired')%></label></a></th>
 			<th class="text-center th-action"><em class="fa fa-bolt" aria-hidden="true"></em></th>
 		</tr>
 	</thead>
@@ -37,9 +38,10 @@
 							<td class="text-center"><a href="javascript:void(0)" class="alink-data fa-data-edit"><%=item?.createtime%></a></td>
 							<td class="text-center"><a href="javascript:void(0)" class="alink-data fa-data-edit"><%=(item?.expireflag=="1" ? "": page.format({value: item?.expiredate, field:{type:"DATE"}}))%></a></td>
 							<td class="text-center"><a href="javascript:void(0)" class="alink-data fa-data-edit"><%=(item?.expireflag=="1" ? "": item?.expiretime)%></a></td>
+							<td class="text-center"><a href="javascript:void(0)" class="alink-data fa-data-edit"><%-item?.expired%></a></td>
 							<td class="text-center">
-								<button class="btn-edit fa-data-edit" title="<%=label.get('btnedit_tooltip')%>"></button>
-								<button class="btn-delete fa-data-delete" data-name="<%=item?.keyname%>" title="<%=label.get('btndelete_tooltip')%>"></button>
+								<button class="fa-btn fa fa-pencil fa-data-edit" title="<%=label.get('btnedit_tooltip')%>"></button>
+								<button class="fa-btn fa fa-trash fa-data-delete" data-name="<%=item?.keyname%>" title="<%=label.get('btndelete_tooltip')%>"></button>
 							</td>
 						</tr>
 			<%		}
