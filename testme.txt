@@ -70,47 +70,18 @@ curl -v -X POST http://localhost:8080/api/captcha/create
 upload file
 curl -X POST http://localhost:8080/upload/file
 ex.
-curl -X POST http://localhost:8080/upload/file -F filename=@D:\images\birth.png -F type=IMG -F no=123456 -F group=FI
-defined id:
-curl -X POST http://localhost:8080/upload/file -F filename=@D:\images\birth.png -F type=IMG -F no=123456 -F id=12345
+curl -X POST http://localhost:8080/upload/file -F filename=@D:\images\birth.png -F type=IMG -F no=123456
 
-remove upload file
-ex. 
-with attach id:
-curl -X POST http://localhost:8080/api/attach/remove -d id=12345
-with attach no:
-curl -X POST http://localhost:8080/api/attach/remove -d no=123456
-
-data table service
+data table
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/get -d "tablename=tactive&keyfield=activeid"
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/category -d "tablename=tactive&keyfield=activeid&valuefield=nameen"
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/list -d "tablename=kt_marrystatus&orderfield=seqno"
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/list -d "tablename=kt_marrystatus&tablename=kt_languages&orderfield=seqno"
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/list -d "tablename[]=kt_marrystatus&tablename[]=kt_languages&orderfield=seqno"
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/get -d "tablename=kt_marrystatus&keyfield=statusid"
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/datatable/category -d "tablename=kt_marrystatus&keyfield=statusid&valuefield=nameen"
-curl -X POST -H "AuthToken: ?" -H "Content-Type: application/json" http://localhost:8080/api/datatable/list -d "{\"tablename\": [\"kt_marrystatus\", \"kt_languages\"], \"orderfield\": \"seqno\"}"
-
-category
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/groups -d "names=tactive"
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/groups -d "names=tactive&names=tlanguage"
-curl -X POST -H "AuthToken: ?" -H "Content-Type: application/json" http://localhost:8080/api/category/groups -d "{\"names\":\"tactive\"}"
-curl -X POST -H "AuthToken: ?" -H "Content-Type: application/json" http://localhost:8080/api/category/groups -d "{\"names\":[\"tactive\",\"tlanguage\"]}"
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/lists -d "names=tactive"
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/lists -d "names=tactive&names=tlanguage"
-
-apps service 
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/apps/find -d "programid=sfte001"
-
-style
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/style/category
 
 password policy
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/password/policy
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/password/policies
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/passwordpolicy/execute?language=EN
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/passwordpolicy/execute?language=TH
-curl -X POST -H "AuthToken: ?" http://localhost:8080/api/passwordpolicy/categories
 
 menu
 curl "http://localhost:8080/gui/menu/favor?userid=tso"
@@ -135,6 +106,17 @@ java com.fs.bean.util.LabelConfig -f index.xml -dir D:\label\xml -json D:\label\
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/label/get -d labelname=?
 return array
 curl -X POST -H "AuthToken: ?" http://localhost:8080/api/label/list -d labelname=?
+
+style
+curl -X POST -H "AuthToken: ?" http://localhost:8080/api/style/category
+
+category
+curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/groups -d "names=tactive"
+curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/groups -d "names=tactive&names=tlanguage"
+curl -X POST -H "AuthToken: ?" -H "Content-Type: application/json" http://localhost:8080/api/category/groups -d "{\"names\":\"tactive\"}"
+curl -X POST -H "AuthToken: ?" -H "Content-Type: application/json" http://localhost:8080/api/category/groups -d "{\"names\":[\"tactive\",\"tlanguage\"]}"
+curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/lists -d "names=tactive"
+curl -X POST -H "AuthToken: ?" http://localhost:8080/api/category/lists -d "names=tactive&names=tlanguage"
 
 sfte001
 curl -H "AuthToken: ?" http://localhost:8080/api/sfte001/find
@@ -176,6 +158,10 @@ ex. response
 data service
 difference from data table, this is custom query from table api_config
 ex.
+- get data using lookup with api name & parameters
 curl "http://localhost:8080/api/dataservice/lookup?apiname=api_role&site=FWS"
+- get data array using lists
 curl -X POST http://localhost:8080/api/dataservice/lists -d "apiname=api_prog&apiname=api_prod"
+- get data array using lists by json parameters
 curl -X POST -H "Content-Type: application/json" http://localhost:8080/api/dataservice/lists -d "{\"apiname\":[\"api_prog\",\"api_prod\"]}"
+curl -X POST -H "Content-Type: application/json" http://localhost:8080/api/dataservice/lists -d "{\"apiname\":[\"api_prog\",\"api_role\"],\"site\":\"FWS\"}"

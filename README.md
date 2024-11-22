@@ -76,6 +76,18 @@ This project contains examples API that can invoke by [curl](https://curl.se/dow
     - curl -X POST http://localhost:8080/api/datatable/category -d "tablename=kt_marrystatus&keyfield=statusid&valuefield=nameen"
     - curl -X POST -H "Content-Type: application/json" http://localhost:8080/api/datatable/list -d "{\"tablename\": [\"kt_marrystatus\", \"kt_languages\"], \"orderfield\": \"seqno\"}"
 
+3. Data service by `dataservice` that support `lookup` and `lists` actions to discover. This is dynamic fetching data set from custom setting via table `api_config`.
+    
+    - get data using lookup with api name & parameters
+        - curl "http://localhost:8080/api/dataservice/lookup?apiname=api_role&site=FWS"
+    - get data array using lists for multiple api names
+        - curl -X POST http://localhost:8080/api/dataservice/lists -d "apiname=api_prog&apiname=api_prod"
+    - get data array using lists for multiple api name with json parameters
+        - curl -X POST -H "Content-Type: application/json" http://localhost:8080/api/dataservice/lists -d "{\"apiname\":[\"api_prog\",\"api_prod\"]}"
+    - in case of parameters setting need to defined for all parameters sending too
+        - curl -X POST -H "Content-Type: application/json" http://localhost:8080/api/dataservice/lists -d "{\"apiname\":[\"api_prog\",\"api_role\"],\"site\":\"FWS\"}"
+
+
 #### Auto Routing
 
 Since express framework need to defined routing path to process request, this feature using `gui` service to dynamic discover application and execute handler class to be launched. 
