@@ -1728,7 +1728,7 @@ function getDH() {
 }
 function sendMessageInterface() {
 	let info = getAccessorInfo();
-	let msg = {type: "storage", archetype: "willsofts", API_URL: API_URL, BASE_URL: BASE_URL, API_TOKEN: API_TOKEN, BASE_STORAGE: BASE_STORAGE, SECURE_STORAGE: SECURE_STORAGE, accessorinfo: info};
+	let msg = {type: "storage", archetype: "willsofts", API_URL: API_URL, BASE_URL: BASE_URL, API_TOKEN: API_TOKEN, BASE_STORAGE: BASE_STORAGE, SECURE_STORAGE: SECURE_STORAGE, BASE_CSS: BASE_CSS, accessorinfo: info};
 	sendMessageToFrame(msg);
 }
 function sendMessageToFrame(data) {
