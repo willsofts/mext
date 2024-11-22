@@ -1,0 +1,171 @@
+/* user color */
+.login_form button:focus,
+.login_form button:hover{
+	background: #00B17E;
+	color: white;
+}
+.login_form button {
+	border-color: #00B17E;
+}
+.login_form input[type="button"]{
+	background-color: whitesmoke;
+	border-color: #00B17E;
+}
+.login_form input[type="button"]:focus,
+.login_form input[type="button"]:hover{
+	background: #00B17E;
+	color: white;
+}
+.login_form button:focus,
+.login_form button:hover{
+	background: #00B17E;
+	color: white;
+}
+.login_form label {
+	color: #00B17E;
+	font-weight : bold;
+}
+#login_logo_label {
+	font-size: 55px;
+	font-weight: bold;
+	color: #00B17E;
+	text-shadow: 3px 7px 7px white;
+}
+#page_login_toplayer {	
+	background-image: -webkit-linear-gradient(white, #CFFAE7);
+	background-image: -o-linear-gradient(white, #CFFAE7);
+	background-image: -moz-linear-gradient(white, #CFFAE7);
+	background-image: linear-gradient(white, #CFFAE7);
+}
+div.link-button-cover a:hover {
+	background: #00B17E;
+	color: white;
+}
+
+.navigatebar-top {
+	background-color: #00B17E;
+}
+#footerbar { 
+	background-color: #00B17E;
+}
+.sidebar-menu {
+	background-color: #00B17E;
+}
+.pt-page h1 { background-color: #00B17E;  }
+.pt-page th { background-color: #00B17E; }
+.pt-page-header { 
+	background-color: #00B17E; 
+}
+.btn-primary {
+	border: 1px solid #068049;
+	background-color: #068049;
+	min-width: 60px;	
+}
+.btn-secondary {
+	border: 1px solid #068049;
+	background-color: #068049;
+	min-width: 60px;	
+}
+.btn-dark {
+	border: 1px solid #068049;
+	background-color: #068049;	
+	min-width: 60px;	
+}
+.btn-spot {
+	border: 1px solid #068049;
+	background-color: #068049;		
+	min-width: 60px;	
+}
+.btn-spot:hover,
+.btn-spot:focus,
+.btn-spot:active,
+.btn-spot.active,
+.open > .dropdown-toggle.btn-spot {
+ background-color: #00B17E;
+}
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active,
+.btn-dark.active,
+.open > .dropdown-toggle.btn-dark {
+ background-color: #00B17E;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primay:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+	background-color: #00B17E;
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary.active,
+.open > .dropdown-toggle.btn-primary {
+	background-color: #00B17E;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	background-color: #00B17E;
+	border-color: #00B17E;
+}
+.page-item.active .page-link {
+	background-color: #00B17E;
+	border-color: #00B17E;	
+}
+.favor-navbox-tiles .tile {
+  background-color: #00B17E;
+}
+.favor-dropdown-menu { 
+	background-color: #00B17E;
+}
+#favordropdownmenu {
+	background-color: #00B17E;
+}
+
+body {
+	background-color: white;
+}
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+  background-color: #B7E2CF;
+}
+.navbox-tiles .tile {
+  background-color: #2E7555;
+}
+#loginformarea {	
+	background-image: -webkit-linear-gradient(white,#CFFAE7);
+	background-image: -o-linear-gradient(white,#CFFAE7);
+	background-image: -moz-linear-gradient(white,#CFFAE7);
+	background-image: linear-gradient(white, #CFFAE7);
+}
+.portal-area {
+	background-color: white;
+}
+table.partition-table { background-color: #00B17E; }
+.topic-row { background-color: #00B17E; }
+
+.sidebar li a.active { 
+	background-color: #068049;
+}
+.sidebar ul li > a.active:hover {
+	background-color: #068049;
+}
+.sidebar ul li .sub-menu li a:hover { 
+	background-color: #00B17E;
+}
+#sidebarheader { 
+	background-color: #068049;
+}
+#fsprogramcontrolbar {
+	background-color: #00B17E; 
+}
+.program-controlbar {
+	background-color: #00B17E; 
+}
+.pass-word { color: darkcyan; font-style: italic; }
+.go-word { color: lightseagreen; font-style: italic; }
