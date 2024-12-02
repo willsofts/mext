@@ -5,11 +5,11 @@
 		<%- include('../asset/meta') %>		
 		<%- include('../asset/styleserror') %>	
 		<style nonce="YXNzdXJl"> 
-			a { font-size: 1.5rem; text-decoration: none; } 
+			a.back-link { font-size: 1.5rem; text-decoration: none; } 
 			h3.info { text-align: center; color:red; }
 			.text-center { text-align: center; }
-			.portalbody { margin:0px; font-size:1rem; font-weight:400;line-height:1.5; }
-			.page-header-title { margin-top:0px; margin-bottom:0.5rem; }
+			.portal-body { margin:0px; font-size:1rem; font-weight:400;line-height:1.5; }
+			.pg-page-header { margin-top:0px; margin-bottom:0.5rem; }
 			.toggle-layer { float: right; padding-right: 15px; }
 			#togglelinker { font-weight: bold; }
 			#userinfolayer { display: none; padding: 10px; }
@@ -32,16 +32,16 @@
 			}
 		</script>
 	</head>
-	<body class="portalbody portalbody-off">
+	<body class="portal-body portalbody-off">
 		<div class="pt-page pt-page-current pt-page-controller">
 			<div class="header-layer">
-				<h1 class="page-header-title">
+				<h1 class="pt-page-header page-header-title">
 					<label>User</label>
 				</h1>
 			</div>
 			<div class="row">
 				<div class="col-md-12 text-right toggle-layer">
-					<a href="#" id="togglelinker">&#9432;</a>
+					<a href="#" id="togglelinker" class="back-link">&#9432;</a>
 				</div>
 			</div>
 			<div id="userinfolayer">
@@ -73,7 +73,7 @@
 			<%}%>
 			<br/>		
 			<div class="text-center">
-				<a href="#" id="homelinker">Go Home</a>
+				<a href="#" id="homelinker" class="back-link">Go Home</a>
 			</div>
 		</div>
 	</body>
