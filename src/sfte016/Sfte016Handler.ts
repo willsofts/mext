@@ -14,6 +14,7 @@ import { OPERATE_HANDLERS } from "@willsofts/will-serv";
 import { DEFAULT_PRIVILEGES } from "../utils/EnvironmentVariable";
 import { TknOperateHandler } from '@willsofts/will-serv';
 import { Sfte007Handler } from "../sfte007/Sfte007Handler";
+import { ALWAYS_ACTIVATE_ACCOUNT } from "../utils/EnvironmentVariable";
 
 export class Sfte016Handler extends TknOperateHandler {
 
@@ -277,17 +278,20 @@ export class Sfte016Handler extends TknOperateHandler {
             found = rs.rows.length>0;
             if(found) return Promise.reject(new VerifyError("Email is already existed",HTTP.NOT_ACCEPTABLE,-18879));
             found = false;
-            /*
-            knsql.clear();
-            knsql.append("select userid ");
-            knsql.append("from tuserinfo ");
-            knsql.append("where userid = ?userid ");
-            knsql.set("userid",context.params.username);
-            rs = await knsql.executeQuery(db,context);
-            found = rs.rows.length>0;
-            */
-            //rs = await this.createUserTableToConfirm(context, model, db, found, eng);
-            rs = await this.createUserTableToActivate(context, model, db, found, eng);
+            if(ALWAYS_ACTIVATE_ACCOUNT) {
+                rs = await this.createUserTableToActivate(context, model, db, found, eng);
+            } else {
+                /*
+                knsql.clear();
+                knsql.append("select userid ");
+                knsql.append("from tuserinfo ");
+                knsql.append("where userid = ?userid ");
+                knsql.set("userid",context.params.username);
+                rs = await knsql.executeQuery(db,context);
+                found = rs.rows.length>0;
+                */
+                rs = await this.createUserTableToConfirm(context, model, db, found, eng);
+            }
             return rs;
         } catch(ex: any) {
             this.logger.error(this.constructor.name,ex);

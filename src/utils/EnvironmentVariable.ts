@@ -50,3 +50,4 @@ export const CONTENT_SECURITY_PATH: string = config.env("CONTENT_SECURITY_PATH",
 export const INLINE_BINDING: boolean = config.env("INLINE_BINDING") === "true";
 
 export const MAX_EXPIRE_DATE: string = config.env("MAX_EXPIRE_DATE","31/12/9000"); 
+export const ALWAYS_ACTIVATE_ACCOUNT: boolean = config.env("ALWAYS_ACTIVATE_ACCOUNT","true") === "true";
