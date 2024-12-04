@@ -82,6 +82,7 @@
 	<msg code="QS0201"><TH>Reset password success, Please verify your email for new password changed</TH><EN>Reset password success, Please verify your email for new password changed</EN></msg>
 	<msg code="QS0202"><TH>ท่านต้องการยกเลิกตัวเลือกนี้ใช่หรือไม่? โปรแกรมจะลบออกจากกลุ่มทั้งหมดหลังบันทึก</TH><EN>Are you sure to uncheck this flag? Program will delete all groups in this type after saving</EN></msg>
 	<msg code="QS0203"><TH>Reset Two Factor Success</TH><EN>Reset Two Factor Success</EN></msg>
+	<msg code="QS0204"><TH>New account register success, Please verify your email for new accessor</TH><EN>New account register success, Please verify your email for new accessor</EN></msg>
 
 	<msg code="QS0301"><TH>กรุณากรอกข้อมูลให้ครบถ้วน</TH><EN>Please fill in all information.</EN></msg>
 	<msg code="QS0302"><TH>กรุณาระบุข้อมูลกลุ่มพนักงาน ระดับพนักงาน หรืออายุงาน</TH><EN>Please input employment group, level or age</EN></msg>
