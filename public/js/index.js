@@ -195,7 +195,12 @@
 			hideLoginForm();
 			$("#fsworkinglayer").removeClass("working-control-class");
 			open_page("page_forgot");
-		}		
+		}
+		function registerClick() {
+			hideLoginForm();
+			$("#fsworkinglayer").removeClass("working-control-class");
+			open_page("page_register");
+		}
 		function logOut() {
 			forceLogout();
 			doLogout();
@@ -399,6 +404,7 @@
 				$('#languageimage').attr('src',img); fs_switchLanguage('TH',true);
 			});
 			$("#forgot_password").click(function() { forgotClick(); });
+			$("#register_user").click(function() { registerClick(); });
 			$("#main_button").click(function() { connectServer(); });
 			$("#ssologinlayer").find("a.fa-link-sso-saml").each(function(index,element) {
 				$(element).click(function() {

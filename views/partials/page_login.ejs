@@ -38,8 +38,15 @@
 														<label id="login_password_label" class="login-label">Password</label>
 													</div>
 													<br/>
-													<div class="input-group-forgot"> 
-														<a href="javascript:void(0)" id="forgot_password" class="enter-class login-label" title="Forgot Password">Forgot Password</a>
+													<div class="row">
+														<div class="input-group-forgot col-md"> 
+															<a href="javascript:void(0)" id="forgot_password" class="enter-class login-label" title="Forgot Password">Forgot Password</a>
+														</div>
+														<%if(meta.info?.register) {%>
+														<div class="input-group-register col-md text-right"> 
+															<a href="javascript:void(0)" id="register_user" class="enter-class login-label" title="Register">Sign Up</a>
+														</div>
+														<%}%>
 													</div>
 													<br/>										
 													<div id="login_button_layer" class="login_button_layer">

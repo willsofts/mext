@@ -64,7 +64,7 @@ function open_page(appid,url,params,apath) {
 	}
 	open_program(appid,url,params,apath);
 }
-var except_apps = ["page_profile","page_change","page_first","page_login","page_work","page_forgot"];
+var except_apps = ["page_profile","page_change","page_first","page_login","page_work","page_forgot","page_register"];
 function open_program(appid,url,params,apath) {
 	let fs_newwindows = "1"==$("#accessor_label").data("NEW");
 	console.log("open_program(appid="+appid+", path="+apath+", url="+url+", params="+params+")");
