@@ -14,7 +14,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" title="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
 							</div>
-							<input type="email" class="form-control input-md my-input alert-input" id="email" name="email" placeholder="<%=label.get('email_placeholder','Email/User')%>" />
+							<input type="email" class="form-control input-md my-input alert-input" id="email" name="email" placeholder="<%=label.get('email_placeholder','Email/User')%>" maxlength="50" />
 						</div>		
 						<span id="email_alert" role="alert" class="has-error fa-hidden"><%=label.get('email_alert','You can not leave this empty')%></span>
 					</div>
@@ -26,7 +26,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" title="User Name"><i class="fa fa-user" aria-hidden="true"></i></span>
 							</div>
-							<input type="text" class="form-control input-md my-input alert-input" id="usernaming" placeholder="<%=label.get('usernaming_placeholder','User Name')%>" />
+							<input type="text" class="form-control input-md my-input alert-input" id="usernaming" placeholder="<%=label.get('usernaming_placeholder','User Name')%>" maxlength="100" />
 						</div>	
 						<span id="usernaming_alert" role="alert" class="has-error fa-hidden"><%=label.get('usernaming_alert','You can not leave this empty')%></span>
 					</div>
