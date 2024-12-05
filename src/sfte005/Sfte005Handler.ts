@@ -302,7 +302,9 @@ export class Sfte005Handler extends TknOperateHandler {
         if(!userpassword || userpassword.trim()=="") {
             userpassword = "password";
         }
-        let record = { userfullname: context.params.usertname+" "+context.params.usertsurname, 
+        let displayname = context.params.displayname;
+        if(!displayname || displayname.trim().length==0) displayname = context.params.usertname+" "+context.params.usertsurname;
+        let record = { userfullname: context.params.usertname+" "+context.params.usertsurname, displayname: displayname, 
             username: context.params.username, userpassword: userpassword, passwordexpiredate: passwordexpiredate,
             email: context.params.email, mobile: context.params.mobile, lineid: context.params.lineid
         };
@@ -312,8 +314,8 @@ export class Sfte005Handler extends TknOperateHandler {
         try {
             if(!found) {
                 knsql.clear();
-                knsql.append("insert into tuserinfo(site,employeeid,userid,userename,useresurname,usertname,usertsurname,email,gender,mobile,lineid,inactive,editdate,edittime,edituser) ");
-                knsql.append("values(?site,?employeeid,?userid,?userename,?useresurname,?usertname,?usertsurname,?email,?gender,?mobile,?lineid,?inactive,?editdate,?edittime,?edituser) ");
+                knsql.append("insert into tuserinfo(site,employeeid,userid,userename,useresurname,usertname,usertsurname,email,gender,mobile,lineid,inactive,displayname,editdate,edittime,edituser) ");
+                knsql.append("values(?site,?employeeid,?userid,?userename,?useresurname,?usertname,?usertsurname,?email,?gender,?mobile,?lineid,?inactive,?displayname,?editdate,?edittime,?edituser) ");
                 knsql.set("site",site);
                 knsql.set("employeeid",context.params.username);
                 knsql.set("userid",context.params.userid);
@@ -326,6 +328,7 @@ export class Sfte005Handler extends TknOperateHandler {
                 knsql.set("mobile",context.params.mobile);
                 knsql.set("lineid",context.params.lineid);
                 knsql.set("inactive",context.params.inactive);
+                knsql.set("displayname",displayname);
                 knsql.set("editdate",curdate,"DATE");
                 knsql.set("edittime",curdate,"TIME");
                 knsql.set("edituser",this.userToken?.userid);    
@@ -333,7 +336,7 @@ export class Sfte005Handler extends TknOperateHandler {
             } else {
                 knsql.clear();
                 knsql.append("update tuserinfo set userename=?userename, useresurname=?useresurname, ");
-                knsql.append("usertname=?usertname, usertsurname=?usertsurname, ");
+                knsql.append("usertname=?usertname, usertsurname=?usertsurname, displayname=?displayname, ");
                 knsql.append("email=?email, gender=?gender, mobile=?mobile, lineid=?lineid, inactive='0', ");
                 knsql.append("editdate=?editdate, edittime=?edittime, edituser=?edituser ");
                 knsql.append("where userid=?userid ");
@@ -346,6 +349,7 @@ export class Sfte005Handler extends TknOperateHandler {
                 knsql.set("gender",context.params.gender);
                 knsql.set("mobile",context.params.mobile);
                 knsql.set("lineid",context.params.lineid);
+                knsql.set("displayname",displayname);
                 knsql.set("editdate",curdate,"DATE");
                 knsql.set("edittime",curdate,"TIME");
                 knsql.set("edituser",this.userToken?.userid);
@@ -378,7 +382,7 @@ export class Sfte005Handler extends TknOperateHandler {
 
     public async updateUserPrivileges(context: KnContextInfo, model: KnModel, db: KnDBConnector) : Promise<KnRecordSet> {
         let result = this.createRecordSet();
-        if(DEFAULT_PRIVILEGES && DEFAULT_PRIVILEGES.trim()!="") {
+        if(DEFAULT_PRIVILEGES && DEFAULT_PRIVILEGES.trim().length>0) {
             let knsql = new KnSQL();
             knsql.append("select * from tusergrp ");
             knsql.append("where userid=?userid and groupname=?groupname ");
@@ -444,10 +448,16 @@ export class Sfte005Handler extends TknOperateHandler {
         let result = this.createRecordSet();
         await db.beginWork();
         try {
+            let displayname = context.params.displayname;
+            let nodisplayname = !displayname || displayname.trim().length==0;
             let curdate = Utilities.now();
             let knsql = new KnSQL();
             knsql.append("update tuserinfo set usertname=?usertname, usertsurname=?usertsurname, ");
             knsql.append("userename=?userename, useresurname=?useresurname, email=?email, ");
+            if(!nodisplayname) {
+                knsql.append("displayname=?displayname, ");
+                knsql.set("displayname",displayname);
+            }
             knsql.append("gender=?gender, mobile=?mobile, lineid=?lineid, inactive=?inactive, ");
             knsql.append("editdate=?editdate, edittime=?edittime, edituser=?edituser ");
             knsql.append("where userid=?userid ");
