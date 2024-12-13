@@ -1,6 +1,6 @@
 /* user color */
-#fsprogramidlinker { color: #43476b; text-decoration: none; }
-.pt-page th a { color: #43476b; }
+#fsprogramidlinker { color: white; text-decoration: none; }
+.pt-page th a { color: white; }
 .login_form button:focus,
 .login_form button:hover{
 	background: #e9e9e9;

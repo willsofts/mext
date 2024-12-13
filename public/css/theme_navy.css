@@ -1,18 +1,12 @@
 /* user color */
+#fsprogramidlinker { color: white; text-decoration: none; }
+.pt-page th a { color: white; }
 .login-label { 
 	color: white;
 	font-weight: bold;
 }
 #page_login_toplayer {
 	background-color: #034686;
-}
-.login_form button:focus,
-.login_form button:hover{
-	background: #034686;
-	color: white;
-}
-.login_form button {
-	border-color: #034686;
 }
 .login_form input[type="button"]:focus,
 .login_form input[type="button"]:hover{

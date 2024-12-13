@@ -1,4 +1,6 @@
 /* user color */
+#fsprogramidlinker { color: white; text-decoration: none; }
+.pt-page th a { color: white; }
 .login_form button:focus,
 .login_form button:hover{
 	background: #00B17E;
