@@ -1,0 +1,180 @@
+/* user color */
+#fsprogramidlinker { color: #43476b; text-decoration: none; }
+.pt-page th a { color: #43476b; }
+.login_form button:focus,
+.login_form button:hover{
+	background: #e9e9e9;
+	color: white;
+}
+.login_form button {
+	border-color: #e9e9e9;
+}
+.login_form input[type="button"] {
+	background-color: whitesmoke;
+	border-color: #e9e9e9;
+}
+.login_form input[type="button"]:focus,
+.login_form input[type="button"]:hover{
+	background: #e9e9e9;
+	color: white;
+}
+.login_form button:focus,
+.login_form button:hover{
+	background: #e9e9e9;
+	color: white;
+}
+.login_form label {
+	color: #e9e9e9;
+	font-weight : bold;
+}
+#login_logo_label {
+	font-size: 55px;
+	font-weight: bold;
+	color: #e9e9e9;
+	text-shadow: 3px 7px 7px darkgrey;
+}
+#page_login_toplayer {	
+	background-image: -webkit-linear-gradient(white, #CFFAE7);
+	background-image: -o-linear-gradient(white, #CFFAE7);
+	background-image: -moz-linear-gradient(white, #CFFAE7);
+	background-image: linear-gradient(white, #CFFAE7);
+}
+div.link-button-cover a:hover {
+	background: #e9e9e9;
+	color: white;
+}
+
+.navigatebar-top {
+	background-color: #fff;	
+}
+#navigatebar {
+	border-bottom: 1px solid #e8e7ec;
+}
+#footerbar { 
+	background-color: #e9e9e9;
+}
+.sidebar-menu {
+	background-color: #929191;
+}
+.pt-page h1 { background-color: white; color: #43476b; }
+.pt-page th { background-color: #e9e9e9; color: #43476b; }
+.pt-page-header { 
+	background-color: #e9e9e9; 
+}
+.btn-primary {
+	border: 1px solid #083e24;
+	background-color: #083e24;
+	min-width: 60px;	
+}
+.btn-secondary {
+	border: 1px solid #083e24;
+	background-color: #083e24;
+	min-width: 60px;	
+}
+.btn-dark {
+	border: 1px solid #083e24;
+	background-color: #083e24;	
+	min-width: 60px;	
+}
+.btn-spot {
+	border: 1px solid #083e24;
+	background-color: #083e24;		
+	min-width: 60px;	
+}
+.btn-spot:hover,
+.btn-spot:focus,
+.btn-spot:active,
+.btn-spot.active,
+.open > .dropdown-toggle.btn-spot {
+ background-color: #017d5a;
+}
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active,
+.btn-dark.active,
+.open > .dropdown-toggle.btn-dark {
+ background-color: #017d5a;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primay:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+	background-color: #017d5a;
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary.active,
+.open > .dropdown-toggle.btn-primary {
+	background-color: #017d5a;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	background-color: #083e24;
+	border-color: #083e24;
+}
+.page-item.active .page-link {
+	background-color: #083e24;
+	border-color: #083e24;	
+}
+.favor-navbox-tiles .tile {
+  background-color: #017d5a;
+}
+.favor-dropdown-menu { 
+	background-color: #017d5a;
+}
+#favordropdownmenu {
+	background-color: #017d5a;
+}
+
+body {
+	background-color: #f8f8f9;
+}
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+  background-color: white;
+}
+.navbox-tiles .tile {
+  background-color: #2E7555;
+}
+#loginformarea {	
+	background-image: -webkit-linear-gradient(white,#CFFAE7);
+	background-image: -o-linear-gradient(white,#CFFAE7);
+	background-image: -moz-linear-gradient(white,#CFFAE7);
+	background-image: linear-gradient(white, #CFFAE7);
+}
+.portal-area {
+	background-color: white;
+}
+table.partition-table { background-color: #e9e9e9; }
+.topic-row { background-color: #e9e9e9; }
+
+.sidebar li a.active { 
+	background-color: #929191;
+}
+.sidebar ul li > a.active:hover {
+	background-color: #929191;
+}
+.sidebar ul li .sub-menu li a:hover { 
+	background-color: #929191;
+}
+#sidebarheader { 
+	background-color: #c4c3c3;
+}
+#fsprogramcontrolbar {
+	background-color: white; 
+}
+.program-controlbar {
+	background-color: #e9e9e9; 
+}
+.pass-word { color: darkcyan; font-style: italic; }
+.go-word { color: lightseagreen; font-style: italic; }
+
+.pt-page th a {
+	color: #43476b;
+}
