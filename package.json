@@ -33,7 +33,7 @@
     "@willsofts/will-lib": "^1.0.28",
     "@willsofts/will-run": "^1.0.13",
     "@willsofts/will-saml": "^1.0.5",
-    "@willsofts/will-serv": "^1.0.52",
+    "@willsofts/will-serv": "^1.0.53",
     "@willsofts/will-sql": "^1.0.32",
     "@willsofts/will-util": "^1.0.20",
     "activedirectory": "^0.7.2",
@@ -64,6 +64,7 @@
     "qrcode": "^1.5.3",
     "random-js": "^2.1.0",
     "randomcolor": "^0.6.2",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^11.0.2"
   },
   "devDependencies": {

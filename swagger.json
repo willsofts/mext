@@ -1,0 +1,207 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is project introduce to node application with http server and express framework under moleculer engine.",
+        "version": "1.0.0",
+        "title": "MEXT Project",
+        "contact": {
+            "email": "tassan_oro@freewillsolutions.com"
+        }
+    },
+    "basePath": "/api",
+    "tags": [{
+            "name": "Signin",
+            "description": "How to signin into system"
+        }, {
+            "name": "Data Service",
+            "description": "Data Discover Service"
+        }
+    ],
+    "schemes": ["http", "https"],
+    "paths": {
+        "/sign/signin": {
+            "post": {
+                "tags": ["Signin"],
+                "summary": "Logging into system",
+                "description": "",
+                "operationId": "signin",
+                "consumes": ["application/x-www-form-urlencoded"],
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "username",
+                        "in": "formData",
+                        "description": "User's name",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "User's password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/SigninResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/category/groups": {
+            "post": {
+                "tags": ["Data Service"],
+                "summary": "List data services by grouping",
+                "description": "",
+                "operationId": "groups",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                        "in": "body",
+                        "name": "body",
+                        "description": "Specified category names that come from `/config/setting.json`",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CategoryRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/DataMapResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/category/lists": {
+            "post": {
+                "tags": ["Data Service"],
+                "summary": "Data service by listing",
+                "description": "",
+                "operationId": "lists",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Specified category names that come from `/config/setting.json`",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/CategoryRequest"
+                    }
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/DataListResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "token": {
+            "type": "apiKey",
+            "name": "AuthToken",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "JSONHeader": {
+            "type": "object",
+            "properties" : {
+                "model": { "type": "string" },
+                "method": { "type": "string" },
+                "errorcode": { "type": "string" },
+                "errorflag": { "type": "string", "enum": ["Y", "N"] },
+                "errordesc": { "type": "string" }
+            }
+        },
+        "JSONBody": {
+            "oneOf": [
+                { "type": "object" },
+                { "type": "array", "items": { "type": "object" } }
+            ]            
+        },
+        "JSONReply": {
+            "type":"object",
+            "properties": {
+                "head": {
+                    "$ref": "#/definitions/JSONHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/JSONBody"
+                }
+            }
+        },
+        "SigninResponse": {
+            "$ref": "#/definitions/JSONReply"
+        },
+        "CategoryRequest": {
+            "type": "object",
+            "properties": {
+                "names": {
+                    "type": "array",
+                    "items": { "type": "string"}
+                }
+            }
+        },
+        "DataMapResponse": {
+            "allOf": [
+                {"$ref": "#/definitions/JSONReply"},
+                { 
+                    "type": "object",
+                    "properties": {
+                        "body": {
+                            "type": "object"
+                        }
+                    }
+                }
+            ]
+        },
+        "KnResultSet": {
+            "type": "object",
+            "properties": {
+                "rows": {
+                    "type": "array",
+                    "items": { "type": "object" }
+                }
+            }
+        },
+        "KnDataTableResultSet": {
+            "type": "object",
+            "properties": {
+                "tablename": { "type": "string" },
+                "category": { "type": "string" },
+                "resultset": {
+                    "$ref": "#/definitions/KnResultSet"
+                }
+            }
+        },
+        "DataListResponse": {
+            "allOf": [
+                {"$ref": "#/definitions/JSONReply"},
+                { 
+                    "type": "object",
+                    "properties": {
+                        "body": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/KnDataTableResultSet"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
