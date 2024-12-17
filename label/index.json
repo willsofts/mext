@@ -2,6 +2,10 @@
 	{
 		"language": "TH",
 		"label": [
+			{"name": "project_title", "value": "Assure"},
+			{"name": "profile_menu", "value": "ข้อมูลส่วนตัว"},
+			{"name": "change_menu", "value": "เปลี่ยนรหัสผ่าน"},
+			{"name": "logout_menu", "value": "ออกจากระบบ"},
 			{"name": "login_pass_placeholder", "value": "รหัสผ่าน"},
 			{"name": "change_password_title", "value": "เปลี่ยนรหัสผ่าน"},
 			{"name": "savechangebutton", "value": "ยอมรับ"},
@@ -26,6 +30,10 @@
 	{
 		"language": "EN",
 		"label": [
+			{"name": "project_title", "value": "Assure"},
+			{"name": "profile_menu", "value": "Profile"},
+			{"name": "change_menu", "value": "Change Password"},
+			{"name": "logout_menu", "value": "Log Out"},
 			{"name": "login_pass_placeholder", "value": "Password"},
 			{"name": "change_password_title", "value": "Change Password"},
 			{"name": "savechangebutton", "value": "Submit"},
