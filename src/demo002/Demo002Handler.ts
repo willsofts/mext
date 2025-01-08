@@ -110,8 +110,10 @@ export class Demo002Handler extends TknOperateHandler {
             let marrystatus = this.getParameterArray("marrystatus",params);
             if(marrystatus) {
                 let marrystatuses = marrystatus.map(item => "'"+item+"'").join(",");
-                knsql.append(filter).append(model.name).append(".marrystatus IN (").append(marrystatuses).append(")");
-                filter = " and ";
+                if(marrystatuses && marrystatuses.trim().length>0) {
+                    knsql.append(filter).append(model.name).append(".marrystatus IN (").append(marrystatuses).append(")");
+                    filter = " and ";
+                }
             }
             if(params.title && params.title!="") {
                 knsql.append(filter).append(model.name).append(".title LIKE ?title");
