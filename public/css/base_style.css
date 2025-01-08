@@ -6,6 +6,7 @@ body {
 	background-position: top center;
 	background-color: #E7F7F7;
 }
+a { text-decoration: none; }
 .portalbody-on { margin-top: 50px; }
 .portalbody-off { margin-top: 0px; }
 
