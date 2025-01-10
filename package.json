@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc --project ./",
     "dev": "ts-node-dev src/server.ts ./dist/services ./dist/workers ./dist/operators",
-    "start": "node dist/server.js ./dist/services ./dist/workers ./dist/operators",
-    "serve": "node dist/server.js --instances cpu ./dist/services ./dist/workers ./dist/operators",
+    "serve": "node dist/server.js ./dist/services ./dist/workers ./dist/operators",
+    "start": "node dist/server.js --instances cpu ./dist/services ./dist/workers ./dist/operators",
     "broker": "node dist/broker.js ./dist/services ./dist/workers ./dist/operators",
     "runner": "kn-runner ./dist/services ./dist/workers ./dist/operators ./dist/gateway",
     "runins": "kn-runner --instances cpu ./dist/services ./dist/worker ./dist/operators ./dist/gateway",
@@ -18,7 +18,8 @@
   },
   "descriptions": [
     "scripts-dev: using dev mode run type script directly by load all services from folder services",
-    "scripts-start: run express framework within moleculer load all services from folder services",
+    "scripts-serve: run express framework within moleculer load all services from folder services",
+    "scripts-start: run express framework within moleculer load all services from folder services within cluster",
     "scripts-runner: using kn-runner load all services from folder services and api gateway from folder gateway",
     "scripts-broker: run broker to load all workers services by molerculer.config.js with out gateway, this support for bus ex. NATS in order to plugin services on separated node"
   ],
