@@ -14,6 +14,6 @@ if(authtoken && authtoken.trim().length > 0) {
     let info = AuthenToken.verifyAuthenToken(authtoken,ignored,secret);
     console.log(info);
 } else {
-    let token = AuthenToken.createAuthenToken({identifier:useruuid as string, site:site, accessor:userid},expired,secret);
+    let token = AuthenToken.createAuthenToken({identifier:useruuid as string, site:site, accessor:userid, type: "A"},expired,secret);
     console.log(token);
 }
