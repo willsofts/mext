@@ -679,6 +679,11 @@ function startApplication(pid,unbind,aform) {
 		$.fn.modal.Constructor.Default.backdrop = "static";
 		$.fn.modal.Constructor.Default.keyboard = false;
 	} catch(ex) { }
+	try {
+		//bootstrap 5
+		Modal.Default.backdrop = "static";
+		Modal.Default.keyboard = false;
+	} catch(ex) { }
 	initialComponents();
 	try { requestAccessorInfo(); }catch(ex) { }
 }
@@ -947,29 +952,32 @@ function replaceString(str, arrStr){
 	}
 	return str;
 }
-var msgxmldoc = null;
-function loadXMLMessage(aSync) {
+var msgjsondoc = null;
+function loadJSONMessage(aSync) {
+	let authtoken = getAccessorToken();
 	jQuery.ajax({
-		url: "/xml/smart_message.xml?seed="+Math.random(),
+		url: API_URL+"/api/message/get",
 		async : aSync,
+		headers : { "authtoken": authtoken },
 		type: "GET",
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-		dataType: "xml",
-		error : function(transport,status,errorThrown) { 
-		},
-		success: function(data,status,transport){ msgxmldoc = data; }
+		dataType: "json",
+		success: function(data,status,transport){ msgjsondoc = data; }
 	});	
 }
 function getMessageCode(errcode, params) {
 	try {
-		if (msgxmldoc == null) loadXMLMessage(false);
-		let msgnode = $("root msg[code=" + errcode + "]", msgxmldoc);
-		let fs_curlang = fs_default_language;
-		if(!fs_curlang) fs_curlang = "EN";
-		let fs_msgtext = msgnode.find(fs_curlang.toUpperCase()).text();
-		if(!fs_msgtext) return errcode;
-		if(fs_msgtext && fs_msgtext!="") return replaceString(fs_msgtext, params);
-		return msgnode.text();
+		if (msgjsondoc == null) loadJSONMessage(false);
+		let messages = msgjsondoc?.msg;
+		if(messages) {
+			let msgnode = messages.find(item => item.code == errcode);
+			if(msgnode) {
+				let fs_curlang = fs_default_language;
+				if(!fs_curlang) fs_curlang = "EN";
+				let msg = msgnode[fs_curlang];
+				if(!msg) return errcode;
+				if(msg && msg.trim().length>0) return replaceString(msg,params);
+			}
+		}
 	}catch(ex) { }
 	return errcode;
 }
