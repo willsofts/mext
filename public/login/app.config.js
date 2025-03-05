@@ -1,6 +1,6 @@
 const appVariables = {
     CHAT_URL: "",
-    MULTI_LANGUAGES: ["EN","TH","VN"],
+    MULTI_LANGUAGES: ["EN","TH"],
     BASE_CSS: "/css/theme_green_sea.css"
 };
 function getAppConfigs() {
