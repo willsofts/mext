@@ -7,6 +7,7 @@ import { TknSAMLManager } from '@willsofts/will-serv';
 import { TknReportManager } from '@willsofts/will-serv';
 import { TknUploadFileManager } from "@willsofts/will-serv";
 import { TknDocumentManager } from "@willsofts/will-serv";
+import { TknExportManager } from '@willsofts/will-serv';
 
 const ExpressService : ServiceSchema = {
     name: "api",
@@ -30,6 +31,7 @@ const ExpressService : ServiceSchema = {
         ]
     },
     methods: {
+
         async authorize(ctx, route, req, res) {
             return TknAssureHandler.doAuthorizeFilter(ctx, req);
         }
@@ -49,6 +51,8 @@ runner.start(process.argv).then(() => {
         new TknUploadFileManager(runner.service, __dirname).route(app);
         //this is an api documentary router
         new TknDocumentManager(runner.service, __dirname).route(app);
+        //this is report operator
+        new TknExportManager(runner.service, __dirname).route(app);
     }
     if(runner.broker) {
         runner.broker.call("$node.services").then((services: any) => {
