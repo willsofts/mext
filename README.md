@@ -103,7 +103,7 @@ How to provide application service.
 3. make folder and create browser supporter under `public` path ex. `public/demo001`, under this folder contains html, js, css etc. files.
 4. make service class under folder `operators` path ex. `operators/demo001.service.ts`, this is important thing in order to be load into framework and invoked by broker service and caller \
 (naming convension have to defined file name as xxxx.service.ts)
-
+5. after startup then invoke `gui/xxxx` ex. http://localhost:8080/gui/demo001
 
 #### Broadcasting
 
