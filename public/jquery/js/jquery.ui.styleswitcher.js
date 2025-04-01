@@ -11,7 +11,7 @@ $.fn.styleswitcher = function(settings){
 		buttonHeight: 33,		
 		onOpen: function(){},
 		onClose: function(){},
-		onSelect: function(){}
+		onSelect: function(src){}
 	}, settings);
 				
 	var button = $('<a href="javascript:void(0)" class="jquery-ui-styleswitcher-trigger"><span class="jquery-ui-styleswitcher-icon"></span><span class="jquery-ui-styleswitcher-title">'+ options.initialText +'</span></a>');
@@ -39,7 +39,7 @@ $.fn.styleswitcher = function(settings){
 	+ '</ul></div></div>';
 	var switcherpane = $(gallery).find('div').removeAttr('id');
 	if(options.styleURL!=null) {
-		$.ajax({
+		jQuery.ajax({
 			url: options.styleURL,
 			type: "POST",
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -58,7 +58,7 @@ $.fn.styleswitcher = function(settings){
 					$ul.append($li);
 				}
 				
-				switcherpane.find('a').on("click",function(){
+				switcherpane.find('a').click(function(){
 					if(options.$styleInput) {
 						options.$styleInput.val($(this).attr('href'));
 					}
@@ -104,7 +104,7 @@ $.fn.styleswitcher = function(settings){
 		});
 	}
 	
-	button.on("click",
+	button.click(
 		function(){
 			if(switcherpane.is(':visible')){ switcherpane.spHide(button); }
 			else{ switcherpane.spShow(button); }
@@ -117,7 +117,7 @@ $.fn.styleswitcher = function(settings){
 		function(){if(switcherpane.is(':visible')){$(this).spHide(button);}}
 	);
 	
-	$(document).on("click",function() { switcherpane.spHide(button); });
+	$(document).click(function() { switcherpane.spHide(button); });
 	
 	//show/hide panel functions
 	$.fn.spShow = function(btn){ 
@@ -128,7 +128,7 @@ $.fn.styleswitcher = function(settings){
 		$(this).slideUp(50, function(){options.onClose();}); btn.css(button_default); 
 	}			
 	
-	switcherpane.find('a').on("click",function(){
+	switcherpane.find('a').click(function(){
 		if(options.$styleInput) {
 			options.$styleInput.val($(this).attr('href'));
 		}
@@ -245,17 +245,11 @@ $.fn.styleswitcher = function(settings){
 		outline: '0'
 	}).end();
 		
-	$.fn.styleupdate = function(styleText) {
-		let btn = $(this).find("a.jquery-ui-styleswitcher-trigger");
-		if(styleText === undefined) {
-			btn.find('.jquery-ui-styleswitcher-title').html("Style Selection");
-		} else {
-			if(styleText!="") {
-				let styleName = "<i class='"+styleText+"' aria-hidden='true'></i>";
-				btn.find('.jquery-ui-styleswitcher-title').html(styleName);
-			} else {
-				btn.find('.jquery-ui-styleswitcher-title').html("");
-			}
+	$.fn.styleupdate = function(styleText) { 
+		if(styleText!="") {
+			var btn = $(this).find("a.jquery-ui-styleswitcher-trigger");
+			var styleName = "<i class='"+styleText+"' aria-hidden='true'></i>";
+			btn.find('.jquery-ui-styleswitcher-title').html(styleName);
 		}
 	};
 		
