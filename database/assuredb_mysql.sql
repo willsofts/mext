@@ -329,11 +329,6 @@ CREATE TABLE IF NOT EXISTS `tdirectory` (
   KEY `domainname` (`domainname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='table keep active directory information';
 
-INSERT INTO `tdirectory` (`domainid`, `domainname`, `description`, `applicationid`, `tenanturl`, `basedn`, `secretkey`, `systemtype`, `appstype`, `domaintype`, `domainurl`, `inactive`, `invisible`, `editdate`, `edittime`, `edituser`) VALUES
-	('40a1f4d3-2264-4e09-9088-7838c1fd9f92', 'tassanorg.onmicrosoft.com', 'Tassan AD B2C', '40a1f4d3-2264-4e09-9088-7838c1fd9f92', 'https://tassanorg.b2clogin.com/tassanorg.onmicrosoft.com/B2C_1_susi', 'https://tassanorg.b2clogin.com', 'tcc8Q~dm2dIyytG~PJyh.do6Fd~xGeVxZFJs7cJY', 'W', 'W', 'B', NULL, '0', '0', NULL, NULL, NULL),
-	('9b41b79b-c78a-11ec-8ba7-98fa9bd6bd8e', 'freewillgroup.com', 'Freewill Group', 'af1be62c-c78a-11ec-8ba7-98fa9bd6bd8e', 'ldap://10.22.91.24:389', 'DC=freewillgroup,DC=com', '', 'W', 'W', 'D', NULL, '0', '1', NULL, NULL, NULL),
-	('dfeaaa67-52fd-474a-88c8-a1415145ed07', 'tassunorohotmail.onmicrosoft.com', 'Tassan AD', 'dfeaaa67-52fd-474a-88c8-a1415145ed07', 'https://login.microsoftonline.com/16f41a29-c670-4f46-ba94-2882e4ac0814', '', 'oqm8Q~be_O4yBn5PRUB5hPC~6fiCIgEvWHvFWb1f', 'W', 'W', 'S', NULL, '0', '0', NULL, NULL, NULL);
-
 CREATE TABLE IF NOT EXISTS `tfavor` (
   `userid` varchar(60) NOT NULL COMMENT 'tuser.userid',
   `programid` varchar(20) NOT NULL COMMENT 'tprog.programid',
@@ -1081,6 +1076,7 @@ CREATE TABLE IF NOT EXISTS `tuser` (
   `approveflag` varchar(1) DEFAULT '0' COMMENT '1=Approver',
   `changeflag` varchar(1) DEFAULT '0' COMMENT '1=Force change password',
   `newflag` varchar(1) DEFAULT '0' COMMENT '1=Can new window',
+  `activeflag` VARCHAR(1) NULL DEFAULT '0' COMMENT '1=Active Directory User',
   `mistakens` tinyint DEFAULT '0',
   `mistakentime` bigint DEFAULT NULL,
   `editdate` date DEFAULT NULL,
