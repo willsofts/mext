@@ -136,6 +136,22 @@
 				</div>
 		</div>
 	</div>
+	<div class="row row-height">
+		<div class="col-md-12 col-height">
+				<div class="table-layer-class">
+					<div class="row row-height">
+					<div class="col-md-3 col-height col-label text-right">
+						<label for="userbranch" id="userbranch_label" class="control-label"><%=label.get('userbranch_label','Branch')%></label>
+					</div>
+						<div class="col-height col-md-5">
+<div class="input-group">
+	<%-page.html('select',{map: data.entity?.tcompbranch, value: data.dataset?.userbranch, id: "userbranch", name: "userbranch", class: "form-control input-md"})%>
+<div class="input-group-required"><label class="required">&nbsp;</label></div></div><div id="userbranch_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('userbranch_alert','You can not leave this empty')%></div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
 
 	<% if(page.isUpdateMode()) {%>
 	<div class="row row-height">

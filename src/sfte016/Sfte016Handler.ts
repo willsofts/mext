@@ -145,7 +145,7 @@ export class Sfte016Handler extends TknOperateHandler {
     }
 
     protected async performCategories(context: KnContextInfo, model: KnModel, db: KnDBConnector) : Promise<KnDataTable> {
-        let settings = this.getCategorySetting(context, "tkactive");
+        let settings = this.getCategorySetting(context, "tkactive","tcompbranch");
         return await this.getDataCategories(context, db, settings);
     }
 
@@ -245,9 +245,11 @@ export class Sfte016Handler extends TknOperateHandler {
      * @returns KnDataTable
      */
     public override async getDataAdd(context: KnContextInfo, model: KnModel) : Promise<KnDataTable> {
-        let ds = this.emptyDataSet();
-        ds.gender = "M";
-        return this.createDataTable(KnOperation.ADD, ds, {}, "sfte016/sfte016_dialog");
+        let dt = await this.doCategories(context, model);
+        dt.action = KnOperation.ADD;
+        dt.renderer = this.progid+"/"+this.progid+"_dialog";
+        dt.dataset["gender"] = "M";
+        return dt;
     }
 
     /**
@@ -400,11 +402,12 @@ export class Sfte016Handler extends TknOperateHandler {
         try {
             if(!found) {
                 knsql.clear();
-                knsql.append("insert into tuserinfo(site,employeeid,userid,userename,useresurname,usertname,usertsurname,email,gender,mobile,lineid,inactive,displayname,editdate,edittime,edituser) ");
-                knsql.append("values(?site,?employeeid,?userid,?userename,?useresurname,?usertname,?usertsurname,?email,?gender,?mobile,?lineid,?inactive,?displayname,?editdate,?edittime,?edituser) ");
+                knsql.append("insert into tuserinfo(site,employeeid,userid,userbranch,userename,useresurname,usertname,usertsurname,email,gender,mobile,lineid,inactive,displayname,editdate,edittime,edituser) ");
+                knsql.append("values(?site,?employeeid,?userid,?userbranch,?userename,?useresurname,?usertname,?usertsurname,?email,?gender,?mobile,?lineid,?inactive,?displayname,?editdate,?edittime,?edituser) ");
                 knsql.set("site",site);
                 knsql.set("employeeid",context.params.username);
                 knsql.set("userid",context.params.userid);
+                knsql.set("userbranch",context.params.userbranch);
                 knsql.set("usertname",context.params.usertname);
                 knsql.set("usertsurname",context.params.usertsurname);
                 knsql.set("userename",context.params.userename);
@@ -422,11 +425,12 @@ export class Sfte016Handler extends TknOperateHandler {
             } else {
                 knsql.clear();
                 knsql.append("update tuserinfo set userename=?userename, useresurname=?useresurname, ");
-                knsql.append("usertname=?usertname, usertsurname=?usertsurname, ");
+                knsql.append("usertname=?usertname, usertsurname=?usertsurname, userbranch=?userbranch, displayname=?displayname, ");
                 knsql.append("email=?email, gender=?gender, mobile=?mobile, lineid=?lineid, inactive='0', ");
                 knsql.append("editdate=?editdate, edittime=?edittime, edituser=?edituser ");
                 knsql.append("where userid=?userid ");
                 knsql.set("userid",context.params.userid);
+                knsql.set("userbranch",context.params.userbranch);
                 knsql.set("usertname",context.params.usertname);
                 knsql.set("usertsurname",context.params.usertsurname);
                 knsql.set("userename",context.params.userename);
@@ -540,7 +544,7 @@ export class Sfte016Handler extends TknOperateHandler {
             let curdate = Utilities.now();
             let knsql = new KnSQL();
             knsql.append("update tuserinfo set usertname=?usertname, usertsurname=?usertsurname, ");
-            knsql.append("userename=?userename, useresurname=?useresurname, email=?email, ");
+            knsql.append("userename=?userename, useresurname=?useresurname, email=?email, userbranch=?userbranch, ");
             if(!nodisplayname) {
                 knsql.append("displayname=?displayname, ");
                 knsql.set("displayname",displayname);
@@ -549,6 +553,7 @@ export class Sfte016Handler extends TknOperateHandler {
             knsql.append("editdate=?editdate, edittime=?edittime, edituser=?edituser ");
             knsql.append("where userid=?userid ");
             knsql.set("userid",context.params.userid);
+            knsql.set("userbranch",context.params.userbranch);
             knsql.set("usertname",context.params.usertname);
             knsql.set("usertsurname",context.params.usertsurname);
             knsql.set("userename",context.params.userename);
