@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import { ServiceSchema } from "moleculer";
 import { JSONReply } from "@willsofts/will-api";
 import { Utilities, Configure } from "@willsofts/will-util";
@@ -70,6 +71,16 @@ const FetchService : ServiceSchema = {
             }
             response.body = Object.fromEntries(body);
             return response;
+        },
+        session(ctx: any) {
+            let sid = ctx.meta?.session?.id ?? uuid();            
+            return {id: sid};
+        },
+        version(ctx: any) {
+            ctx.meta.$responseRaw = true; 
+            ctx.meta.$responseType = "application/json";    
+            const packageconfig = require("../../package.json");
+            return { name: packageconfig.name, version: packageconfig.version };
         },
     },
 };
