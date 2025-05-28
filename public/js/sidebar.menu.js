@@ -33,9 +33,10 @@
 				$("#sidemenusearchtext").autocomplete("option","source",jsAry);
 				$("#sidebarlayer").find("a.fa-link-menu-item").each(function(index,element) {
 					$(element).click(function() {
-						let pid = $(this).attr("data-pid");
-						let url = $(this).attr("data-url");
-						open_page(pid,url,null,$(this).attr("data-path"));
+						let $e = $(this);
+						let pid = $e.attr("data-pid");
+						let url = $e.attr("data-url");
+						open_page(pid,url,null,$e.attr("data-path"),$e.attr("data-new"),$e.attr("data-method"));
 					});
 				});
 			}

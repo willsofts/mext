@@ -126,9 +126,10 @@
 			load_page("page_first",null,function() { 
 				$("#page_first").find("a.fa-link-app").each(function(index,element) {
 					$(element).click(function() {
-						let pid = $(this).attr("data-pid");
-						let url = $(this).attr("data-url");
-						open_page(pid,url,null,$(this).attr("data-path"));
+						let $e = $(this);
+						let pid = $e.attr("data-pid");
+						let url = $e.attr("data-url");
+						open_page(pid,url,null,$e.attr("data-path"),$e.attr("data-new"),$e.attr("data-method"));
 					});
 				});
 			}); //menu/box

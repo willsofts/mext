@@ -46,6 +46,7 @@
 			{"name": "genderfemale_label", "value": "หญิง"},
 			{"name": "userid_headerlabel", "value": "ผู้ใช้"},
 			{"name": "userid_label", "value": "รหัสผู้ใช้"},
+			{"name": "userbranch_label", "value": "สาขา"},
 			{"name": "usertname_headerlabel", "value": "ชื่อ (ภาษาไทย)"},
 			{"name": "supervisor_alert", "value": "กรุณากรอกข้อมูล"}		]
 	},
@@ -96,6 +97,7 @@
 			{"name": "genderfemale_label", "value": "Female"},
 			{"name": "userid_headerlabel", "value": "User"},
 			{"name": "userid_label", "value": "User"},
+			{"name": "userbranch_label", "value": "Branch"},
 			{"name": "usertname_headerlabel", "value": "First Name (Thai)"},
 			{"name": "supervisor_alert", "value": "You can not leave this empty"}		]
 	}

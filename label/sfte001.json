@@ -26,7 +26,11 @@
 			{"name": "programid_label", "value": "โปรแกรม"},
 			{"name": "programid_alert", "value": "กรุณากรอกข้อมูล"},
 			{"name": "prognameth_label", "value": "ชื่อโปรแกรม (ภาษาไทย)"},
-			{"name": "iconfile_label", "value": "ไอคอนไฟล์"}		]
+			{"name": "iconfile_label", "value": "ไอคอนไฟล์"},
+			{"name": "openmethod_label", "value": "วิธีการเปิดโปรแกรม"},
+			{"name": "openmethod_post_label", "value": "POST"},
+			{"name": "openmethod_get_label", "value": "GET"},
+			{"name": "newflag_label", "value": "เปิดโปรแกรมด้วยการเปิดหน้าต่างใหม่"} ]
 	},
 	{
 		"language": "EN",
@@ -55,6 +59,10 @@
 			{"name": "programid_label", "value": "Program ID"},
 			{"name": "programid_alert", "value": "You can not leave this empty"},
 			{"name": "prognameth_label", "value": "Program Name (Thai)"},
-			{"name": "iconfile_label", "value": "Icon File"}		]
+			{"name": "iconfile_label", "value": "Icon File"},
+			{"name": "openmethod_label", "value": "Open Method"},
+			{"name": "openmethod_post_label", "value": "POST"},
+			{"name": "openmethod_get_label", "value": "GET"},
+			{"name": "newflag_label", "value": "Open New Window/TAB"} ]
 	}
 ]

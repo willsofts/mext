@@ -434,3 +434,9 @@ div.bc-layer { position: fixed; bottom: 0; right: 0; margin-right: 15px; margin-
 div.bc-layer a { text-decoration: none; }	  
 a.bc-close { position: absolute; top: 0%; right: 0%; margin-right: 4px; }
 a.bc-close:hover { color: darkgray; }
+button.btn-close:before { 
+	font-family: FontAwesome;
+	content: "\f00d";	
+}
+button.close { font-size: 2rem; }
+.modal-header .close { padding-top: 0px; }

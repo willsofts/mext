@@ -1,4 +1,10 @@
 var defaultContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+function isValidUrl(url) {
+    try {
+        new URL(url);
+        return true;
+    } catch (err) { return false; }
+}
 function load_page(appid,params,callback){	
 	if(!$currPage || $currPage=="") {
 		$currPage = $("#page_0");
@@ -50,9 +56,9 @@ function loadApplication(appid,params,callback) {
 		}
 	});	
 }
-function open_page(appid,url,params,apath) {
+function open_page(appid,url,params,apath,newflag,openmethod) {
 	console.log("open_page(appid="+appid+",url="+url+",params="+params+",path="+apath+")");
-	let fs_newflag = "1"==$("#accessor_label").data("NEW");
+	let fs_newflag = "1" == $("#accessor_label").data("NEW")  || "1" == newflag;
 	if(!fs_newflag) {
 		if(!$currPage || $currPage==""){
 			$currPage = $("#page_0");
@@ -62,12 +68,12 @@ function open_page(appid,url,params,apath) {
 		try{ closeMenuBar(); }catch(ex) { }
 		$("#languagemenuitem").hide();
 	}
-	open_program(appid,url,params,apath);
+	open_program(appid,url,params,apath,newflag,openmethod);
 }
 var except_apps = ["page_profile","page_change","page_first","page_login","page_work","page_forgot","page_register"];
-function open_program(appid,url,params,apath) {
-	let fs_newwindows = "1"==$("#accessor_label").data("NEW");
-	console.log("open_program(appid="+appid+", path="+apath+", url="+url+", params="+params+")");
+function open_program(appid,url,params,apath,newflag,openmethod) {
+	let fs_newwindows = "1" == $("#accessor_label").data("NEW") || "1" == newflag;
+	console.log("open_program(appid="+appid+", path="+apath+", url="+url+", params="+params+", newflag="+newflag+", openmethod="+openmethod+")");
 	let html = false; 
 	let appurl = "/gui/"+appid; //+"?seed="+Math.random()+(params?"&"+params:"");
 	if(apath && $.trim(apath)!="") {
@@ -78,6 +84,7 @@ function open_program(appid,url,params,apath) {
 		appurl = "/load/"+appid; //+"?seed="+Math.random()+(params?"&"+params:"");
 	}
 	console.log("open : "+appurl);
+	html = openmethod == "GET" ? "GET" : html;
 	$("#page_login").hide();
 	let authtoken = getAccessorToken();
 	if(fs_newwindows) {
@@ -102,9 +109,9 @@ function open_program(appid,url,params,apath) {
 		});
 		startWaiting();
 	}
-	recentApplication(appid,url,params,apath);
+	recentApplication(appid,url,params,apath,newflag,openmethod);
 }
-function recentApplication(appid,url,params,apath) {
+function recentApplication(appid,url,params,apath,newflag,openmethod) {
 	let $rlist = $("#recentmenulist");
 	let $items = $rlist.find("li");
 	if($items.length>15) return;
@@ -126,7 +133,7 @@ function recentApplication(appid,url,params,apath) {
 				let row = json.body.rows[0];
 				let $li = $("<li></li>");
 				let $alink = $("<a href='javascript:void(0)'></a>");
-				$alink.addClass("dropdown-item").click(function() { open_page(appid,url,params,apath); }).html(row["description"]);
+				$alink.addClass("dropdown-item").click(function() { open_page(appid,url,params,apath,newflag,openmethod); }).html(row["description"]);
 				$li.append($alink).attr("appid",appid).attr("url",url).appendTo($rlist);	
 				$("#recentcaret").show();
 			}

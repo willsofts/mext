@@ -10,7 +10,7 @@
 						<%=label.get('modalheadertitle_edit','Edit')%>
 					<% } %>
 				</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">&times;</button>
 			</div>
 			<div id="entrydialoglayer" class="entry-dialog-layer">
 			<form id="fsentryform" role="form" data-toggle="validator" name="fsentryform" method="post">
@@ -28,7 +28,7 @@
 				<% if(page.isUpdateMode()) {%>
 					<input type="button" id="updatebutton" class="btn btn-dark btn-sm" value="<%=label.get('updatebutton','Update')%>"/>
 				<% } %>
-				<input type="button" id="canceldialogbutton" class="btn btn-dark btn-sm" data-dismiss="modal" value="<%=label.get('canceldialogbutton','Cancel')%>"/>
+				<input type="button" id="canceldialogbutton" class="btn btn-dark btn-sm" data-dismiss="modal" data-bs-dismiss="modal" value="<%=label.get('canceldialogbutton','Cancel')%>"/>
 			</div>
 		</div>
 	</div>

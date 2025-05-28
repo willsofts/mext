@@ -9,9 +9,11 @@ function createMenuTree(menu,progmap,counter) {
             let progid = menu.itemname;
             let prg = progmap[progid];
             let url = prg?.url;
-            let path = prg?.progpath;  
+            let path = prg?.progpath;
+            let newflag = prg?.newflag;
+            let openmethod = prg?.openmethod;  
         %>
-    <li><a href="javascript:void(0);" class="fa-link-menu-item menu-desktop" data-pid="<%=progid%>" data-url="<%=url%>" data-path="<%=path%>" title="<%=progid%>"><%=progname %></a></li>
+    <li><a href="javascript:void(0);" class="fa-link-menu-item menu-desktop" data-pid="<%=progid%>" data-url="<%=url%>" data-path="<%=path%>" data-new="<%=newflag%>" data-method="<%=openmethod%>" title="<%=progid%>"><%=progname %></a></li>
 <%      } else { %>
     <li class="dropdown">
     <a class="nav-menu-group dropdown-toggle collapsed active" data-toggle="collapse" data-target="#submenu_<%=counter%>" href="javascript:void(0);">
@@ -82,10 +84,12 @@ if(data.dataset?.sidemap && data.dataset?.sidelist) {
                     let url = element["url"];
                     let path = element["progpath"];
                     let progtype = element["progtype"];
+                    let newflag = element["newflag"];
+                    let openmethod = element["openmethod"];
                     if("I"!=progtype) {                
                     %>
                     <li>
-                        <a href="javascript:void(0)" class="fa-link-menu-item dropdown-item collapsed active active-item menu-desktop" data-pid="<%=progid%>" data-url="<%=url%>" data-path="<%=path%>">
+                        <a href="javascript:void(0)" class="fa-link-menu-item dropdown-item collapsed active active-item menu-desktop" data-pid="<%=progid%>" data-url="<%=url%>" data-path="<%=path%>" data-new="<%=newflag%>" data-method="<%=openmethod%>">
                             <em class="<%=groupstyle%>"></em>
                             <span class="nav-label"><%=progname%></span>
                         </a>
@@ -111,9 +115,11 @@ if(data.dataset?.sidemap && data.dataset?.sidelist) {
                         let progid = program["programid"];
                         let url = program["url"];
                         let path = program["progpath"];
+                        let newflag = program["newflag"];
+                        let openmethod = program["openmethod"];
                         %>
                         <li>
-                            <a href="javascript:void(0)" class="fa-link-menu-item dropdown-item collapsed active active-item" data-pid="<%=progid%>" data-url="<%=url%>" data-path="<%=path%>" >
+                            <a href="javascript:void(0)" class="fa-link-menu-item dropdown-item collapsed active active-item" data-pid="<%=progid%>" data-url="<%=url%>" data-path="<%=path%>"  data-new="<%=newflag%>" data-method="<%=openmethod%>">
                                 <em class="<%=groupstyle%>"></em>
                                 <span class="nav-label"><%=progname%></span>
                             </a>
@@ -137,9 +143,11 @@ if(data.dataset?.sidemap && data.dataset?.sidelist) {
                                 let url = element["url"];
                                 let path = element["progpath"];
                                 let progtype = element["progtype"];
+                                let newflag = element["newflag"];
+                                let openmethod = element["openmethod"];
                                 if("I"!=progtype) {
                                 %>
-                                <li><a href="javascript:void(0)" class="fa-link-menu-item menu-desktop <%=iconstyle%>" data-pid="<%=progid%>" data-url="<%=url%>" data-path="<%=path%>" title="<%=progid%>"><%=progname %></a></li>
+                                <li><a href="javascript:void(0)" class="fa-link-menu-item menu-desktop <%=iconstyle%>" data-pid="<%=progid%>" data-url="<%=url%>" data-path="<%=path%>" data-new="<%=newflag%>" data-method="<%=openmethod%>" title="<%=progid%>"><%=progname %></a></li>
                                 <%	    
                                 }                                        
                             }

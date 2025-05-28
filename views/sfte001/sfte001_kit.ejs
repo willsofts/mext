@@ -123,7 +123,30 @@
 				</div>
 		</div>
 	</div>
-	
+	<div class="row row-height">
+		<div class="col-md-12 col-height">
+				<div class="table-layer-class">
+					<div class="row row-height">
+						<div class="col-height col-md-6">
+							<label for="openmethod" id="openmethod_label" class="control-label"><%=label.get('openmethod_label','Open Method')%></label>
+							<div class="row row-height row-openmethod">
+								<div class="col-md checkbox form-check">
+									<input type="radio" value="POST" id="openmethod_post" name="openmethod" class="form-control input-md form-check-input" <%=page.checked('POST',data.dataset?.openmethod)%> /><label for="openmethod_post" class="control-label form-check-label"><%=label.get('openmethod_post_label','POST')%></label>
+								</div>
+								<div class="col-md checkbox form-check">
+									<input type="radio" value="GET" id="openmethod_get" name="openmethod" class="form-control input-md form-check-input" <%=page.checked('GET',data.dataset?.openmethod)%> /><label for="openmethod_get" class="control-label form-check-label"><%=label.get('openmethod_get_label','GET')%></label>
+								</div>
+							</div>
+						</div>
+						<div class="col-height col-md-6">
+							<div class="checkbox form-check">
+								<input type="checkbox" value="1" id="newflag" name="newflag" class="form-control input-md form-check-input" <%=page.checked('1',data.dataset?.newflag)%> /><label for="newflag" id="newflag_label" class="control-label form-check-label"><%=label.get('newflag_label','Open New Window/TAB')%></label>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>	
 	<div class="row row-height">
 		<div class="col-md-12 col-height">
 				<div class="table-layer-class">
