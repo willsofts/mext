@@ -3,6 +3,7 @@
     "//CDN_URL": "https://cdn.jsdelivr.net/gh/willsofts/will-asset@1.0.40", 
     "BASE_URL": "",
     "REDIRECT_URL": "", 
+    "BASE_CSS": "/css/user_style.css",
     "BASE_STORAGE": "session",
     "SECRET_KEY": "ASSURE_OF_SECRET_KEY",
     "VALIDATE_ANOMYMOUS_TOKEN": "false",
