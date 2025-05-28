@@ -13,7 +13,7 @@ function startWorking(unloadFirstPage,firstpage){$("#navigatebar").removeClass("
 function createMenu(){$("#sidebarmenu").show();$("#homelayer").show();$("#mainmenu").show();$("#usermenuitem").show();$("#favormenuitem").show();$("#loginlayer").hide();$("#languagemenuitem").removeClass("language-menu-item");}
 function startupPage(unloadFirstPage,firstpage){if(!unloadFirstPage){load_page_first();}
 load_sidebar_menu(firstpage);load_favor_menu();load_prog_item();$("#languagemenuitem").show();$("#fsworkinglayer").addClass("working-control-class");}
-function load_page_first(){load_page("page_first",null,function(){$("#page_first").find("a.fa-link-app").each(function(index,element){$(element).click(function(){let pid=$(this).attr("data-pid");let url=$(this).attr("data-url");open_page(pid,url,null,$(this).attr("data-path"));});});});}
+function load_page_first(){load_page("page_first",null,function(){$("#page_first").find("a.fa-link-app").each(function(index,element){$(element).click(function(){let $e=$(this);let pid=$e.attr("data-pid");let url=$e.attr("data-url");open_page(pid,url,null,$e.attr("data-path"),$e.attr("data-new"),$e.attr("data-method"));});});});}
 function hideMenu(){$("#page_first").hide();}
 function fs_changingPlaceholder(lang){if(!lang)return;let u_placeholder=fs_getLabelName("login_user_placeholder","index",lang);let p_placeholder=fs_getLabelName("login_pass_placeholder","index",lang);if(u_placeholder){$("#main_username").attr("placeholder",u_placeholder);$("#loginframe").contents().find("#main_username").attr("placeholder",u_placeholder);}
 if(p_placeholder){$("#main_pass").attr("placeholder",p_placeholder);$("#loginframe").contents().find("#main_pass").attr("placeholder",p_placeholder);}
