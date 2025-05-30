@@ -10,6 +10,7 @@
 			{"name": "mailtitle_label", "value": "Mail Title"},
 			{"name": "mailtitle_headerlabel", "value": "Mail Title"},
 			{"name": "mailport_label", "value": "Mail Port"},
+			{"name": "mailsecure_label", "value": "Secure"},
 			{"name": "mailuser_label", "value": "Mail User"},
 			{"name": "mailto_label", "value": "Mailing To Whom When Error"},
 			{"name": "firebasekey_label", "value": "Firebase Key"},
