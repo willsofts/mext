@@ -20,6 +20,9 @@
 <%-page.html('select',{map: data.entity?.tkactive, value: data.dataset?.inactive, id: "inactive", name: "inactive", class: "form-control input-md"})%>
 <div class="input-group-required"><label class="required">*</label></div></div><div id="inactive_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('inactive_alert','You can not leave this empty')%></div>
 						</div>
+						<div class="col-height col-md-4">
+<label for="apisection" id="apisection_label" class="control-label"><%=label.get('apisection_label','Section')%></label><input type="text" id="apisection" name="apisection" class="form-control input-md" maxlength="30" value="<%=data.dataset?.apisection%>" />
+						</div>
 					</div>
 				</div>
 		</div>

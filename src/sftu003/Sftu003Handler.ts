@@ -19,7 +19,7 @@ export class Sftu003Handler extends TknOperateHandler {
             apiname: { type: "STRING", key: true, created: true },
             apiquery: { type: "STRING" },
             apiparams: { type: "STRING" },
-            apisection: { type: "STRING" },
+            apisection: { type: "STRING", updated: true, defaultValue: null },
             inactive: { type: "STRING", created: true, defaultValue: "0" },
             createdate: { type: "DATE", created: true },
             createtime: { type: "TIME", created: true },

@@ -15,6 +15,7 @@
 			{"name": "apiquery_label", "value": "คำสั่งแบบสอบถาม"},
 			{"name": "createtime_label", "value": "เวลา"},
 			{"name": "inactive_label", "value": "ใช้งาน"},
+			{"name": "apisection_label", "value": "ฐานข้อมูล"},
 			{"name": "canuseparam_label", "value": "สามารถใช้พารามิเตอร์: systemdate, systemtime, knuser, knsite."}
 		]
 	},
@@ -34,6 +35,7 @@
 			{"name": "createdate_label", "value": "Date"},
 			{"name": "createtime_label", "value": "Time"},
 			{"name": "inactive_label", "value": "Active"},
+			{"name": "apisection_label", "value": "Section"},
 			{"name": "canuseparam_label", "value": "Can use default parameters: systemdate, systemtime, knuser, knsite."}
 		]
 	}
