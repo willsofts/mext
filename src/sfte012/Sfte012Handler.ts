@@ -19,6 +19,7 @@ export class Sfte012Handler extends TknOperateHandler {
             mailfrom: { type: "STRING", calculated: true },
             mailto: { type: "STRING", calculated: true },
             mailtitle: { type: "STRING", calculated: true },
+            mailsecure: { type: "STRING", calculated: true },
             factorverify: { type: "STRING", calculated: true },
             factorissuer: { type: "STRING", calculated: true },
             approveurl: { type: "STRING", calculated: true },
@@ -38,6 +39,7 @@ export class Sfte012Handler extends TknOperateHandler {
         {category: "CONFIGMAIL", colname: "MAIL_FROM", fieldname: "mailfrom", columnOnly: true},
         {category: "CONFIGMAIL", colname: "MAIL_TO", fieldname: "mailto", columnOnly: false},
         {category: "CONFIGMAIL", colname: "MAIL_TITLE", fieldname: "mailtitle", columnOnly: true},
+        {category: "CONFIGMAIL", colname: "MAIL_SECURE", fieldname: "mailsecure", columnOnly: true, boolflag: true},
         {category: "CONFIGURATION", colname: "APPROVE_URL", fieldname: "approveurl", columnOnly: false},
         {category: "CONFIGURATION", colname: "ACTIVATE_URL", fieldname: "activateurl", columnOnly: false},
         {category: "2FA", colname: "FACTORVERIFY", fieldname: "factorverify", columnOnly: false, boolflag: true},
@@ -83,6 +85,9 @@ export class Sfte012Handler extends TknOperateHandler {
                     }
                 }
             }
+        }
+        if(!record.mailsecure || record.mailsecure.trim().length == 0) {
+            record.mailsecure = "true";
         }
         return {records: Object.keys(record).length>0?1:0, rows: [record], columns: null};
     }
@@ -156,6 +161,15 @@ export class Sfte012Handler extends TknOperateHandler {
                     let rs = await colsql.executeUpdate(db,context);
                     let rc = this.createRecordSet(rs);
                     result.records += rc.records;
+                    if(rc.records<1) {
+                        insql.clearParameter();
+                        insql.set("colvalue",colvalue);
+                        insql.set("category",cfg.category);
+                        insql.set("colname",cfg.colname);
+                        rs = await insql.executeUpdate(db,context);
+                        rc = this.createRecordSet(rs);
+                        result.records += rc.records;
+                    }
                     if(cfg.altercolnames && cfg.altercolnames.length>0) {
                         for(let acolname of cfg.altercolnames) {
                             colsql.clearParameter();

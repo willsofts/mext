@@ -19,6 +19,10 @@
 <label for="mailport" id="mailport_label" class="control-label"><%=label.get('mailport_label','Mail Port')%></label>
 <div class="input-group"><input type="text" id="mailport" name="mailport" class="form-control input-md irequired alert-input" value="<%=data.dataset?.mailport%>" /><span></span><div class="input-group-required"><label class="required">*</label></div></div><div id="mailport_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('mailport_alert','You can not leave this empty')%></div>
 						</div>
+						<div class="col-height col-md-3 form-check" id="mailsecurelayer">							
+							<input type="checkbox" id="mailsecure" name="mailsecure" class="form-control input-md form-check-input" value="true" <%=page.checked('true',data.dataset?.mailsecure)%> />
+							<label for="mailsecure" id="mailsecure_label" class="control-label form-check-label"><%=label.get('mailsecure_label','Secure')%></label>
+						</div>
 					</div>
 				</div>
 		</div>
