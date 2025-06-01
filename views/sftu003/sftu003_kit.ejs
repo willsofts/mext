@@ -4,6 +4,13 @@
 					<div class="row row-height">
 						<div class="col-height col-md-10">
 <label for="apiquery" id="apiquery_label" class="control-label"><%=label.get('apiquery_label','Query Statement')%></label>
+<a href="javascript:void(0)" class="info-linker">
+<i class="fa fa-info-circle"
+   data-toggle="popover"
+   data-trigger="click"
+   data-content="This is query statement that can defined parameter with place holder by ? sign ex. select * from table where field=?field">
+</i>
+</a>
 <div class="input-group"><textarea id="apiquery" name="apiquery" class="form-control input-md irequired alert-input" rows="10"><%=data.dataset?.apiquery%></textarea><div class="input-group-required"><label class="required">*</label></div></div><div id="apiquery_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('apiquery_alert','You can not leave this empty')%></div>
 <span class="canuse-param"><%=label.get('canuseparam_label','Can use default parameters: systemdate, systemtime, knuser, knsite.')%></span>
 						</div>
@@ -21,7 +28,16 @@
 <div class="input-group-required"><label class="required">*</label></div></div><div id="inactive_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('inactive_alert','You can not leave this empty')%></div>
 						</div>
 						<div class="col-height col-md-4">
-<label for="apisection" id="apisection_label" class="control-label"><%=label.get('apisection_label','Section')%></label><input type="text" id="apisection" name="apisection" class="form-control input-md" maxlength="30" value="<%=data.dataset?.apisection%>" />
+<label for="apisection" id="apisection_label" class="control-label"><%=label.get('apisection_label','Section')%></label>
+<a href="javascript:void(0)" class="info-linker">
+<i class="fa fa-info-circle"
+   data-toggle="popover"
+   data-trigger="click"
+   data-html="true"
+   data-content="This is database connector section defined by configuration setting. see <a href='https://github.com/willsofts/will-sql' target='willsql_window'>will-sql</a>">
+</i>
+</a>
+<input type="text" id="apisection" name="apisection" class="form-control input-md" maxlength="30" value="<%=data.dataset?.apisection%>" />
 						</div>
 					</div>
 				</div>

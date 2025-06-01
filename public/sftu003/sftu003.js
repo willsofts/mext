@@ -43,6 +43,7 @@ function setupComponents() {
 		deleted();  return false;
 	});
 	//#(60000) programmer code begin;
+	$('[data-toggle="popover"]').popover();
 	//#(60000) programmer code end;
 }
 function resetFilters() {
@@ -420,6 +421,7 @@ function setupDialogComponents() {
 	initialApplicationControls($("#dialogpanel"));
 	$("#dialogpanel").find(".modal-dialog").draggable();
 	//#(385000) programmer code begin;
+	$('[data-toggle="popover"]').popover();
 	//#(385000) programmer code end;
 }
 var fs_requiredfields = {

@@ -4,7 +4,15 @@
 					<div class="table-layer-class">
 						<div class="row row-height">
 							<div class="col-height col-md-7">
-<label for="apiname" id="apiname_label" class="control-label"><%=label.get('apiname_label','API Name')%></label><div class="input-group"><input type="text" id="apiname" name="apiname" class="form-control input-md irequired ikeyclass alert-input" maxlength="50" value="<%=data.dataset?.apiname%>" <%=fs_express_readonly%> /><div class="input-group-required"><label class="required">*</label></div></div><div id="apiname_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('apiname_alert','You can not leave this empty')%></div>
+<label for="apiname" id="apiname_label" class="control-label"><%=label.get('apiname_label','API Name')%></label>
+<a href="javascript:void(0)" class="info-linker">
+<i class="fa fa-info-circle"
+   data-toggle="popover"
+   data-trigger="click"
+   data-content="This is api name to invoke by dataservice/lookup or dataserice/lists. ex. http://localhost:8080/api/dataservice/lookup?apiname=api_name&field=value">
+</i>
+</a>
+<div class="input-group"><input type="text" id="apiname" name="apiname" class="form-control input-md irequired ikeyclass alert-input" maxlength="50" value="<%=data.dataset?.apiname%>" <%=fs_express_readonly%> /><div class="input-group-required"><label class="required">*</label></div></div><div id="apiname_alert" role="alert" class="has-feedback has-error fa-hidden"><%=label.get('apiname_alert','You can not leave this empty')%></div>
 							</div>
 						</div>
 					</div>
