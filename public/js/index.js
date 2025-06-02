@@ -2,6 +2,12 @@
 		var mouseY = 0;
 		var $currPage = "";
 		var $ACCESS_TOKEN;
+		var ALERT_BEFORE_TIMEOUT = META_INFO.ALERT_BEFORE_TIMEOUT;
+		var ALERT_BEFORE_TIMEOUT = META_INFO.ALERT_BEFORE_TIMEOUT;
+        var sessionTimeout = META_INFO.SESSION_TIMEOUT || (30 * 60 * 1000); // 30 minutes
+        var alertBeforeTimeout = META_INFO.ALERT_BEFORE_SESSION_TIMEOUT || (5 * 60 * 1000); // 5 minutes before
+        var timeoutAlert;
+		console.log("index.js: ALERT_BEFORE_TIMEOUT",ALERT_BEFORE_TIMEOUT,", sessionTimeout",sessionTimeout,", alertBeforeTimeout",alertBeforeTimeout);
 		function validInputUser() {
 			if($.trim($("#main_username").val())=="") { alertbox("User is undefined"); return false; }
 			return true;
@@ -420,7 +426,10 @@
 					startSSO(domainid);
 				});
 			});
-			$("#workingframe").on("load",function() { try{stopWaiting();}catch(ex){} });
+			$("#workingframe").on("load",function() { 
+				try{stopWaiting();}catch(ex){} 
+				if(ALERT_BEFORE_TIMEOUT) try{initWorkingTimer();}catch(ex){} 
+			});
 		}
 		var fs_workingframe_offset = 30;
 		$(function(){
@@ -464,7 +473,8 @@
 					e.returnValue = "";
 					return "";
 				}
-			}).on("unload",function() { closeChildWindows(); });		
+			}).on("unload",function() { closeChildWindows(); });
+			if(ALERT_BEFORE_TIMEOUT) initSessionTimer();		
 		});
 		window.onmessage = function(e) {
 			console.log("main: onmessage:",e.data);
@@ -474,4 +484,22 @@
 					sendMessageInterface();
 				}
 			} catch(ex) { }
+		}
+        function startSessionTimer() {
+            clearTimeout(timeoutAlert);
+            timeoutAlert = setTimeout(() => {
+                alert('Your session is about to expire. Please save your work.');
+            }, sessionTimeout - alertBeforeTimeout);
+        }
+		function initSessionTimer() {
+			console.log("init session timer ...");
+			startSessionTimer();
+			document.addEventListener('mousemove', startSessionTimer);
+			document.addEventListener('keydown', startSessionTimer);	
+		}
+		function initWorkingTimer() {
+			const iframe = document.getElementById('workingframe');
+			let framedoc = iframe.contentDocument || iframe.contentWindow.document;
+			framedoc.addEventListener('mousemove', startSessionTimer);
+			framedoc.addEventListener('keydown', startSessionTimer);	
 		}
