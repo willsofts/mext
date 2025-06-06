@@ -1,4 +1,5 @@
-var os = require("os");
+const os = require("os");
+//const MiddlewareTracing = require("./middleware.tracing");
 
 module.exports = {
     nodeID: "mext-"+os.hostname().toLowerCase() + "-" + process.pid,
@@ -11,14 +12,14 @@ module.exports = {
                 formatter: "full",
             } 
         },
-		/*		
+        /*                   
         {
             type: "File",
             options: {
                 level: "debug",
                 formatter: "full",
                 folder: "./logs",
-                filename: "mext-{date}.log",
+                filename: "express-{date}.log",
                 eol: "\n",
                 interval: 1000,
             }
@@ -40,7 +41,7 @@ module.exports = {
     metrics: false,
     statistics: true
     */
-	/*
+   /*
     tracing: {
         enabled: true,
         exporter: {
@@ -54,7 +55,7 @@ module.exports = {
             }
         }
     },   
-	*/
+    */
     /*
 	metrics: {
         enabled: true,
@@ -74,5 +75,6 @@ module.exports = {
                 }
             }
         ]
-    }*/		
+    }*/	
+    //middlewares: [MiddlewareTracing]
 };
