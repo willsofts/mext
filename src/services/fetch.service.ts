@@ -4,6 +4,8 @@ import { JSONReply } from "@willsofts/will-api";
 import { Utilities, Configure } from "@willsofts/will-util";
 var os = require("os");
 
+const packageconfig = require("../../package.json");
+
 const FetchService : ServiceSchema = {
     name: "fetch",
     actions: {
@@ -80,7 +82,6 @@ const FetchService : ServiceSchema = {
         version(ctx: any) {
             ctx.meta.$responseRaw = true; 
             ctx.meta.$responseType = "application/json";    
-            const packageconfig = require("../../package.json");
             return { name: packageconfig.name, version: packageconfig.version, description: packageconfig.description };
         },
         async info(ctx: any) {
