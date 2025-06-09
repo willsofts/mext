@@ -26,12 +26,14 @@
 			for(let field in main_fields) {				
 				params[main_fields[field]] = $("#"+field).val();
 			}
-			console.log("params",params);
+			let requestid = getRequestID();
+			console.log("login: params",params,", requestid",requestid);
 			jQuery.ajax({
 				url: API_URL+"/api/sign/signin",
 				type: "POST",
 				contentType: defaultContentType,
 				data: params, 
+				headers : { "x-request-id": requestid },
 				dataType: "html",
 				error : function(transport,status,errorThrown) { 
 					stopWaiting();
@@ -270,10 +272,11 @@
 			//if($.trim(fs_user)=="") return;
 			if(!language) language = fs_default_language;
 			let authtoken = getAccessorToken();
+			let requestid = getRequestID();
 			jQuery.ajax({
 				url: API_URL+"/api/menuside/html",
 				data: { userid: fs_user, language: language },
-				headers : { "authtoken": authtoken },
+				headers : { "authtoken": authtoken, "x-request-id": requestid },
 				type: "POST",
 				dataType: "html",
 				contentType: defaultContentType,
@@ -297,10 +300,11 @@
 			//if($.trim(fs_user)=="") return;
 			if(!language) language = fs_default_language;
 			let authtoken = getAccessorToken();
+			let requestid = getRequestID();
 			jQuery.ajax({
 				url: API_URL+"/api/menufavor/html",
 				data: { userid: fs_user, language: language },
-				headers : { "authtoken": authtoken },
+				headers : { "authtoken": authtoken, "x-request-id": requestid },
 				type: "POST",
 				dataType: "html",
 				contentType: defaultContentType,
@@ -361,9 +365,10 @@
 		}
 		function doAccessToken(token,callback,info) {
 			if(token && token!="") {
+				let requestid = getRequestID();
 				jQuery.ajax({
 					url: API_URL+"/api/sign/accesstoken",
-					headers : { "authtoken": token },
+					headers : { "authtoken": token, "x-request-id": requestid },
 					type: "POST",
 					contentType: defaultContentType,
 					dataType: "html",
