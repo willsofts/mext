@@ -256,7 +256,7 @@ function selectLinker($a) {
 }
 function displayMenuTree(curnode,parentnode) {
 	clearingFields();
-	let $menu = $("<ul id=\"menuitemlist\" class=\"nav sidebar-nav\" role=\"menu\"></ul>");
+	let $menu = $("<ul id=\"menuitemlist\" class=\"nav sidebar-nav menu-folder\" role=\"menu\"></ul>");
 	updateItemToMenu(curnode,parentnode,$menu);
 	$("#menubarlayer").empty().append($menu);
 }
@@ -267,7 +267,7 @@ function updateItemToMenu(curnode,parentnode,menu) {
 	if(!txt) txt = "";
 	let $ul = $("<ul></ul>");
 	$ul.attr("id","#submenu_"+menuCounter);
-	$ul.addClass("panel-collapse");
+	$ul.addClass("panel-collapse menu-folder");
 	$ul.attr("role","menu");
 	$ul.attr("counter",menuCounter);	
 	if(isz==0) { 
