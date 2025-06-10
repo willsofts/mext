@@ -1,8 +1,8 @@
 <ul id="menuitemlist" class="nav flex-column sidebar-nav navbar-nav list-sidebar bg-default" role="menu">
 <%
-function createMenuTree(menu,progmap,counter) {
+function createMenuTree(lang,menu,progmap,counter) {
     if(menu) {
-        let progname = menu.text;
+        let progname = "TH"==lang ? menu.caption || menu.text : menu.text;
         let hasItems = menu?.items && menu?.items?.length > 0;
         let hasProg = menu?.itemname && menu?.itemname.trim().length > 0;
         if(hasProg) { 
@@ -23,7 +23,7 @@ function createMenuTree(menu,progmap,counter) {
     <% if(hasItems) { %>
     <ul id="submenu_<%=counter%>" class="sub-menu panel-collapse collapse" role="menu">    
         <% for(let item of menu?.items) {            
-            createMenuTree(item,progmap,counter++);   
+            createMenuTree(lang,item,progmap,counter++);   
         }%>
     </ul>
     <% } %>
@@ -68,7 +68,7 @@ if(data.dataset?.sidemap && data.dataset?.sidelist) {
                 </a>
                 <ul id="submenu_<%=counter%>" class="sub-menu panel-collapse collapse" role="menu">
                 <% for(let item of jsonmenu?.items) {            
-                    createMenuTree(item,progmap,++counter);   
+                    createMenuTree(lang,item,progmap,++counter);   
                 }%>
                 </ul>
             </li>
