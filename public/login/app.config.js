@@ -1,7 +1,7 @@
 const appVariables = {
     ALLOW_AUTHEN_SAML: "true",
     CHAT_URL: "",
-    MULTI_LANGUAGES: ["EN","TH","VN"],
+    MULTI_LANGUAGES: ["EN","TH"],
     BASE_CSS: ""
 };
 function getAppConfigs() {
