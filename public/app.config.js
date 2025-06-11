@@ -1,6 +1,6 @@
-const appVariables = {
+var appVariables = {
     MULTI_LANGUAGES: ["EN","TH"],
-    BASE_CSS: "./css/user_style.css"
+    BASE_CSS: ""
 };
 function getAppConfigs() {
     return appVariables;

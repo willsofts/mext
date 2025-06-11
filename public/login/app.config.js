@@ -1,13 +1,8 @@
-const appVariables = {
-    ALLOW_AUTHEN_SAML: "true",
-    CHAT_URL: "",
-    MULTI_LANGUAGES: ["EN","TH"],
-    BASE_CSS: ""
-};
+if(!window.appConfigs) appConfigs = {};
 function getAppConfigs() {
-    return appVariables;
+    return appConfigs;
 }
 function getAppConfig(key) {
-    return appVariables[key];
+    return appConfigs[key];
 }
-console.log("appVariables",appVariables);
+console.log("appConfigs",appConfigs);
