@@ -93,7 +93,7 @@
 			</div>
 
 			<div id="programcontrollayer" class="row">
-			<div id="proglayerheader" class="pt-page-header pt-page-corser"><label id="progtrans_label"><%=label.get('progtrans_label','Program In Group')%></label><a href="javascript:void(0)" class="pull-right up" onclick="exploreLayer(this,'proglayer')"><em class="fa fa-chevron-circle-up fa-toggle-collapse"></em></a></div>
+			<div id="proglayerheader" class="pt-page-header pt-page-corser pt-page-subheader"><label id="progtrans_label"><%=label.get('progtrans_label','Program In Group')%></label><a href="javascript:void(0)" class="pull-right up" id="explorelinker"><em class="fa fa-chevron-circle-up fa-toggle-collapse"></em></a></div>
 				<div id="proglayer" class="portal-area portal-area-layer">
 					<div id="programrowlayer" class="row">
 						<div class="col-md-3 col-height col-label text-right">
@@ -103,7 +103,7 @@
 							<%-page.html('select',{map: data.entity?.tprog, value: data.dataset?.programid, id: "progingroup", class: "form-control input-md", showing: "both"})%>
 						</div>
 						<div class="col-md-1 col-height">
-							<input type="button" id="addprogbutton" class="btn btn-dark btn-sm" value="+" title="Add Program"/>
+							<a href="javascript:void(0)" id="addprogbutton" class="btn btn-dark btn-sm" title="Add Program"><em class="fa fa-plus"></em></a>
 						</div>
 					</div>
 					<table id="progtable" class="table table-bordered table-hover table-striped tablesorter">

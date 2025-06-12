@@ -44,7 +44,7 @@
 								<input type="hidden" id="permitvalue<%=key%>" name="permvalue" class="permit-input" value="<%=boxvalue%>"/>
 								<div class="col-md-4 col-height">						
 									<div class="checkbox form-check">
-									<input type="checkbox" id="permitbox<%=key%>" class="permit-checkbox" onclick="toggleValueClick(this,'permitvalue<%=key%>')" <%=boxcheck%> />
+									<input type="checkbox" id="permitbox<%=key%>" class="permit-checkbox" data-key="<%=key%>" <%=boxcheck%> />
 									<label id="permitbox<%=key%>_label" class="control-label" for="permitbox<%=key%>"><%=permtitle%></label>
 									</div>
 								</div>
@@ -60,7 +60,7 @@
 				}
 				%>				
 				<div class="row row-heighter center-block">
-						<div class="col-md-3 col-height col-label text-right">
+						<div class="col-md-3 col-height col-label">
 							<label id="parameters_label" class="control-label"><%=label.get('parameters_label','Parameters')%></label>
 						</div>
 						<div class="col-md-5 col-height">

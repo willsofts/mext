@@ -52,7 +52,15 @@ function setupComponents() {
 		stop: function( event, ui ) {
 			displaySequenceTableLists("#progtablebody");
 		}
-	});	
+	});
+	$("#explorelinker").on("click",function() { exploreLayer(this,'proglayer'); });
+	$("input.permit-checkbox",$("#permit_dialog_layer")).each(function(index,element) {
+		let $e = $(element);
+		$e.on("click",function() {
+			let key = $e.attr("data-key");
+			toggleValueClick(element,'permitvalue'+key);
+		});
+	});
 }
 function resetFilters() {
 	try {
