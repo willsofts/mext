@@ -3,8 +3,8 @@
 #insertbutton { margin-top: 10px; margin-right: 5px; }
 #exportjsonbutton { margin-top: 10px; margin-left: 5px; }
 #exportexcelbutton { margin-top: 10px; margin-left: 5px; }
-#jsonstartuploadbutton { width:130px; margin-top: 10px; margin-left: 5px; }
-#excelstartuploadbutton { width:130px; margin-top: 10px; margin-left: 5px; }
+#jsonstartuploadbutton { min-width: 150px; margin-top: 10px; margin-left: 5px; }
+#excelstartuploadbutton { min-width: 150px; margin-top: 10px; margin-left: 5px; }
 #exceluploadbutton { min-width: 100px; }
 #jsonuploadbutton { min-width: 100px; }
 /*#(10000) programmer code end;*/
