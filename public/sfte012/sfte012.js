@@ -28,6 +28,11 @@ function setupComponents() {
 		update();  return false;
 	});
 	//#(60000) programmer code begin;
+	$("a.part-linker").each(function(index,element) {
+		$(element).on("click",function() {
+			toggleCollapseExpand(this);
+		});
+	});
 	//#(60000) programmer code end;
 }
 function clearingFields() {
