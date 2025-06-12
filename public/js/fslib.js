@@ -1077,35 +1077,42 @@ function confirmRevise(params, okFn, cancelFn,  width, height) {
 function successbox(callback,params) {
 	alertbox("QS0004",callback,null,params);
 }
-function alertbox(errcode, callback, defaultmsg, params) {
+function alertbox(errcode, callback, defaultmsg, params, addonmsg, title, icon) {
+	if(!title || title.trim().length==0) title = getMessageCode("fsalert",null,"Alert");
 	let txt = getMessageCode(errcode, params);
 	if(txt!=null && txt!="") {
-		alertDialog(txt, callback);
+		if(addonmsg) txt += " "+addonmsg;
+		alertDialog(txt, callback, title, icon);
 	} else {
 		if (defaultmsg) {
-			alertDialog(defaultmsg, callback);
+			if(addonmsg) defaultmsg += " "+addonmsg;
+			alertDialog(defaultmsg, callback, title, icon);
 		} else {
-			alertDialog(errcode, callback);
+			alertDialog(errcode, callback, title, icon);
 		}
 	}
 }
-function confirmbox(errcode, okFn, cancelFn, defaultmsg, params){
+function confirmbox(errcode, okFn, cancelFn, defaultmsg, params, addonmsg, title, icon){
+	if(!title || title.trim().length==0) title = getMessageCode("fsconfirm",null,"Confirmation");
 	let txt = getMessageCode(errcode,params);
 	if(txt!=null && txt!="") {
-		return confirmDialog(txt, okFn, cancelFn);
+		if(addonmsg) txt += " "+addonmsg;
+		return confirmDialog(txt, okFn, cancelFn, title, icon);
 	} else {
 		if (defaultmsg) {
-			return confirmDialog(defaultmsg, okFn, cancelFn);
+			if(addonmsg) defaultmsg += " "+addonmsg;
+			return confirmDialog(defaultmsg, okFn, cancelFn, title, icon);
 		} else {
-			return confirmDialog(errcode, okFn, cancelFn);
+			return confirmDialog(errcode, okFn, cancelFn, title, icon);
 		}
 	}
 }
 /* uncomment to use boot dialog */
-function alertDialog(msg, callbackfn, width, height) {
+function alertDialog(msg, callbackfn, title="Alert", icon="fa fa-bell-o") {
 	try {
 		let fs_okbtn = getMessageCode("fsokbtn"); if(!fs_okbtn || (fs_okbtn=="" || fs_okbtn=="fsokbtn")) fs_okbtn = "OK";
     	bootbox.alert({
+			title: "<em class='"+icon+"'></em>&nbsp;<label>"+title+"</label>",
     		message: msg,
     		callback: function() {    		
     			if (callbackfn) callbackfn();
@@ -1120,11 +1127,12 @@ function alertDialog(msg, callbackfn, width, height) {
     //alert(msg);
     if (callbackfn) callbackfn();
 }
-function confirmDialog(msg, okCallback, cancelCallback, width, height) {
+function confirmDialog(msg, okCallback, cancelCallback, title="Confirmation", icon="fa fa-question-circle") {
 	try {
 		let fs_confirmbtn = getMessageCode("fsconfirmbtn"); if(!fs_confirmbtn || (fs_confirmbtn=="" || fs_confirmbtn=="fsconfirmbtn")) fs_confirmbtn = "OK";
 		let fs_cancelbtn = getMessageCode("fscancelbtn"); if(!fs_cancelbtn || (fs_cancelbtn=="" || fs_cancelbtn=="fscancelbtn")) fs_cancelbtn = "Cancel";
     	bootbox.confirm({
+			title: "<em class='"+icon+"'></em>&nbsp;<label>"+title+"</label>",
 			message: msg, 
 			callback: function(result) {
 				if(result) {
@@ -1133,6 +1141,7 @@ function confirmDialog(msg, okCallback, cancelCallback, width, height) {
 					if (cancelCallback) cancelCallback();
 				}
 			},
+			swapButtonOrder: true,
 			buttons: {
 				confirm : { label: fs_confirmbtn },
 				cancel: { label: fs_cancelbtn }
@@ -1810,7 +1819,7 @@ function serializeParameters(parameters, addonParameters, raw) {
 	console.log("serialize: parameters",parameters);
 	console.log("serialize: jsondata",jsondata);
 	let headers = { "data-type": cipherdata?"json/cipher":"", language: fs_default_language };	
-	return { cipherdata: cipherdata, jsondata: jsondata, headers : headers };
+	return { cipherdata: cipherdata, jsondata: jsondata, headers: headers };
 }
 function decryptCipherData(headers, data) {
 	let accepttype = headers["accept-type"];
