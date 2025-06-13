@@ -988,90 +988,91 @@ function getMessageTitle(titleCode, defaultTitle) {
 }
 function createDialog(dialoglayer) {
 }
-function confirmDialogBox(errcode, params, defaultmsg, okFn, cancelFn, width, height, addedMsg){
+function confirmDialogBox(errcode, params, defaultmsg, okFn, cancelFn, addedMsg){
 	let txt = getMessageCode(errcode,params);
 	if(txt!=null && txt!="") {	
 		if(addedMsg) txt += " "+addedMsg;
-		confirmDialog(txt, okFn, cancelFn, width, height); 
+		confirmDialog(txt, okFn, cancelFn); 
 		return false;
 	} else {
 		if (defaultmsg) {
-			return confirmDialog(defaultmsg, okFn, cancelFn, width, height);
+			if(addedMsg) defaultmsg += " "+addedMsg;
+			return confirmDialog(defaultmsg, okFn, cancelFn);
 		} else {
-			return confirmDialog(errcode, okFn, cancelFn, width, height);
+			return confirmDialog(errcode, okFn, cancelFn);
 		}
 	}
 }
-function confirmDelete(params, okFn, cancelFn,  width, height) {
-	if(!confirmDialogBox("QS0001",params,"Do you want to delete this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmDelete(params, okFn, cancelFn) {
+	if(!confirmDialogBox("QS0001",params,"Do you want to delete this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmSave(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0002",null,"Do you want to save this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmSave(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0002",null,"Do you want to save this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmCancel(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0003",null,"Do you want to cancel this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmCancel(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0003",null,"Do you want to cancel this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmRemove(params, okFn, cancelFn,  width, height) {
-	if(!confirmDialogBox("QS0005",params,"Do you want to delete this record?",okFn,cancelFn,width,height)) return false;
+function confirmRemove(params, okFn, cancelFn) {
+	if(!confirmDialogBox("QS0005",params,"Do you want to delete this record?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmSend(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0006",null,"Do you want to send this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmSend(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0006",null,"Do you want to send this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmUpdate(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0014",null,"Do you want to update this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmUpdate(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0014",null,"Do you want to update this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmClear(params, okFn, cancelFn,  width, height) {
-	if(!confirmDialogBox("QS0015",params,"Do you want to clear this?",okFn,cancelFn,width,height)) return false;
+function confirmClear(params, okFn, cancelFn) {
+	if(!confirmDialogBox("QS0015",params,"Do you want to clear this?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmProcess(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0018",null,"Do you want to process this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmProcess(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0018",null,"Do you want to process this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmReceive(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0020",null,"Do you want to receive this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmReceive(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0020",null,"Do you want to receive this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmReset(okFn, cancelFn,  width, height) {
-	if(!confirmDialogBox("QS0021",null,"Do you want to reset this trasaction?",okFn,cancelFn,width,height)) return false;
+function confirmReset(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0021",null,"Do you want to reset this trasaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmErase(params, okFn, cancelFn,  width, height) {
-	if(!confirmDialogBox("QS0022",params,"Do you want to delete %s row(s)?",okFn,cancelFn,width,height)) return false;
+function confirmErase(params, okFn, cancelFn) {
+	if(!confirmDialogBox("QS0022",params,"Do you want to delete %s row(s)?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmApprove(params, okFn, cancelFn,  width, height) {
-	if(!confirmDialogBox("QS0024",params,"Do you want to confirm approve the %s request?",okFn,cancelFn,width,height)) return false;
+function confirmApprove(params, okFn, cancelFn) {
+	if(!confirmDialogBox("QS0024",params,"Do you want to confirm approve the %s request?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmReject(params, okFn, cancelFn,  width, height) {
-	if(!confirmDialogBox("QS0025",params,"Do you want to reject %s?",okFn,cancelFn,width,height)) return false;
+function confirmReject(params, okFn, cancelFn) {
+	if(!confirmDialogBox("QS0025",params,"Do you want to reject %s?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmRequest(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0027",null,"Do you want to create this request?",okFn,cancelFn,width,height)) return false;
+function confirmRequest(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0027",null,"Do you want to create this request?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmImport(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0028",null,"Do you want to import this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmImport(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0028",null,"Do you want to import this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmExport(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0029",null,"Do you want to export this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmExport(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0029",null,"Do you want to export this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmResend(okFn, cancelFn, width, height) {
-	if(!confirmDialogBox("QS0032",null,"Do you want to resend this transaction?",okFn,cancelFn,width,height)) return false;
+function confirmResend(okFn, cancelFn) {
+	if(!confirmDialogBox("QS0032",null,"Do you want to resend this transaction?",okFn,cancelFn)) return false;
 	return true;
 }
-function confirmRevise(params, okFn, cancelFn,  width, height) {
-	if(!confirmDialogBox("QS0033",params,"Do you want to revise the %s request?",okFn,cancelFn,width,height)) return false;
+function confirmRevise(params, okFn, cancelFn) {
+	if(!confirmDialogBox("QS0033",params,"Do you want to revise the %s request?",okFn,cancelFn)) return false;
 	return true;
 }
 function successbox(callback,params) {
@@ -1171,10 +1172,11 @@ function alertmsg(errcode, fallmsg, params, callback) {
 function confirmmsg(errcode, fallmsg, params, okFn, cancelFn) {
 	confirmbox(errcode, okFn, cancelFn, fallmsg, params);
 }
-function bootAlertDialog(msg, callback, width, height) {
+function bootAlertDialog(msg, callback, title="Alert", icon="fa fa-bell-o") {
 	try {
 		let fs_okbtn = getMessageCode("fsokbtn"); if(!fs_okbtn || (fs_okbtn=="" || fs_okbtn=="fsokbtn")) fs_okbtn = "OK";
     	bootbox.alert({
+			title: "<em class='"+icon+"'></em>&nbsp;<label>"+title+"</label>",
     		message: msg,
     		callback: function() {    		
     			if (callback) callback();
@@ -1189,11 +1191,12 @@ function bootAlertDialog(msg, callback, width, height) {
     //alert(msg);
     if (callback) callback();
 }
-function bootConfirmDialog(msg, okCallback, cancelCallback, width, height) {
+function bootConfirmDialog(msg, okCallback, cancelCallback, title="Confirmation", icon="fa fa-question-circle") {
 	try {
 		let fs_confirmbtn = getMessageCode("fsconfirmbtn"); if(!fs_confirmbtn || (fs_confirmbtn=="" || fs_confirmbtn=="fsconfirmbtn")) fs_confirmbtn = "OK";
 		let fs_cancelbtn = getMessageCode("fscancelbtn"); if(!fs_cancelbtn || (fs_cancelbtn=="" || fs_cancelbtn=="fscancelbtn")) fs_cancelbtn = "Cancel";
     	bootbox.confirm({
+			title: "<em class='"+icon+"'></em>&nbsp;<label>"+title+"</label>",
 			message: msg, 
 			callback: function(result) {
 				if(result) {
@@ -1202,6 +1205,7 @@ function bootConfirmDialog(msg, okCallback, cancelCallback, width, height) {
 					if (cancelCallback) cancelCallback();
 				}
 			},
+			swapButtonOrder: true,
 			buttons: {
 				confirm : { label: fs_confirmbtn, className : "btn-primary btn-base" },
 				cancel: { label: fs_cancelbtn, className : "btn-primary btn-base" }
@@ -1819,7 +1823,7 @@ function serializeParameters(parameters, addonParameters, raw) {
 	console.log("serialize: parameters",parameters);
 	console.log("serialize: jsondata",jsondata);
 	let headers = { "data-type": cipherdata?"json/cipher":"", language: fs_default_language };	
-	return { cipherdata: cipherdata, jsondata: jsondata, headers: headers };
+	return { cipherdata: cipherdata, jsondata: jsondata, headers : headers };
 }
 function decryptCipherData(headers, data) {
 	let accepttype = headers["accept-type"];
