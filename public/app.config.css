@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Kanit-Regular';
+    src: url('./assets/Kanit/Kanit-Regular.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Kanit-Light';
+    src: url('./assets/Kanit/Kanit-Light.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Kanit-Medium';
+    src: url('./assets/Kanit/Kanit-Medium.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'Kanit-SemiBold';
+    src: url('./Kanit/Kanit-SemiBold.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'Kanit-Bold';
+    src: url('./assets/Kanit/Kanit-Bold.ttf') format('opentype');
+}
+body {
+	font-family: 'Kanit-Light' !important;
+}
+td {
+	font-family: 'Kanit-Light' !important;
+}
+

@@ -18,4 +18,6 @@ label.control-label { white-space: nowrap; }
 }
 .nav-tabbar-policy { width:100%; }
 #fs_controlbuttonfooterlayerpolicy { margin-right: 10px; margin-bottom:5px; }
+#savebuttonnum { min-width: 90px; }
+#updatebuttonpolicy { min-width: 90px; }
 /*#(10000) programmer code end;*/

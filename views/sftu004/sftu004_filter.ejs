@@ -6,11 +6,11 @@
 <label for="keynames" id="keynames_label" class="control-label"><%=label.get('keynames_label','Name')%></label>
 <input type="text" id="keynames" name="keyname" class="form-control input-md" maxlength="100" value="<%=data.dataset?.keyname%>" /><span></span>
 					</div>
-					<div class="col-height col-md-3">
+					<div class="col-height col-md-2">
 <label for="fromdates" id="fromdates_label" class="control-label"><%=label.get('fromdates_label','From Date')%></label>
 <%-page.html('date',{id: "fromdates", name: "fromdate", class: "form-control input-md", current: true})%>
 					</div>
-					<div class="col-height col-md-3">
+					<div class="col-height col-md-2">
 <label for="todates" id="todates_label" class="control-label"><%=label.get('todates_label','To Date')%></label>
 <%-page.html('date',{id: "todates", name: "todate", class: "form-control input-md", current: true})%>
 					</div>

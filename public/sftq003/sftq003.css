@@ -6,4 +6,6 @@ a.disabled {
 }
 #contents { overflow: auto; min-height: 250px; }
 #buttoncontrollayer { padding-left: 0px; padding-right: 10px; }
+#referbutton { min-width: 120px; }
+#resendbutton { min-width: 90px; }
 /*#(10000) programmer code end;*/
