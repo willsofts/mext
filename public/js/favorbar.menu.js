@@ -2,11 +2,11 @@
 			var fs_favor_prog_ary;
 			function showNewFavorItem() {
 				$("#favorcoverbarmenu").show();
-				$("#favornewitemlayer").show();
+				$("#favornewitemlayer").addClass("show");
 			}
 			function hideNewFavorItem() {
 				$("#favorcoverbarmenu").hide();
-				$("#favornewitemlayer").hide();
+				$("#favornewitemlayer").removeClass("show");
 			}
 			function addBlankMenuItem(alink) {
 				let seqno = alink.attr("seqno");
@@ -142,7 +142,7 @@
 			}
 			function load_prog_item() {
 				let authtoken = getAccessorToken();
-				let requestid = this.getRequestID();
+				let requestid = getRequestID();
 				let fs_user = $("#main_user").val();
 				jQuery.ajax({
 					url: API_URL+"/api/menu/prog",
