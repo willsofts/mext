@@ -1,8 +1,8 @@
-if(!window.appConfigs) appConfigs = {};
+if(!window.appVariables) appVariables = {};
 function getAppConfigs() {
-    return appConfigs;
+    return appVariables;
 }
 function getAppConfig(key) {
-    return appConfigs[key];
+    return appVariables[key];
 }
-console.log("appConfigs",appConfigs);
+console.log("appConfigs",appVariables);
