@@ -193,6 +193,9 @@ table.partition-table { background-color: #dee2e6; }
 		box-shadow: 0px 0px 20px 10px #315989;
 	}
 }	
+.login-input-field input:focus ~ label , .login-input-field input:valid ~ label {
+	background-color: #EEF0F8;
+}
 
 /* after login */
 .favor-navbox-tiles .tile {
