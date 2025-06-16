@@ -236,8 +236,14 @@ table.partition-table { background-color: #dee2e6; }
 .sidebar-menu {
 	background-color: #5385C1;
 }
-.pt-page h1 { background-color: #5385C1;  }
+.pt-page h1 { background-color: white; color: black;  }
 .pt-page th { background-color: #5385C1; }
 .pt-page-header { 
 	background-color: #5385C1; 
+}
+.pt-page-controller {
+	background-color: #ffffff;
+	background-clip: border-box;
+	border: 1px solid #EBEDF3;
+	border-radius: 0.42rem;
 }
