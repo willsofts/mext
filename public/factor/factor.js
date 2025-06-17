@@ -17,6 +17,9 @@ function setupComponents() {
 		e.stopPropagation();
 		if(e.which==13) { $("#savebutton").trigger("click"); return false; }
 	}).focus();
+	$("a.factor-linker").each(function(index,element) {
+		$(element).on("click",function() { openFactorInfo(); });
+	});
 }
 function clearingFields() {
 }

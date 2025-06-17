@@ -8,13 +8,13 @@
 						<% if(page.isThai()) { %>
 						ระบบต้องการตรวจสอบเพิ่มเติม โปรดระบุรหัสจากโปรแกรมมือถือ Google Authenticator<br/>
 						<% if(data.dataset?.factorflag!="1") { %>
-						สามารถดาวน์โหลดโปรแกรมมือถือ Google Authenticator และทำการเพิ่มได้ที่ <a href="javascript:void(0)" title="Add Google Authenticator" tabIndex="-1" onclick="openFactorInfo()">เพิ่ม 2FA</a>
+						สามารถดาวน์โหลดโปรแกรมมือถือ Google Authenticator และทำการเพิ่มได้ที่ <a href="javascript:void(0)" class="factor-linker" title="Add Google Authenticator" tabIndex="-1">เพิ่ม 2FA</a>
 						<%}%>
 						<%}%>
 						<% if(!page.isThai()) { %>
 						The system force you to entry verification code, please specify your Google Authenticator code.<br/>
 						<% if(data.dataset?.factorflag!="1") { %>
-						You can download mobile application Google Authenticator and add with QR Code via <a href="javascript:void(0)" title="Add Google Authenticator" tabIndex="-1" onclick="openFactorInfo()">Add 2FA</a>
+						You can download mobile application Google Authenticator and add with QR Code via <a href="javascript:void(0)" class="factor-linker" title="Add Google Authenticator" tabIndex="-1">Add 2FA</a>
 						<%}%>
 						<%}%>
 						<br/>
@@ -34,7 +34,7 @@
 					<div class="col-md-4"></div>
 					<div class="col-md-4 factor-link-layer">						
 						<%if(data.dataset?.factorflag!="1"){%>
-						<a href="javascript:void(0)" id="factorliker" class="factor-linker" title="Add Google Authenticator" tabIndex="-1" onclick="openFactorInfo()"><%=label.get('factor_label','Add 2FA')%></a>
+						<a href="javascript:void(0)" id="factorliker" class="factor-linker" title="Add Google Authenticator" tabIndex="-1"><%=label.get('factor_label','Add 2FA')%></a>
 						<%}%>
 						<input type="button" id="savebutton" class="btn btn-dark btn-sm pull-right" value="<%=label.get('submitbutton','Submit')%>"/>
 					</div>
