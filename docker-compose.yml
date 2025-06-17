@@ -1,0 +1,11 @@
+version: '3.6'
+services:
+  mext:
+    image: willsofts/mext
+    container_name: mext
+    environment:
+      - TZ=Asia/Bangkok
+    volumes:
+      - ./config/default-docker.json:/usr/node/app/config/default.json
+    ports:
+      - 8080:8080
