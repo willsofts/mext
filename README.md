@@ -46,6 +46,8 @@ Linux
 
 This project contains examples API that can invoke by [curl](https://curl.se/download.html):
 
+* curl http://localhost:8080/api/health/check
+* curl http://localhost:8080/api/fetch/info
 * curl http://localhost:8080/api/fetch/hello 
 * curl http://localhost:8080/api/fetch/hello?name=test  (query parameter)
 * curl -X POST http://localhost:8080/api/fetch/hello -d name=test  (post parameter)
