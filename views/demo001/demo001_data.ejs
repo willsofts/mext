@@ -21,7 +21,7 @@
 			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort" data-sorter="fielddate"><label id="fielddate_headerlabel"><%=label.get('fielddate_headerlabel','Date')%></label></a></th>
 			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort" data-sorter="fieldtime"><label id="fieldtime_headerlabel"><%=label.get('fieldtime_headerlabel','Time')%></label></a></th>
 			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort" data-sorter="fielddecimal"><label id="fielddecimal_headerlabel"><%=label.get('fielddecimal_headerlabel','Amount')%></label></a></th>
-			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort" data-sorter="fieldtext"><label id="fielddecimal_headerlabel"><%=label.get('fieldtext_headerlabel','Name')%></label></a></th>
+			<th class="text-center th-data"><a href="javascript:void(0)" class="alink-sorter fa-data-sort" data-sorter="fieldtext"><label id="fieldtext_headerlabel"><%=label.get('fieldtext_headerlabel','Name')%></label></a></th>
 			<th class="text-center th-action"><em class="fa fa-bolt" aria-hidden="true"></em></th>
 		</tr>
 	</thead>
@@ -36,7 +36,7 @@
 						<td class="text-center"><a href="javascript:void(0)" class="alink-data fa-data-edit" data-key="<%=item?.fieldchar%>"><%=page.format({value: item?.fielddate, field:{type:"DATE"}})%></a></td>
 						<td class="text-center"><a href="javascript:void(0)" class="alink-data fa-data-edit" data-key="<%=item?.fieldchar%>"><%=page.format({value: item?.fieldtime, field:{type:"TIME"}})%></a></td>
 						<td class="text-right"><a href="javascript:void(0)" class="alink-data fa-data-edit" data-key="<%=item?.fieldchar%>"><%=page.format({value: item?.fielddecimal, field:{type:"DECIMAL", options: {mindigit: 4}}})%></a></td>
-						<td><a href="javascript:void(0)" class="alink-data fa-data-edit" data-key="<%=item?.fieldchar%>"><%=item?.fieldtext%></a></td>
+						<td><a href="javascript:void(0)" class="alink-data fa-data-edit" data-key="<%=item?.fieldchar%>"><%=page.mask.maskTail(item?.fieldtext,5)%></a></td>
 						<td class="text-center">
 							<button class="btn-edit fa-data-edit" data-key="<%=item?.fieldchar%>" title="<%=label.get('btnedit_tooltip')%>"></button>
 							<button class="btn-delete fa-data-delete" data-key="<%=item?.fieldchar%>" title="<%=label.get('btndelete_tooltip')%>"></button>
